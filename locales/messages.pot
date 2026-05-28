@@ -1,0 +1,72 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-28 17:41+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: markups.py:13
+msgid "Share contact data:"
+msgstr ""
+
+#: handlers/base.py:27
+#, python-brace-format
+msgid "Welcome to Bron, {username}. Choose your language:"
+msgstr ""
+
+#: handlers/base.py:37
+msgid "Language set successfully."
+msgstr ""
+
+#: handlers/base.py:39 handlers/base.py:73
+msgid "Choose your actions:"
+msgstr ""
+
+#: handlers/base.py:44
+msgid "Choose your language:"
+msgstr ""
+
+#: handlers/base.py:49 handlers/booking.py:27
+msgid "Booking..."
+msgstr ""
+
+#: handlers/base.py:50
+msgid "My Profile"
+msgstr ""
+
+#: handlers/base.py:51
+msgid "Change Language"
+msgstr ""
+
+#: handlers/base.py:52
+msgid "About Bron"
+msgstr ""
+
+#: handlers/base.py:53
+msgid "Help"
+msgstr ""
+
+#: handlers/base.py:59 handlers/base.py:64 handlers/base.py:68
+msgid "In development"
+msgstr ""
+
+#: handlers/booking.py:25
+msgid "Choose Businesses By Category"
+msgstr ""
+
+#: handlers/booking.py:26
+msgid "Search Businesses and Services"
+msgstr ""
+
