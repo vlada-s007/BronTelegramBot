@@ -17,6 +17,8 @@ async def main():
     token = config('TOKEN')
     bot = Bot(token)
     # dp.include_router(auth_router)
+    # redis = Redis()
+    # storage = RedisStorage(redis=redis)
     dp = Dispatcher(bot=bot)
     dp.include_router(base_router)
     dp.include_router(booking_router)
