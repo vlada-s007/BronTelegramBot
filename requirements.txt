@@ -13,8 +13,6 @@ certifi==2026.5.20
 cffi==2.0.0
 contextlib2==21.6.0
 cryptography==48.0.0
-django-ninja-extra==0.31.4
-django-ninja-jwt==5.4.4
 frozenlist==1.8.0
 idna==3.16
 injector==0.24.0
