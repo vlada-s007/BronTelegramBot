@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-28 17:41+0500\n"
-"PO-Revision-Date: 2026-05-28 08:33+0500\n"
+"POT-Creation-Date: 2026-05-30 17:58+0500\n"
+"PO-Revision-Date: 2026-05-30 17:44+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uz\n"
 "Language-Team: uz <LL@li.org>\n"
@@ -22,69 +22,56 @@ msgstr ""
 msgid "Share contact data:"
 msgstr ""
 
-#: handlers/base.py:27
+#: handlers/base.py:28
 #, python-brace-format
 msgid "Welcome to Bron, {username}. Choose your language:"
+msgstr "Bronga xush kelibsiz. Tilingizni tanlang:"
+
+#: handlers/base.py:31
+msgid "Welcome to Bron. Choose your language:"
 msgstr "Bronga xush kelibsiz, {username}. Tilingizni tanlang:"
 
-#: handlers/base.py:37
+#: handlers/base.py:40
 msgid "Language set successfully."
 msgstr "Til muvaffaqiyatli tanlandi."
 
-#: handlers/base.py:39 handlers/base.py:73
+#: handlers/base.py:42 handlers/base.py:76
 msgid "Choose your actions:"
 msgstr "Harakatlaringizni Tanlang:"
 
-#: handlers/base.py:44
-
+#: handlers/base.py:47
 msgid "Choose your language:"
-msgstr "🌐 Tilingizni Tanlang:"
+msgstr "Tilingizni Tanlang:"
 
-#: handlers/base.py:49 handlers/booking.py:27
-
+#: handlers/base.py:52 handlers/booking.py:28
 msgid "Booking..."
-msgstr "📅 Bron qilish..."
-
-#: handlers/base.py:50
-
-msgid "My Profile"
-msgstr "👤 Mening Profilim"
-
-#: handlers/base.py:51
-
-msgid "Change Language"
-msgstr "🌐 Tilni o'zgartirish"
-
-#: handlers/base.py:52
-
-msgid "About Bron"
-msgstr "ℹ️ Bron haqida ma'lumot"
+msgstr "Band qilish..."
 
 #: handlers/base.py:53
+msgid "My Profile"
+msgstr "Mening Profilim"
 
+#: handlers/base.py:54
+msgid "Change Language"
+msgstr "Tilni o'zgartirish"
+
+#: handlers/base.py:55
+msgid "About Bron"
+msgstr "Bron haqida ma'lumot"
+
+#: handlers/base.py:56
 msgid "Help"
-msgstr "🆘 Help"
+msgstr "Yordam"
 
-#: handlers/base.py:59 handlers/base.py:64 handlers/base.py:68
+#: handlers/base.py:62 handlers/base.py:67 handlers/base.py:71
 msgid "In development"
-msgstr "Rivojlanish jarayonida"
+msgstr "Rivojlanishda"
 
 #: handlers/booking.py:25
-
-msgid "Choose Businesses By Category"
-msgstr "📍 Kategoriya bo'yicha Biznesni Tanlang"
+msgid "Choose Services By Category"
+msgstr "Toifa boyicha hizmatni tanlang"
 
 #: handlers/booking.py:26
-
-msgid "Search Businesses and Services"
-msgstr "🔎 Biznes va Xizmatlarni Qidirish"
-
-#~ msgid "About Bron:"
-#~ msgstr "Bron haqida ma'lumot"
-
-#~ msgid "Help"
-#~ msgstr ""
-
-#~ msgid "Book..."
-#~ msgstr "Bron qilish..."
+msgid "Search Services and Products"
+msgstr "Xizmatlarni qidirish"
 

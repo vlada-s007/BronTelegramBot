@@ -22,8 +22,9 @@ class BookingState(StatesGroup):
 # Позже добавить middleware, которая будет посылать запрос на авторизацию
 @booking_router.callback_query(lambda call: 'bookingMenu' in call.data)
 async def booking_menu(call: CallbackQuery):
-    category = _('Choose Businesses By Category')
-    search = _('Search Businesses and Services')
+    category = _('Choose Services By Category')
+    search = _('Search Services and Products')
+    print(category, search)
     await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup(category, search))
 
 

@@ -24,8 +24,11 @@ class LangState(StatesGroup):
 
 @base_router.message(Command('start'))
 async def command_start(message: Message, state: FSMContext):
-    await message.answer(_('Welcome to Bron, {username}. Choose your language:').format(
-            username=html.quote(message.from_user.username)), reply_markup=language_inline)
+    try:
+        await message.answer(_('Welcome to Bron, {username}. Choose your language:').format(
+                username=html.quote(message.from_user.username)), reply_markup=language_inline)
+    except:
+        await message.answer(_('Welcome to Bron. Choose your language:'), reply_markup=language_inline)
     await state.set_state(LangState.lang)
 
 
@@ -50,8 +53,8 @@ async def get_main_menu_text():
     profile = _('My Profile')
     language = _('Change Language')
     about = _('About Bron')
-    help = _('Help')
-    return book, profile, language, about, help
+    help_section = _('Help')
+    return book, profile, language, about, help_section
 
 
 @base_router.callback_query(lambda call: 'help' in call.data)
