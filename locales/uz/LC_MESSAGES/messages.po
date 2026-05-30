@@ -74,4 +74,3 @@ msgstr "Toifa boyicha hizmatni tanlang"
 #: handlers/booking.py:26
 msgid "Search Services and Products"
 msgstr "Xizmatlarni qidirish"
-

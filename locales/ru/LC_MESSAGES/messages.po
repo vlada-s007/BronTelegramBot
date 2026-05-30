@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 17:58+0500\n"
+"POT-Creation-Date: 2026-05-30 18:04+0500\n"
 "PO-Revision-Date: 2026-05-28 08:32+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -71,9 +71,9 @@ msgstr "В разработке"
 
 #: handlers/booking.py:25
 msgid "Choose Services By Category"
-msgstr "Выбрать Компании по Категории"
+msgstr "Выбрать Сервисы по Категории"
 
 #: handlers/booking.py:26
 msgid "Search Services and Products"
-msgstr "Искать сервисы и продукты"
+msgstr "Искать Сервисы и Продукты"
 
