@@ -1,15 +1,10 @@
 # Booking будет реализована после оформления API на авторизацию, это базовый тест
 
-import orjson
 from aiogram import Router
-from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command
-from aiogram import html
+from aiogram.types import CallbackQuery
 from aiogram.utils.i18n import gettext as _
-from bronTelegramBot.markups import language_inline, main_menu, booking_menu_markup
-from bronTelegramBot.middlewares.locales import i18n_middleware
+from bronTelegramBot.keyboard.markups import booking_menu_markup
 
 booking_router = Router()
 

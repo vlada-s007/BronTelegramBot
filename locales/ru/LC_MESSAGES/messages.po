@@ -7,73 +7,90 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 18:04+0500\n"
-"PO-Revision-Date: 2026-05-28 08:32+0500\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: ru\n"
+"POT-Creation-Date: 2026-06-03 14:50+0500\n"
+"PO-Revision-Date: 2026-06-03 14:52+0500\n"
+"Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
-#: markups.py:13
-msgid "Share contact data:"
+#: handlers/auth.py:39
+#, python-brace-format
+msgid ""
+"Welcome to Bron, {username}. You are currently not logged in.\n"
+"Share contact information in order to log in or register:"
+msgstr ""
+"Добро пожаловать в Bron, {username}. На данный момент вы не "
+"авторизованы.\n"
+"Поделитесь контактными данными, чтобы авторизоваться или завершить "
+"регистрацию:"
+
+#: handlers/auth.py:71
+msgid "Registration is completed!"
+msgstr "Регистрация завершена!"
+
+#: handlers/auth.py:74
+msgid "Share contact information"
 msgstr "Поделиться контактными данными"
 
-#: handlers/base.py:28
-#, python-brace-format
-msgid "Welcome to Bron, {username}. Choose your language:"
-msgstr "Добро пожаловать в Bron, {username}. Выберите свой язык:"
-
-#: handlers/base.py:31
-#, fuzzy
-msgid "Welcome to Bron. Choose your language:"
-msgstr "Добро пожаловать в Bron. Выберите свой язык:"
-
-#: handlers/base.py:40
+#: handlers/base.py:26
 msgid "Language set successfully."
 msgstr "Язык выбран успешно."
 
-#: handlers/base.py:42 handlers/base.py:76
+#: handlers/base.py:28 handlers/base.py:62
 msgid "Choose your actions:"
 msgstr "Выберите свои действия:"
 
-#: handlers/base.py:47
+#: handlers/base.py:33
 msgid "Choose your language:"
 msgstr "Выберите свой язык:"
 
-#: handlers/base.py:52 handlers/booking.py:28
+#: handlers/base.py:38 handlers/booking.py:23
 msgid "Booking..."
 msgstr "Забронировать..."
 
-#: handlers/base.py:53
+#: handlers/base.py:39
 msgid "My Profile"
 msgstr "Мой профиль"
 
-#: handlers/base.py:54
+#: handlers/base.py:40
 msgid "Change Language"
 msgstr "Изменить язык"
 
-#: handlers/base.py:55
+#: handlers/base.py:41
 msgid "About Bron"
 msgstr "О Bron"
 
-#: handlers/base.py:56
+#: handlers/base.py:42
 msgid "Help"
 msgstr "Помощь"
 
-#: handlers/base.py:62 handlers/base.py:67 handlers/base.py:71
+#: handlers/base.py:48 handlers/base.py:53 handlers/base.py:57
 msgid "In development"
 msgstr "В разработке"
 
-#: handlers/booking.py:25
+#: handlers/booking.py:20
 msgid "Choose Services By Category"
-msgstr "Выбрать Сервисы по Категории"
+msgstr "Выбрать услуги по категориям"
 
-#: handlers/booking.py:26
+#: handlers/booking.py:21
 msgid "Search Services and Products"
-msgstr "Искать Сервисы и Продукты"
+msgstr "Поиск услуг и товаров"
 
+#~ msgid "Welcome to Bron, {username}. Choose your language:"
+#~ msgstr "Добро пожаловать в Bron, {username}. Выберите язык:"
+
+#~ msgid "Welcome to Bron. Choose your language:"
+#~ msgstr "Добро пожаловать в Bron. Выберите свой язык:"
+
+#~ msgid "Share contact information in order to complete registration"
+#~ msgstr "Чтобы завершить регистрацию, поделитесь контактом"
+
+#~ msgid "Welcome to Bron, {first_name}. Choose your language:"
+#~ msgstr "Добро пожаловать в Bron, {first_name}. Выберите язык:"
