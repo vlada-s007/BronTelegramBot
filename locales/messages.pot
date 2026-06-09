@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 14:50+0500\n"
+"POT-Creation-Date: 2026-06-09 15:44+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: handlers/auth.py:39
+#: handlers/auth.py:36
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
 
-#: handlers/auth.py:71
+#: handlers/auth.py:49
 msgid "Registration is completed!"
 msgstr ""
 
-#: handlers/auth.py:74
+#: handlers/auth.py:53
 msgid "Share contact information"
 msgstr ""
 
-#: handlers/base.py:26
-msgid "Language set successfully."
+#: handlers/auth.py:57
+msgid "Continue"
 msgstr ""
 
-#: handlers/base.py:28 handlers/base.py:62
-msgid "Choose your actions:"
-msgstr ""
-
-#: handlers/base.py:33
-msgid "Choose your language:"
-msgstr ""
-
-#: handlers/base.py:38 handlers/booking.py:23
-msgid "Booking..."
-msgstr ""
-
-#: handlers/base.py:39
-msgid "My Profile"
-msgstr ""
-
-#: handlers/base.py:40
-msgid "Change Language"
+#: handlers/base.py:25 handlers/base.py:27
+msgid "Welcome to Bron. Choose your actions:"
 msgstr ""
 
 #: handlers/base.py:41
+msgid "Choose your language:"
+msgstr ""
+
+#: handlers/base.py:46 handlers/booking.py:23
+msgid "Booking..."
+msgstr ""
+
+#: handlers/base.py:47
+msgid "My Profile"
+msgstr ""
+
+#: handlers/base.py:48
+msgid "Change Language"
+msgstr ""
+
+#: handlers/base.py:49
 msgid "About Bron"
 msgstr ""
 
-#: handlers/base.py:42
+#: handlers/base.py:50
 msgid "Help"
 msgstr ""
 
-#: handlers/base.py:48 handlers/base.py:53 handlers/base.py:57
+#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
 msgid "In development"
+msgstr ""
+
+#: handlers/base.py:70
+msgid "Choose your actions:"
 msgstr ""
 
 #: handlers/booking.py:20

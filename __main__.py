@@ -21,31 +21,32 @@ async def main():
     token = config('TOKEN')
     bot = Bot(token)
 
-    redis = Redis()
-    storage = RedisStorage(redis=redis)
-    dp = Dispatcher(bot=bot, storage=storage)
+    # redis = Redis()
+    # storage = RedisStorage(redis=redis)
+    # dp = Dispatcher(bot=bot, storage=storage)
 
-    # dp = Dispatcher(bot=bot)
+    dp = Dispatcher(bot=bot)
 
     i18n_middleware.setup(dp)
     session = ClientSession()
 
-    database = config('DB_NAME')
-    user = config('DB_USER')
-    password = config('DB_PASSWORD')
-    host = config('DB_HOST')
-    port = config('DB_PORT')
-    conn = await asyncpg.connect(
-        host=str(host),
-        port=str(port),
-        password=str(password),
-        database=str(database),
-        user=str(user))
+    # database = config('DB_NAME')
+    # user = config('DB_USER')
+    # password = config('DB_PASSWORD')
+    # host = config('DB_HOST')
+    # port = config('DB_PORT')
+    # conn = await asyncpg.connect(
+    #     host=str(host),
+    #     port=str(port),
+    #     password=str(password),
+    #     database=str(database),
+    #     user=str(user))
     dp.include_router(auth_router)
     dp.include_router(base_router)
     dp.include_router(booking_router)
 
-    await dp.start_polling(bot, connect=conn, session=session)
+    # await dp.start_polling(bot, connect=conn, session=session)
+    await dp.start_polling(bot, session=session)
 
 
 

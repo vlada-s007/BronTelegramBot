@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 14:50+0500\n"
-"PO-Revision-Date: 2026-06-03 14:52+0500\n"
+"POT-Creation-Date: 2026-06-09 15:44+0500\n"
+"PO-Revision-Date: 2026-06-09 15:48+0500\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 "X-Generator: Poedit 3.9\n"
 
-#: handlers/auth.py:39
+#: handlers/auth.py:36
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
@@ -31,49 +31,53 @@ msgstr ""
 "Поделитесь контактными данными, чтобы авторизоваться или завершить "
 "регистрацию:"
 
-#: handlers/auth.py:71
+#: handlers/auth.py:49
 msgid "Registration is completed!"
 msgstr "Регистрация завершена!"
 
-#: handlers/auth.py:74
+#: handlers/auth.py:53
 msgid "Share contact information"
 msgstr "Поделиться контактными данными"
 
-#: handlers/base.py:26
-msgid "Language set successfully."
-msgstr "Язык выбран успешно."
+#: handlers/auth.py:57
+msgid "Continue"
+msgstr "Продолжить"
 
-#: handlers/base.py:28 handlers/base.py:62
-msgid "Choose your actions:"
-msgstr "Выберите свои действия:"
+#: handlers/base.py:25 handlers/base.py:27
+msgid "Welcome to Bron. Choose your actions:"
+msgstr "Добро пожаловать в Bron. Выберите свои действия:"
 
-#: handlers/base.py:33
+#: handlers/base.py:41
 msgid "Choose your language:"
 msgstr "Выберите свой язык:"
 
-#: handlers/base.py:38 handlers/booking.py:23
+#: handlers/base.py:46 handlers/booking.py:23
 msgid "Booking..."
 msgstr "Забронировать..."
 
-#: handlers/base.py:39
+#: handlers/base.py:47
 msgid "My Profile"
 msgstr "Мой профиль"
 
-#: handlers/base.py:40
+#: handlers/base.py:48
 msgid "Change Language"
 msgstr "Изменить язык"
 
-#: handlers/base.py:41
+#: handlers/base.py:49
 msgid "About Bron"
 msgstr "О Bron"
 
-#: handlers/base.py:42
+#: handlers/base.py:50
 msgid "Help"
 msgstr "Помощь"
 
-#: handlers/base.py:48 handlers/base.py:53 handlers/base.py:57
+#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
 msgid "In development"
 msgstr "В разработке"
+
+#: handlers/base.py:70
+msgid "Choose your actions:"
+msgstr "Выберите свои действия:"
 
 #: handlers/booking.py:20
 msgid "Choose Services By Category"
@@ -94,3 +98,6 @@ msgstr "Поиск услуг и товаров"
 
 #~ msgid "Welcome to Bron, {first_name}. Choose your language:"
 #~ msgstr "Добро пожаловать в Bron, {first_name}. Выберите язык:"
+
+#~ msgid "Language set successfully."
+#~ msgstr "Язык выбран успешно."

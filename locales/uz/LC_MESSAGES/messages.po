@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-03 14:50+0500\n"
-"PO-Revision-Date: 2026-06-03 14:53+0500\n"
+"POT-Creation-Date: 2026-06-09 15:44+0500\n"
+"PO-Revision-Date: 2026-06-09 15:48+0500\n"
 "Last-Translator: \n"
 "Language-Team: uz <LL@li.org>\n"
 "Language: uz\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 "X-Generator: Poedit 3.9\n"
 
-#: handlers/auth.py:39
+#: handlers/auth.py:36
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
@@ -28,49 +28,53 @@ msgstr ""
 "Bronga xush kelibsiz, {username}. Hozirda siz ro'yxatdan o'tmaganmisiz.\n"
 "Kirish yoki ro'yxatdan o'tish uchun aloqa ma'lumotlarini ulashing:"
 
-#: handlers/auth.py:71
+#: handlers/auth.py:49
 msgid "Registration is completed!"
 msgstr "Ro'yxatdan o'tish yakunlandi!"
 
-#: handlers/auth.py:74
+#: handlers/auth.py:53
 msgid "Share contact information"
 msgstr "Kontakt ma'lumotlarini baham ko'ring"
 
-#: handlers/base.py:26
-msgid "Language set successfully."
-msgstr "Til muvaffaqiyatli tanlandi."
+#: handlers/auth.py:57
+msgid "Continue"
+msgstr "Davom etish"
 
-#: handlers/base.py:28 handlers/base.py:62
-msgid "Choose your actions:"
-msgstr "Harakatlaringizni Tanlang:"
+#: handlers/base.py:25 handlers/base.py:27
+msgid "Welcome to Bron. Choose your actions:"
+msgstr "Bronga xush kelibsiz. Harakatlaringizni Tanlang:"
 
-#: handlers/base.py:33
+#: handlers/base.py:41
 msgid "Choose your language:"
 msgstr "Tilingizni Tanlang:"
 
-#: handlers/base.py:38 handlers/booking.py:23
+#: handlers/base.py:46 handlers/booking.py:23
 msgid "Booking..."
 msgstr "Band qilish..."
 
-#: handlers/base.py:39
+#: handlers/base.py:47
 msgid "My Profile"
 msgstr "Mening Profilim"
 
-#: handlers/base.py:40
+#: handlers/base.py:48
 msgid "Change Language"
 msgstr "Tilni o'zgartirish"
 
-#: handlers/base.py:41
+#: handlers/base.py:49
 msgid "About Bron"
 msgstr "Bron haqida ma'lumot"
 
-#: handlers/base.py:42
+#: handlers/base.py:50
 msgid "Help"
 msgstr "Yordam"
 
-#: handlers/base.py:48 handlers/base.py:53 handlers/base.py:57
+#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
 msgid "In development"
 msgstr "Rivojlanishda"
+
+#: handlers/base.py:70
+msgid "Choose your actions:"
+msgstr "Harakatlaringizni Tanlang:"
 
 #: handlers/booking.py:20
 msgid "Choose Services By Category"
@@ -91,3 +95,6 @@ msgstr "Xizmatlar va mahsulotlarni qidiring"
 
 #~ msgid "Welcome to Bron, {first_name}. Choose your language:"
 #~ msgstr "Bronga xush kelibsiz, {first_name}. Tilni tanlang:"
+
+#~ msgid "Language set successfully."
+#~ msgstr "Til muvaffaqiyatli tanlandi."

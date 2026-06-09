@@ -15,6 +15,9 @@ async def send_contact(text):
                                                              )]], resize_keyboard=True)
     return markup
 
+async def continue_button(text):
+    markup = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text=text, callback_data='base_router_main_menu')]])
+    return markup
 
 async def main_menu(*args):
     builder = InlineKeyboardBuilder()
