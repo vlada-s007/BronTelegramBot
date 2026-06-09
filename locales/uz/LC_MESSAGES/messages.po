@@ -7,70 +7,94 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-30 17:58+0500\n"
-"PO-Revision-Date: 2026-05-30 17:44+0500\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: uz\n"
+"POT-Creation-Date: 2026-06-09 15:44+0500\n"
+"PO-Revision-Date: 2026-06-09 15:48+0500\n"
+"Last-Translator: \n"
 "Language-Team: uz <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
-#: markups.py:13
-msgid "Share contact data:"
-msgstr ""
-
-#: handlers/base.py:28
+#: handlers/auth.py:36
 #, python-brace-format
-msgid "Welcome to Bron, {username}. Choose your language:"
-msgstr "Bronga xush kelibsiz. Tilingizni tanlang:"
+msgid ""
+"Welcome to Bron, {username}. You are currently not logged in.\n"
+"Share contact information in order to log in or register:"
+msgstr ""
+"Bronga xush kelibsiz, {username}. Hozirda siz ro'yxatdan o'tmaganmisiz.\n"
+"Kirish yoki ro'yxatdan o'tish uchun aloqa ma'lumotlarini ulashing:"
 
-#: handlers/base.py:31
-msgid "Welcome to Bron. Choose your language:"
-msgstr "Bronga xush kelibsiz, {username}. Tilingizni tanlang:"
+#: handlers/auth.py:49
+msgid "Registration is completed!"
+msgstr "Ro'yxatdan o'tish yakunlandi!"
 
-#: handlers/base.py:40
-msgid "Language set successfully."
-msgstr "Til muvaffaqiyatli tanlandi."
+#: handlers/auth.py:53
+msgid "Share contact information"
+msgstr "Kontakt ma'lumotlarini baham ko'ring"
 
-#: handlers/base.py:42 handlers/base.py:76
-msgid "Choose your actions:"
-msgstr "Harakatlaringizni Tanlang:"
+#: handlers/auth.py:57
+msgid "Continue"
+msgstr "Davom etish"
 
-#: handlers/base.py:47
+#: handlers/base.py:25 handlers/base.py:27
+msgid "Welcome to Bron. Choose your actions:"
+msgstr "Bronga xush kelibsiz. Harakatlaringizni Tanlang:"
+
+#: handlers/base.py:41
 msgid "Choose your language:"
 msgstr "Tilingizni Tanlang:"
 
-#: handlers/base.py:52 handlers/booking.py:28
+#: handlers/base.py:46 handlers/booking.py:23
 msgid "Booking..."
 msgstr "Band qilish..."
 
-#: handlers/base.py:53
+#: handlers/base.py:47
 msgid "My Profile"
 msgstr "Mening Profilim"
 
-#: handlers/base.py:54
+#: handlers/base.py:48
 msgid "Change Language"
 msgstr "Tilni o'zgartirish"
 
-#: handlers/base.py:55
+#: handlers/base.py:49
 msgid "About Bron"
 msgstr "Bron haqida ma'lumot"
 
-#: handlers/base.py:56
+#: handlers/base.py:50
 msgid "Help"
 msgstr "Yordam"
 
-#: handlers/base.py:62 handlers/base.py:67 handlers/base.py:71
+#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
 msgid "In development"
 msgstr "Rivojlanishda"
 
-#: handlers/booking.py:25
-msgid "Choose Services By Category"
-msgstr "Toifa boyicha hizmatni tanlang"
+#: handlers/base.py:70
+msgid "Choose your actions:"
+msgstr "Harakatlaringizni Tanlang:"
 
-#: handlers/booking.py:26
+#: handlers/booking.py:20
+msgid "Choose Services By Category"
+msgstr "Xizmatlarni toifa bo‘yicha tanlang"
+
+#: handlers/booking.py:21
 msgid "Search Services and Products"
-msgstr "Xizmatlarni qidirish"
+msgstr "Xizmatlar va mahsulotlarni qidiring"
+
+#~ msgid "Welcome to Bron, {username}. Choose your language:"
+#~ msgstr "Bronga xush kelibsiz, {username}. Tilni tanlang:"
+
+#~ msgid "Welcome to Bron. Choose your language:"
+#~ msgstr "Bronga xush kelibsiz, {username}. Tilingizni tanlang:"
+
+#~ msgid "Share contact information in order to complete registration"
+#~ msgstr "Ro'yxatdan o'tishni yakunlash uchun kontakt ma'lumotlarini baham ko'ring"
+
+#~ msgid "Welcome to Bron, {first_name}. Choose your language:"
+#~ msgstr "Bronga xush kelibsiz, {first_name}. Tilni tanlang:"
+
+#~ msgid "Language set successfully."
+#~ msgstr "Til muvaffaqiyatli tanlandi."

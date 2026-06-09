@@ -2,6 +2,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMar
 from aiogram.utils.i18n import lazy_gettext as _
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
+
 language_inline = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='UZ 🇺🇿', callback_data='lang_uz'),
      InlineKeyboardButton(text='ENG 🇬🇧🇺🇸', callback_data='lang_eng'),
@@ -10,12 +11,13 @@ language_inline = InlineKeyboardMarkup(inline_keyboard=[
 
 
 async def send_contact(text):
-    text = _('Share contact data:')
-    markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text=text,
-                                                           request_contact=True,
-                                                           resize_keyboard=True)]])
+    markup = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text=text, request_contact=True
+                                                             )]], resize_keyboard=True)
     return markup
 
+async def continue_button(text):
+    markup = InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text=text, callback_data='base_router_main_menu')]])
+    return markup
 
 async def main_menu(*args):
     builder = InlineKeyboardBuilder()
