@@ -22,28 +22,32 @@ auth_router.message.middleware(AuthMiddleware())
 
 @auth_router.message(Command('start'))
 async def command_start(message: Message, state: FSMContext):
-    lang_code = message.from_user.language_code
-    try:
-        await i18n_middleware.set_locale(state, lang_code)
-        await state.update_data(user_language=lang_code)
-    except:
-        await i18n_middleware.set_locale(state, 'en')
-        await state.update_data(user_language='en')
+    state_data = await state.get_data()
+    if not state_data['user_id']:
+        lang_code = message.from_user.language_code
+        try:
+            await i18n_middleware.set_locale(state, lang_code)
+            await state.update_data(user_language=lang_code)
+        except:
+            await i18n_middleware.set_locale(state, 'en')
+            await state.update_data(user_language='en')
 
-    text = await get_text_contact_button()
-    await message.answer(
-        _('Welcome to Bron, {username}. You are currently not logged in.\nShare contact information in order to log in or register:').format(
-            username=html.quote(message.from_user.username)), reply_markup=await send_contact(text))
-    await state.update_data(telegram_id=message.chat.id)
-    await state.set_state(UserState.phone)
-    await state.set_state(UserState.auth)
+        text = await get_text_contact_button()
+        await message.answer(
+            _('Welcome to Bron, {username}. You are currently not logged in.\nShare contact information in order to log in or register:').format(
+                username=html.quote(message.from_user.username)), reply_markup=await send_contact(text))
+        await state.update_data(telegram_id=message.chat.id)
+        await state.set_state(UserState.phone)
+        await state.set_state(UserState.user_id)
+    else:
+        text = await get_text_continue_button()
+        await message.answer(_('You are already logged in.'), reply_markup=await continue_button(text))
 
 
-@auth_router.message(UserState.auth)
+@auth_router.message(UserState.user_id)
 async def authorize_user(message: Message, state: FSMContext):
     data = await state.get_data()
-    if data.get('auth'):
-        print(data.get('auth'))
+    if data.get('user_id'):
         text = await get_text_continue_button()
         await message.answer(_('Registration is completed!'), reply_markup=await continue_button(text))
 

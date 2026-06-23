@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-09 15:44+0500\n"
+"POT-Creation-Date: 2026-06-23 17:59+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,66 +17,247 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: handlers/auth.py:36
+#: handlers/auth.py:37
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
 
-#: handlers/auth.py:49
+#: handlers/auth.py:44
+msgid "You are already logged in."
+msgstr ""
+
+#: handlers/auth.py:52
 msgid "Registration is completed!"
 msgstr ""
 
-#: handlers/auth.py:53
+#: handlers/auth.py:56
 msgid "Share contact information"
 msgstr ""
 
-#: handlers/auth.py:57
+#: handlers/auth.py:60
 msgid "Continue"
 msgstr ""
 
-#: handlers/base.py:25 handlers/base.py:27
+#: handlers/base.py:25 handlers/base.py:27 handlers/base.py:44
+#: handlers/base.py:46
 msgid "Welcome to Bron. Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:41
+#: handlers/base.py:32
 msgid "Choose your language:"
 msgstr ""
 
-#: handlers/base.py:46 handlers/booking.py:23
+#: handlers/base.py:41
+msgid "Language set successfully."
+msgstr ""
+
+#: handlers/base.py:49 handlers/booking.py:33 handlers/booking.py:106
 msgid "Booking..."
 msgstr ""
 
-#: handlers/base.py:47
+#: handlers/base.py:50
 msgid "My Profile"
 msgstr ""
 
-#: handlers/base.py:48
+#: handlers/base.py:51
 msgid "Change Language"
 msgstr ""
 
-#: handlers/base.py:49
+#: handlers/base.py:52
 msgid "About Bron"
 msgstr ""
 
-#: handlers/base.py:50
+#: handlers/base.py:53
 msgid "Help"
 msgstr ""
 
-#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
+#: handlers/base.py:57
+msgid "Back to Main Menu"
+msgstr ""
+
+#: handlers/base.py:62 handlers/base.py:68 handlers/base.py:73
 msgid "In development"
 msgstr ""
 
-#: handlers/base.py:70
+#: handlers/base.py:79
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/booking.py:20
+#: handlers/booking.py:30 handlers/booking.py:103
 msgid "Choose Services By Category"
 msgstr ""
 
-#: handlers/booking.py:21
+#: handlers/booking.py:31 handlers/booking.py:104
 msgid "Search Services and Products"
+msgstr ""
+
+#: handlers/booking.py:32 handlers/booking.py:105
+msgid "Back to main menu"
+msgstr ""
+
+#: handlers/booking.py:38
+msgid "Choose a category:"
+msgstr ""
+
+#: handlers/booking.py:52
+#, python-brace-format
+msgid "{amt} Companies found in \"{category}\" category"
+msgstr ""
+
+#: handlers/booking.py:60
+msgid "Enter your search query:"
+msgstr ""
+
+#: handlers/booking.py:74 handlers/booking.py:94 handlers/booking.py:98
+#, python-brace-format
+msgid "{amt} companies found for \"{query}\" "
+msgstr ""
+
+#: handlers/booking.py:78
+#, python-brace-format
+msgid "No companies found for \"{query}\" "
+msgstr ""
+
+#: handlers/booking.py:128
+#, python-brace-format
+msgid "{business_name} has {amt} branches/subsidiaries:"
+msgstr ""
+
+#: handlers/booking.py:141
+#, python-brace-format
+msgid "{business_name} offers {amt} service(s) for booking:"
+msgstr ""
+
+#: handlers/booking.py:160 handlers/booking.py:180
+msgid "Choose a date:"
+msgstr ""
+
+#: handlers/booking.py:202
+#, python-brace-format
+msgid ""
+"The duration of your chosen service \"{service_title}\" is "
+"{service_duration} minutes.\n"
+"Choose the timeframe of your booking:"
+msgstr ""
+
+#: handlers/booking.py:220
+#, python-brace-format
+msgid ""
+"The duration of your chosen service \"{service_title}\" is "
+"{service_duration} minutes:"
+msgstr ""
+
+#: handlers/booking.py:238
+#, python-brace-format
+msgid "{amt} staff members are available:"
+msgstr ""
+
+#: handlers/booking.py:253 handlers/booking.py:262
+msgid "Choose the number of guests:"
+msgstr ""
+
+#: handlers/booking.py:271
+msgid "Leave an additional message (or click the skip button)"
+msgstr ""
+
+#: handlers/booking.py:285
+#, python-brace-format
+msgid ""
+"Company name: {business_name}\n"
+"Chosen service: {service_title}\n"
+"Service duration: {service_duration} minutes\n"
+"Chosen staff: {staff_full_name_and_position}\n"
+"Number of guests invited: {guest_count}\n"
+"Booked date: {booking_date}\n"
+"Booked timeslot: {start_time} - {end_time}\n"
+"Additional note: {note}"
+msgstr ""
+
+#: handlers/booking.py:311
+#, python-brace-format
+msgid ""
+"Your total price is {total_price}\n"
+"Please make sure your booking details are correct:\n"
+"\n"
+"Company name: {business_name}\n"
+"Chosen service: {service_title}\n"
+"Service duration: {service_duration} minutes\n"
+"Chosen staff: {staff_full_name_and_position}\n"
+"Number of guests invited: {guest_count}\n"
+"Booked date: {booking_date}\n"
+"Booked timeslot: {start_time} - {end_time}"
+msgstr ""
+
+#: handlers/booking.py:338
+msgid "Return to choosing services"
+msgstr ""
+
+#: handlers/booking.py:343
+msgid "Return to choosing a date for services"
+msgstr ""
+
+#: handlers/booking.py:348
+msgid "Gym"
+msgstr ""
+
+#: handlers/booking.py:348
+msgid "Spa"
+msgstr ""
+
+#: handlers/booking.py:348
+msgid "Salon"
+msgstr ""
+
+#: handlers/booking.py:348
+msgid "Clinic"
+msgstr ""
+
+#: handlers/booking.py:354
+msgid "Return to category filtering"
+msgstr ""
+
+#: handlers/booking.py:356 handlers/booking.py:358 handlers/booking.py:368
+#: handlers/booking.py:378
+msgid "Return to Booking Menu"
+msgstr ""
+
+#: handlers/booking.py:364
+#, python-brace-format
+msgid "Return to companies in \"{category}\" category"
+msgstr ""
+
+#: handlers/booking.py:366
+#, python-brace-format
+msgid "Return to Search Results for \"{query}\""
+msgstr ""
+
+#: handlers/booking.py:373
+msgid "Return to choosing branch"
+msgstr ""
+
+#: handlers/booking.py:383
+msgid "Return to choosing Hours"
+msgstr ""
+
+#: handlers/booking.py:388
+msgid "Return choosing staff"
+msgstr ""
+
+#: handlers/booking.py:392
+msgid "Skip this step"
+msgstr ""
+
+#: handlers/booking.py:396
+msgid "Confirm booking"
+msgstr ""
+
+#: handlers/booking.py:400
+msgid "Cancel booking and return to the main menu"
+msgstr ""
+
+#: handlers/booking.py:404
+msgid "Return choosing the number of guests"
 msgstr ""
 

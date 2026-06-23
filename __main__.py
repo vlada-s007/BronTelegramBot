@@ -28,8 +28,9 @@ async def main():
     dp = Dispatcher(bot=bot)
 
     i18n_middleware.setup(dp)
-    session = ClientSession()
+    # session = ClientSession()
 
+    # asyncpg connect
     # database = config('DB_NAME')
     # user = config('DB_USER')
     # password = config('DB_PASSWORD')
@@ -41,12 +42,17 @@ async def main():
     #     password=str(password),
     #     database=str(database),
     #     user=str(user))
+
+    #aiosqlite connect
+
+
     dp.include_router(auth_router)
     dp.include_router(base_router)
     dp.include_router(booking_router)
 
     # await dp.start_polling(bot, connect=conn, session=session)
-    await dp.start_polling(bot, session=session)
+    # await dp.start_polling(bot, session=session)
+    await dp.start_polling(bot)
 
 
 

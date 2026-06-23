@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-09 15:44+0500\n"
-"PO-Revision-Date: 2026-06-09 15:48+0500\n"
+"POT-Creation-Date: 2026-06-23 17:59+0500\n"
+"PO-Revision-Date: 2026-06-23 19:06+0500\n"
 "Last-Translator: \n"
 "Language-Team: uz <LL@li.org>\n"
 "Language: uz\n"
@@ -19,70 +19,277 @@ msgstr ""
 "Generated-By: Babel 2.18.0\n"
 "X-Generator: Poedit 3.9\n"
 
-#: handlers/auth.py:36
+#: handlers/auth.py:37
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
-"Bronga xush kelibsiz, {username}. Hozirda siz ro'yxatdan o'tmaganmisiz.\n"
+"Bronga xush kelibsiz, {username}. Hozirda siz ro'yxatdan "
+"o'tmaganmisiz.\n"
 "Kirish yoki ro'yxatdan o'tish uchun aloqa ma'lumotlarini ulashing:"
 
-#: handlers/auth.py:49
+#: handlers/auth.py:44
+msgid "You are already logged in."
+msgstr "Siz allaqachon tizimga kirgansiz."
+
+#: handlers/auth.py:52
 msgid "Registration is completed!"
 msgstr "Ro'yxatdan o'tish yakunlandi!"
 
-#: handlers/auth.py:53
+#: handlers/auth.py:56
 msgid "Share contact information"
 msgstr "Kontakt ma'lumotlarini baham ko'ring"
 
-#: handlers/auth.py:57
+#: handlers/auth.py:60
 msgid "Continue"
 msgstr "Davom etish"
 
-#: handlers/base.py:25 handlers/base.py:27
+#: handlers/base.py:25 handlers/base.py:27 handlers/base.py:44
+#: handlers/base.py:46
 msgid "Welcome to Bron. Choose your actions:"
 msgstr "Bronga xush kelibsiz. Harakatlaringizni Tanlang:"
 
-#: handlers/base.py:41
+#: handlers/base.py:32
 msgid "Choose your language:"
 msgstr "Tilingizni Tanlang:"
 
-#: handlers/base.py:46 handlers/booking.py:23
+#: handlers/base.py:41
+msgid "Language set successfully."
+msgstr "Til muvaffaqiyatli tanlandi."
+
+#: handlers/base.py:49 handlers/booking.py:33 handlers/booking.py:106
 msgid "Booking..."
 msgstr "Band qilish..."
 
-#: handlers/base.py:47
+#: handlers/base.py:50
 msgid "My Profile"
 msgstr "Mening Profilim"
 
-#: handlers/base.py:48
+#: handlers/base.py:51
 msgid "Change Language"
 msgstr "Tilni o'zgartirish"
 
-#: handlers/base.py:49
+#: handlers/base.py:52
 msgid "About Bron"
 msgstr "Bron haqida ma'lumot"
 
-#: handlers/base.py:50
+#: handlers/base.py:53
 msgid "Help"
 msgstr "Yordam"
 
-#: handlers/base.py:56 handlers/base.py:61 handlers/base.py:65
+#: handlers/base.py:57
+msgid "Back to Main Menu"
+msgstr "Asosiy menyuga qaytish"
+
+#: handlers/base.py:62 handlers/base.py:68 handlers/base.py:73
 msgid "In development"
 msgstr "Rivojlanishda"
 
-#: handlers/base.py:70
+#: handlers/base.py:79
 msgid "Choose your actions:"
 msgstr "Harakatlaringizni Tanlang:"
 
-#: handlers/booking.py:20
+#: handlers/booking.py:30 handlers/booking.py:103
 msgid "Choose Services By Category"
 msgstr "Xizmatlarni toifa bo‘yicha tanlang"
 
-#: handlers/booking.py:21
+#: handlers/booking.py:31 handlers/booking.py:104
 msgid "Search Services and Products"
 msgstr "Xizmatlar va mahsulotlarni qidiring"
+
+#: handlers/booking.py:32 handlers/booking.py:105
+msgid "Back to main menu"
+msgstr "Asosiy menyuga qaytish"
+
+#: handlers/booking.py:38
+msgid "Choose a category:"
+msgstr "Xizmatlarni toifa bo‘yicha tanlang:"
+
+#: handlers/booking.py:52
+#, python-brace-format
+msgid "{amt} Companies found in \"{category}\" category"
+msgstr "{amt} \"{category}\" toifasida topilgan kompaniyalar"
+
+#: handlers/booking.py:60
+msgid "Enter your search query:"
+msgstr "Qidiruv so'rovingizni kiriting:"
+
+#: handlers/booking.py:74 handlers/booking.py:94 handlers/booking.py:98
+#, python-brace-format
+msgid "{amt} companies found for \"{query}\" "
+msgstr "\"{query}\" uchun topilgan {amt} kompaniyalar "
+
+#: handlers/booking.py:78
+#, python-brace-format
+msgid "No companies found for \"{query}\" "
+msgstr "\"{query}\"uchun kompaniya topilmadi"
+
+#: handlers/booking.py:128
+#, python-brace-format
+msgid "{business_name} has {amt} branches/subsidiaries:"
+msgstr "{business_name} ning {amt} ta filiali/sho'ba korxonasi bor:"
+
+#: handlers/booking.py:141
+#, python-brace-format
+msgid "{business_name} offers {amt} service(s) for booking:"
+msgstr ""
+"{business_name} bron qilish uchun {amt} xizmat(lar)ni taklif etadi:"
+
+#: handlers/booking.py:160 handlers/booking.py:180
+msgid "Choose a date:"
+msgstr "Sanani tanlang:"
+
+#: handlers/booking.py:202
+#, python-brace-format
+msgid ""
+"The duration of your chosen service \"{service_title}\" is "
+"{service_duration} minutes.\n"
+"Choose the timeframe of your booking:"
+msgstr ""
+"Siz tanlagan \"{service_title}\" xizmatining davomiyligi "
+"{service_duration} daqiqani tashkil qiladi.\n"
+"Buyurtmani bron qilish vaqtini tanlang:"
+
+#: handlers/booking.py:220
+#, python-brace-format
+msgid ""
+"The duration of your chosen service \"{service_title}\" is "
+"{service_duration} minutes:"
+msgstr ""
+"Siz tanlagan \"{service_title}\" xizmatining davomiyligi "
+"{service_duration} daqiqani tashkil qiladi:"
+
+#: handlers/booking.py:238
+#, python-brace-format
+msgid "{amt} staff members are available:"
+msgstr "{amt} nafar xodim mavjud:"
+
+#: handlers/booking.py:253 handlers/booking.py:262
+msgid "Choose the number of guests:"
+msgstr "Mehmonlar sonini tanlang:"
+
+#: handlers/booking.py:271
+msgid "Leave an additional message (or click the skip button)"
+msgstr ""
+"Qo'shimcha xabar qoldiring (yoki o'tkazib yuborish tugmasini bosing)"
+
+#: handlers/booking.py:285
+#, python-brace-format
+msgid ""
+"Company name: {business_name}\n"
+"Chosen service: {service_title}\n"
+"Service duration: {service_duration} minutes\n"
+"Chosen staff: {staff_full_name_and_position}\n"
+"Number of guests invited: {guest_count}\n"
+"Booked date: {booking_date}\n"
+"Booked timeslot: {start_time} - {end_time}\n"
+"Additional note: {note}"
+msgstr ""
+"Kompaniya nomi: {business_name}\n"
+"Tanlangan xizmat: {service_title}\n"
+"Xizmat muddati: {service_duration} daqiqa\n"
+"Tanlangan xodimlar: {staff_full_name_and_position}\n"
+"Taklif etilgan mehmonlar soni: {guest_count}\n"
+"Bron qilingan sana: {booking_date}\n"
+"Bron qilingan vaqt oralig'i: {start_time} - {end_time}\n"
+"Qo'shimcha eslatma: {note}"
+
+#: handlers/booking.py:311
+#, python-brace-format
+msgid ""
+"Your total price is {total_price}\n"
+"Please make sure your booking details are correct:\n"
+"\n"
+"Company name: {business_name}\n"
+"Chosen service: {service_title}\n"
+"Service duration: {service_duration} minutes\n"
+"Chosen staff: {staff_full_name_and_position}\n"
+"Number of guests invited: {guest_count}\n"
+"Booked date: {booking_date}\n"
+"Booked timeslot: {start_time} - {end_time}"
+msgstr ""
+"Sizning umumiy narxingiz {total_price}\n"
+"Rezervasyon ma'lumotlari to'g'ri ekanligiga ishonch hosil qiling:\n"
+"\n"
+"Kompaniya nomi: {business_name}\n"
+"Tanlangan xizmat: {service_title}\n"
+"Xizmat muddati: {service_duration} daqiqa\n"
+"Tanlangan xodimlar: {staff_full_name_and_position}\n"
+"Taklif etilgan mehmonlar soni: {guest_count}\n"
+"Bron qilingan sana: {booking_date}\n"
+"Belgilangan vaqt: {start_time} - {end_time}"
+
+#: handlers/booking.py:338
+msgid "Return to choosing services"
+msgstr "Xizmatlarni tanlashga qaytish"
+
+#: handlers/booking.py:343
+msgid "Return to choosing a date for services"
+msgstr "Xizmatlar uchun sanani tanlashga qaytish"
+
+#: handlers/booking.py:348
+msgid "Gym"
+msgstr "Sport zali"
+
+#: handlers/booking.py:348
+msgid "Spa"
+msgstr "Spa saloni"
+
+#: handlers/booking.py:348
+msgid "Salon"
+msgstr "Salon"
+
+#: handlers/booking.py:348
+msgid "Clinic"
+msgstr "Klinikasi"
+
+#: handlers/booking.py:354
+msgid "Return to category filtering"
+msgstr "Kategoriyalarni filtrlashga qaytish"
+
+#: handlers/booking.py:356 handlers/booking.py:358 handlers/booking.py:368
+#: handlers/booking.py:378
+msgid "Return to Booking Menu"
+msgstr "Bronlash menyusiga qaytish"
+
+#: handlers/booking.py:364
+#, python-brace-format
+msgid "Return to companies in \"{category}\" category"
+msgstr "\"{category}\" toifasidagi kompaniyalarga qayting"
+
+#: handlers/booking.py:366
+#, python-brace-format
+msgid "Return to Search Results for \"{query}\""
+msgstr "Return to Search Results for \"{query}\""
+
+#: handlers/booking.py:373
+msgid "Return to choosing branch"
+msgstr "Filialni tanlashga qaytish"
+
+#: handlers/booking.py:383
+msgid "Return to choosing Hours"
+msgstr "Soatlarni tanlashga qaytish"
+
+#: handlers/booking.py:388
+msgid "Return choosing staff"
+msgstr "Xodimlarni tanlash"
+
+#: handlers/booking.py:392
+msgid "Skip this step"
+msgstr "Ushbu qadamni o'tkazib yuboring"
+
+#: handlers/booking.py:396
+msgid "Confirm booking"
+msgstr "Rezervasyonni tasdiqlang"
+
+#: handlers/booking.py:400
+msgid "Cancel booking and return to the main menu"
+msgstr "Bronni bekor qiling va asosiy menyuga qayting"
+
+#: handlers/booking.py:404
+msgid "Return choosing the number of guests"
+msgstr "Mehmonlar sonini tanlab qaytish"
 
 #~ msgid "Welcome to Bron, {username}. Choose your language:"
 #~ msgstr "Bronga xush kelibsiz, {username}. Tilni tanlang:"
@@ -91,10 +298,9 @@ msgstr "Xizmatlar va mahsulotlarni qidiring"
 #~ msgstr "Bronga xush kelibsiz, {username}. Tilingizni tanlang:"
 
 #~ msgid "Share contact information in order to complete registration"
-#~ msgstr "Ro'yxatdan o'tishni yakunlash uchun kontakt ma'lumotlarini baham ko'ring"
+#~ msgstr ""
+#~ "Ro'yxatdan o'tishni yakunlash uchun kontakt ma'lumotlarini baham "
+#~ "ko'ring"
 
 #~ msgid "Welcome to Bron, {first_name}. Choose your language:"
 #~ msgstr "Bronga xush kelibsiz, {first_name}. Tilni tanlang:"
-
-#~ msgid "Language set successfully."
-#~ msgstr "Til muvaffaqiyatli tanlandi."
