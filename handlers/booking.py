@@ -280,22 +280,9 @@ async def final_check(message: Message, state: FSMContext):
     num_of_guests = data['guest_count']
     total_price = int(service_price) * int(num_of_guests)
     data = await state.update_data(total_price=total_price)
-
-    await message.answer(_(
-'''Company name: {business_name}\nChosen service: {service_title}
-Service duration: {service_duration} minutes\nChosen staff: {staff_full_name_and_position}
-Number of guests invited: {guest_count}\nBooked date: {booking_date}
-Booked timeslot: {start_time} - {end_time}\nAdditional note: {note}'''.format(
-        total_price=html.quote(str(data['total_price'])),
-        business_name=html.quote(data['business_name']),
-        service_title=html.quote(data['service_title']),
-        service_duration=html.quote(str(data['service_duration'])),
-        staff_full_name_and_position=html.quote(data['staff_full_name_and_position']),
-        guest_count=html.quote(str(data['guest_count'])),
-        booking_date=html.quote(format_date(data['booking_date'], format='EEEE, d MMMM', locale=data['locale'])).capitalize(),
-        start_time=html.quote(datetime_to_text(data['start_time'], "%H:%M")),
-        end_time=html.quote(datetime_to_text(data['end_time'], "%H:%M")),
-        note=html.quote(data['note']))), reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
+    final_text = await format_final_text(state_data=data)
+    await message.answer(final_text,
+                            reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
 
 
 @booking_router.callback_query(lambda call: 'skipNoteStep' in call.data)
@@ -304,29 +291,10 @@ async def final_check_skipped(call: CallbackQuery, state: FSMContext):
     service_price = data['service_price']
     num_of_guests = data['guest_count']
     total_price = int(service_price) * int(num_of_guests)
-    print(service_price)
-    print(num_of_guests)
     data = await state.update_data(total_price=total_price)
-    print(data)
-    await call.message.edit_text(_('''Your total price is {total_price}
-Please make sure your booking details are correct:
-
-Company name: {business_name}
-Chosen service: {service_title}
-Service duration: {service_duration} minutes
-Chosen staff: {staff_full_name_and_position}
-Number of guests invited: {guest_count}
-Booked date: {booking_date}
-Booked timeslot: {start_time} - {end_time}'''.format(
-        total_price=html.quote(str(data['total_price'])),
-        business_name=html.quote(data['business_name']),
-        service_title=html.quote(data['service_title']),
-        service_duration=html.quote(str(data['service_duration'])),
-        staff_full_name_and_position=html.quote(data['staff_full_name_and_position']),
-        guest_count=html.quote(str(data['guest_count'])),
-        booking_date=html.quote(format_date(data['booking_date'], format='EEEE, d MMMM', locale=data['locale'])).capitalize(),
-        start_time=html.quote(datetime_to_text(data['start_time'], "%H:%M")),
-        end_time=html.quote(datetime_to_text(data['end_time'], "%H:%M")))), reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
+    final_text = await format_final_text(state_data=data)
+    await call.message.edit_text(final_text,
+                                 reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
 
 
 # implement payment and after confirmation
@@ -408,3 +376,26 @@ async def cancel_text():
 async def back_to_guest_menu_text():
     text = _('Return choosing the number of guests')
     return text
+
+async def format_final_text(state_data):
+    localized_msg = _('''Your total price is {total_price}
+Please make sure your booking details are correct:
+    
+Company name: {business_name}\nChosen service: {service_title}
+Service duration: {service_duration} minutes\nChosen staff: {staff_full_name_and_position}
+Number of guests invited: {guest_count}\nBooked date: {booking_date}
+Booked timeslot: {start_time} - {end_time}'''
+                      ).format(
+        total_price=html.quote(str(state_data['total_price'])),
+        business_name=html.quote(state_data['business_name']),
+        service_title=html.quote(state_data['service_title']),
+        service_duration=html.quote(str(state_data['service_duration'])),
+        staff_full_name_and_position=html.quote(state_data['staff_full_name_and_position']),
+        guest_count=html.quote(str(state_data['guest_count'])),
+        booking_date=html.quote(format_date(state_data['booking_date'], format='EEEE, d MMMM', locale=state_data['locale'])).capitalize(),
+        start_time=html.quote(datetime_to_text(state_data['start_time'], "%H:%M")),
+        end_time=html.quote(datetime_to_text(state_data['end_time'], "%H:%M")))
+
+    if state_data.get('note'):
+        localized_msg += _('\nAdditional note: {note}').format(note=html.quote(state_data['note']))
+    return localized_msg

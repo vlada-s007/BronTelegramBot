@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-23 17:59+0500\n"
+"POT-Creation-Date: 2026-06-24 20:54+0500\n"
 "PO-Revision-Date: 2026-05-28 08:30+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Back to main menu"
 msgstr ""
 
-#: handlers/booking.py:38
+#: handlers/booking.py:39
 msgid "Choose a category:"
 msgstr ""
 
@@ -163,25 +163,83 @@ msgstr ""
 msgid "Leave an additional message (or click the skip button)"
 msgstr ""
 
-#: handlers/booking.py:285
-#, python-brace-format
-msgid ""
-"Company name: {business_name}\n"
-"Chosen service: {service_title}\n"
-"Service duration: {service_duration} minutes\n"
-"Chosen staff: {staff_full_name_and_position}\n"
-"Number of guests invited: {guest_count}\n"
-"Booked date: {booking_date}\n"
-"Booked timeslot: {start_time} - {end_time}\n"
-"Additional note: {note}"
+#: handlers/booking.py:306
+msgid "Return to choosing services"
 msgstr ""
 
 #: handlers/booking.py:311
+msgid "Return to choosing a date for services"
+msgstr ""
+
+#: handlers/booking.py:317
+msgid "Gym"
+msgstr ""
+
+#: handlers/booking.py:318
+msgid "Spa"
+msgstr ""
+
+#: handlers/booking.py:319
+msgid "Salon"
+msgstr ""
+
+#: handlers/booking.py:320
+msgid "Clinic"
+msgstr ""
+
+#: handlers/booking.py:327
+msgid "Return to category filtering"
+msgstr ""
+
+#: handlers/booking.py:329 handlers/booking.py:331 handlers/booking.py:341
+#: handlers/booking.py:351
+msgid "Return to Booking Menu"
+msgstr ""
+
+#: handlers/booking.py:337
+#, python-brace-format
+msgid "Return to companies in \"{category}\" category"
+msgstr ""
+
+#: handlers/booking.py:339
+#, python-brace-format
+msgid "Return to Search Results for \"{query}\""
+msgstr ""
+
+#: handlers/booking.py:346
+msgid "Return to choosing branch"
+msgstr ""
+
+#: handlers/booking.py:356
+msgid "Return to choosing Hours"
+msgstr ""
+
+#: handlers/booking.py:361
+msgid "Return choosing staff"
+msgstr ""
+
+#: handlers/booking.py:365
+msgid "Skip this step"
+msgstr ""
+
+#: handlers/booking.py:369
+msgid "Confirm booking"
+msgstr ""
+
+#: handlers/booking.py:373
+msgid "Cancel booking and return to the main menu"
+msgstr ""
+
+#: handlers/booking.py:377
+msgid "Return choosing the number of guests"
+msgstr ""
+
+#: handlers/booking.py:381
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
 "Please make sure your booking details are correct:\n"
-"\n"
+"    \n"
 "Company name: {business_name}\n"
 "Chosen service: {service_title}\n"
 "Service duration: {service_duration} minutes\n"
@@ -191,75 +249,11 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/booking.py:338
-msgid "Return to choosing services"
-msgstr ""
-
-#: handlers/booking.py:343
-msgid "Return to choosing a date for services"
-msgstr ""
-
-#: handlers/booking.py:348
-msgid "Gym"
-msgstr ""
-
-#: handlers/booking.py:348
-msgid "Spa"
-msgstr ""
-
-#: handlers/booking.py:348
-msgid "Salon"
-msgstr ""
-
-#: handlers/booking.py:348
-msgid "Clinic"
-msgstr ""
-
-#: handlers/booking.py:354
-msgid "Return to category filtering"
-msgstr ""
-
-#: handlers/booking.py:356 handlers/booking.py:358 handlers/booking.py:368
-#: handlers/booking.py:378
-msgid "Return to Booking Menu"
-msgstr ""
-
-#: handlers/booking.py:364
-#, python-brace-format
-msgid "Return to companies in \"{category}\" category"
-msgstr ""
-
-#: handlers/booking.py:366
-#, python-brace-format
-msgid "Return to Search Results for \"{query}\""
-msgstr ""
-
-#: handlers/booking.py:373
-msgid "Return to choosing branch"
-msgstr ""
-
-#: handlers/booking.py:383
-msgid "Return to choosing Hours"
-msgstr ""
-
-#: handlers/booking.py:388
-msgid "Return choosing staff"
-msgstr ""
-
-#: handlers/booking.py:392
-msgid "Skip this step"
-msgstr ""
-
-#: handlers/booking.py:396
-msgid "Confirm booking"
-msgstr ""
-
 #: handlers/booking.py:400
-msgid "Cancel booking and return to the main menu"
-msgstr ""
-
-#: handlers/booking.py:404
-msgid "Return choosing the number of guests"
+#, python-brace-format
+msgid ""
+"\n"
+"Additional note: {note}"
 msgstr ""
 
 #~ msgid "About Bron:"
@@ -398,5 +392,56 @@ msgstr ""
 #~ "Number of guests invited: {guest_count}\n"
 #~ "Booked date: {booking_date}\n"
 #~ "Booked timeslot: {start_time} - {end_time}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Company name: {business_name}\n"
+#~ "Chosen service: {service_title}\n"
+#~ "Service duration: {service_duration} minutes\n"
+#~ "Chosen staff: {staff_full_name_and_position}\n"
+#~ "Number of guests invited: {guest_count}\n"
+#~ "Booked date: {booking_date}\n"
+#~ "Booked timeslot: {start_time} - {end_time}\n"
+#~ "Additional note: {note}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your total price is {total_price}\n"
+#~ "Please make sure your booking details are correct:\n"
+#~ "\n"
+#~ "Company name: {business_name}\n"
+#~ "Chosen service: {service_title}\n"
+#~ "Service duration: {service_duration} minutes\n"
+#~ "Chosen staff: {staff_full_name_and_position}\n"
+#~ "Number of guests invited: {guest_count}\n"
+#~ "Booked date: {booking_date}\n"
+#~ "Booked timeslot: {start_time} - {end_time}\n"
+#~ "Additional note: {note}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your total price is {total_price}\n"
+#~ "Please make sure your booking details are correct:\n"
+#~ "\n"
+#~ "Company name: {business_name}\n"
+#~ "Chosen service: {service_title}\n"
+#~ "Service duration: {service_duration} minutes\n"
+#~ "Chosen staff: {staff_full_name_and_position}\n"
+#~ "Number of guests invited: {guest_count}\n"
+#~ "Booked date: {booking_date}\n"
+#~ "Booked timeslot: {start_time} - {end_time}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your total price is {total_price}\n"
+#~ "        Please make sure your booking details are correct:\n"
+#~ "    \n"
+#~ "        Company name: {business_name}\n"
+#~ "Chosen service: {service_title}\n"
+#~ "        Service duration: {service_duration} minutes\n"
+#~ "Chosen staff: {staff_full_name_and_position}\n"
+#~ "        Number of guests invited: {guest_count}\n"
+#~ "Booked date: {booking_date}\n"
+#~ "        Booked timeslot: {start_time} - {end_time}"
 #~ msgstr ""
 
