@@ -13,9 +13,8 @@ from bronTelegramBot.middlewares.database import search_businesses_by_category, 
     search_branches_by_business_id, service_title_duration_and_price_by_id, search_staff_by_business_id, \
     get_staff_name_and_position_by_staff_id
 from bronTelegramBot.states import BookingState, SearchParams
-from bronTelegramBot.keyboard.markups import booking_menu_markup, booking_category_buttons, choose_business_menu, \
-    choose_business_service_menu, booking_date_buttons, choose_hours, back_to_booking_menu, branch_choices, \
-    choose_staff, choose_number_of_guests_buttons, note_buttons, final_button_confirm
+from bronTelegramBot.keyboards.keyboard_booking import booking_menu_markup, booking_category_buttons, choose_business_menu, \
+    choose_business_service_menu, booking_date_buttons, choose_hours, back_to_booking_menu, branch_choices, choose_number_of_guests_buttons, note_buttons, final_button_confirm
 
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
@@ -27,17 +26,13 @@ booking_router = Router()
 
 @booking_router.callback_query(lambda call: 'bookingMenu' in call.data)
 async def booking_menu(call: CallbackQuery):
-    category = _('Choose Services By Category')
-    search = _('Search Services and Products')
-    back = _('Back to main menu')
-    await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup(category, search, back))
+    await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup())
 
 
 @booking_router.callback_query(lambda call: 'categoryChoose' in call.data)
 async def booking_categories(call: CallbackQuery, state: FSMContext):
     cat_dict = await get_categories()
-    await call.message.edit_text(_('Choose a category:'), reply_markup=await booking_category_buttons(
-        await back_to_booking_menu_text(), **cat_dict))
+    await call.message.edit_text(_('Choose a category:'), reply_markup=await booking_category_buttons(**cat_dict))
     await state.set_state(SearchParams.category)
 
 
@@ -72,12 +67,10 @@ async def businesses_by_query(message: Message, state: FSMContext):
 
     if results:
         await message.answer(_('{amt} companies found for "{query}" ').format(
-            query=html.quote(data['query']), amt=html.quote(amt)), reply_markup=await choose_business_menu(
-            await back_to_booking_menu_text(), data, *results))
+            query=html.quote(data['query']), amt=html.quote(amt)), reply_markup=await choose_business_menu(data, *results))
     else:
         await message.answer(_('No companies found for "{query}" ').format(
-            query=html.quote(data['query']), amt=html.quote(amt)), reply_markup=await choose_business_menu(
-            await back_to_booking_menu_text(), data))
+            query=html.quote(data['query']), amt=html.quote(amt)), reply_markup=await choose_business_menu(data))
     await state.set_state(BookingState.business_id)
     await state.set_state(BookingState.business_name)
 
@@ -92,8 +85,7 @@ async def businesses_return_to_query(call: CallbackQuery, state: FSMContext):
     if results:
         try:
             await call.message.edit_text(_('{amt} companies found for "{query}" ').format(
-            query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(
-            await back_to_booking_menu_text(query=query), data, *results))
+            query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(data, *results))
         except:
             await call.message.answer(_('{amt} companies found for "{query}" ').format(
                 query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(
@@ -103,7 +95,7 @@ async def businesses_return_to_query(call: CallbackQuery, state: FSMContext):
         category = _('Choose Services By Category')
         search = _('Search Services and Products')
         back = _('Back to main menu')
-        await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup(category, search, back))
+        await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup())
     await state.set_state(BookingState.business_id)
     await state.set_state(BookingState.business_name)
 
@@ -117,13 +109,11 @@ async def choose_branch(call: CallbackQuery, state: FSMContext):
     results = await search_branches_by_business_id(business_id)
     amt = len(results)
     if data.get('category'):
-        reply_markup = await branch_choices(await back_to_booking_menu_text_filtered(
-            category=data['category']), data, *results)
+        reply_markup = await branch_choices(data, *results)
     elif data.get('query'):
-        reply_markup = await branch_choices(await back_to_booking_menu_text_filtered(
-            query=data['query']), data, *results)
+        reply_markup = await branch_choices(data, *results)
     else:
-        reply_markup = await branch_choices(await back_to_booking_menu_text(), data, *results)
+        reply_markup = await branch_choices(data, *results)
     await call.message.edit_text(_(
         '{business_name} has {amt} branches/subsidiaries:').format(
         business_name=html.quote(business_name), amt=html.quote(str(amt))),
@@ -223,22 +213,32 @@ async def choose_hour_pagination(call: CallbackQuery, state: FSMContext):
     ), reply_markup=reply_markup)
 
 
+# @booking_router.callback_query(lambda call: 'startEndBookingTime' in call.data)
+# async def choose_staff_function(call: CallbackQuery, state: FSMContext):
+#     comm, start_time, end_time = call.data.split('_')
+#     start_formatted = text_to_datetime(start_time, '%H-%M-%S')
+#     end_formatted = text_to_datetime(end_time, '%H-%M-%S')
+#     await state.update_data(start_time=start_formatted)
+#     data = await state.update_data(end_time=end_formatted)
+#     date = data['booking_date']
+#     business_id = data['business_id']
+#     results = await search_staff_by_business_id(business_id)
+#     amt = str(len(results))
+#
+#     await call.message.edit_text(_('{amt} staff members are available:').format(
+#          amt=html.quote(amt)),
+#         reply_markup=await choose_staff(
+#             await back_to_hours_menu_text(), date, *results))
+
 @booking_router.callback_query(lambda call: 'startEndBookingTime' in call.data)
-async def choose_staff_function(call: CallbackQuery, state: FSMContext):
+async def choose_booking_for_one(call: CallbackQuery, state: FSMContext):
     comm, start_time, end_time = call.data.split('_')
     start_formatted = text_to_datetime(start_time, '%H-%M-%S')
     end_formatted = text_to_datetime(end_time, '%H-%M-%S')
     await state.update_data(start_time=start_formatted)
     data = await state.update_data(end_time=end_formatted)
-    date = data['booking_date']
-    business_id = data['business_id']
-    results = await search_staff_by_business_id(business_id)
-    amt = str(len(results))
-
-    await call.message.edit_text(_('{amt} staff members are available:').format(
-         amt=html.quote(amt)),
-        reply_markup=await choose_staff(
-            await back_to_hours_menu_text(), date, *results))
+    #     date = data['booking_date']
+    #     business_id = data['business_id']
 
 
 @booking_router.callback_query(lambda call: 'chooseStaff' in call.data)
@@ -308,7 +308,7 @@ async def get_return_text_business_choice():
 
 
 async def get_return_text_service_choice():
-    text = _("Return to choosing a date for services")
+    text = _("Return to choosing a date of your reservation")
     return text
 
 
@@ -347,35 +347,15 @@ async def back_to_choosing_branch():
     return text
 
 
-async def back_to_booking_menu_text():
-    text = _('Return to Booking Menu')
-    return text
-
-
-async def back_to_hours_menu_text():
-    text = _('Return to choosing Hours')
-    return text
-
-
-async def back_to_staff_menu_text():
-    text = _('Return choosing staff')
-    return text
-
-async def skip_text():
-    text = _('Skip this step')
-    return text
-
 async def confirm_text():
-    text = _('Confirm booking')
+    text = _('Confirm reservation/booking')
     return text
 
 async def cancel_text():
-    text = _('Cancel booking and return to the main menu')
+    text = _('Cancel reservation/booking and return to the main menu')
     return text
 
-async def back_to_guest_menu_text():
-    text = _('Return choosing the number of guests')
-    return text
+
 
 async def format_final_text(state_data):
     localized_msg = _('''Your total price is {total_price}
