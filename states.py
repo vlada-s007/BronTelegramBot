@@ -16,7 +16,6 @@ class TempMessageState(StatesGroup):
 
 
 class BookingState(StatesGroup):
-    user_id = State()
     business_id = State()
     branch_id = State()
     business_name = State()
@@ -34,6 +33,7 @@ class BookingState(StatesGroup):
     working_hours = State()
     blocked_dates = State()
     note = State()
+    chosen_products = State()
 
 class SearchParams(StatesGroup):
     category = State()

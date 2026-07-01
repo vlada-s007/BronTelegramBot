@@ -17,11 +17,11 @@ async def search_businesses_by_query(query: str):
     sqlq = f"SELECT id, name FROM core_business WHERE LOWER(name) LIKE '%{query.lower()}%'"
     #ILIKE for pgsql
     cursor: Cursor = await db.execute(sqlq)
-    results = await cursor.fetchmany()
+    results = await cursor.fetchall()
     if not results:
         sqlq = f"SELECT id, name FROM core_business WHERE name LIKE '%{query.capitalize()}%'"
         cursor: Cursor = await db.execute(sqlq)
-        results = await cursor.fetchmany()
+        results = await cursor.fetchall()
     await cursor.close()
     await db.close()
     return results
@@ -39,7 +39,7 @@ async def search_user_by_tg_id(telegram_id):
 async def search_businesses_by_category(category):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT id, name FROM core_business WHERE category=?", (category,))
-    results = await cursor.fetchmany()
+    results = await cursor.fetchall()
     await cursor.close()
     await db.close()
     return results
@@ -55,7 +55,7 @@ async def search_services_by_business(business_id):
 async def search_branches_by_business_id(business_id):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT id, name, address FROM core_branch WHERE business_id=?", (business_id,))
-    results = await cursor.fetchmany()
+    results = await cursor.fetchall()
     await cursor.close()
     await db.close()
     return results
@@ -71,10 +71,10 @@ async def business_name_by_id(business_id):
 async def service_title_duration_and_price_by_id(service_id):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT title, duration, price FROM core_service WHERE id=?", (service_id,))
-    results = await cursor.fetchmany(2)
+    results = await cursor.fetchone()
     await cursor.close()
     await db.close()
-    return results[0]
+    return results
 
 async def block_date(*args):
     db = await connect_db()
@@ -112,10 +112,10 @@ async def search_staff_by_business_id(business_id):
 async def get_staff_name_and_position_by_staff_id(staff_id):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT full_name, position FROM core_staff WHERE id=?", (staff_id,))
-    results = await cursor.fetchmany(2)
+    results = await cursor.fetchone()
     await cursor.close()
     await db.close()
-    return results[0]
+    return results
 
 
 async def create_booking(*args):
@@ -127,7 +127,13 @@ async def create_booking(*args):
     await db.commit()
     await db.close()
 
-
+async def products_by_business_id(business_id):
+    db = await connect_db()
+    cursor: Cursor = await db.execute("SELECT id, name, price FROM core_service WHERE business_id=? AND is_active=1", (business_id,))
+    results = await cursor.fetchall()
+    await cursor.close()
+    await db.close()
+    return results
 
 
 

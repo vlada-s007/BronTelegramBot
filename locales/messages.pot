@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-30 18:34+0500\n"
+"POT-Creation-Date: 2026-07-01 16:22+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,60 +53,48 @@ msgstr ""
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/booking.py:29 handlers/booking.py:98 keyboards/keyboard_base.py:28
+#: handlers/booking.py:31 handlers/booking.py:94 keyboards/keyboard_base.py:28
 msgid "Booking..."
 msgstr ""
 
-#: handlers/booking.py:35
+#: handlers/booking.py:37
 msgid "Choose a category:"
 msgstr ""
 
-#: handlers/booking.py:47
+#: handlers/booking.py:49
 #, python-brace-format
 msgid "{amt} Companies found in \"{category}\" category"
 msgstr ""
 
-#: handlers/booking.py:55
+#: handlers/booking.py:57
 msgid "Enter your search query:"
 msgstr ""
 
-#: handlers/booking.py:69 handlers/booking.py:87 handlers/booking.py:90
+#: handlers/booking.py:70 handlers/booking.py:88 handlers/booking.py:91
 #, python-brace-format
 msgid "{amt} companies found for \"{query}\" "
 msgstr ""
 
-#: handlers/booking.py:72
+#: handlers/booking.py:73
 #, python-brace-format
 msgid "No companies found for \"{query}\" "
 msgstr ""
 
-#: handlers/booking.py:95 keyboards/keyboard_booking.py:15
-msgid "Choose Services By Category"
-msgstr ""
-
-#: handlers/booking.py:96 keyboards/keyboard_booking.py:16
-msgid "Search Services and Products"
-msgstr ""
-
-#: handlers/booking.py:97 keyboards/keyboard_booking.py:17
-msgid "Back to main menu"
-msgstr ""
-
-#: handlers/booking.py:118
+#: handlers/booking.py:114
 #, python-brace-format
 msgid "{business_name} has {amt} branches/subsidiaries:"
 msgstr ""
 
-#: handlers/booking.py:131
+#: handlers/booking.py:127
 #, python-brace-format
 msgid "{business_name} offers {amt} service(s) for booking:"
 msgstr ""
 
-#: handlers/booking.py:150 handlers/booking.py:170
+#: handlers/booking.py:144 handlers/booking.py:162
 msgid "Choose a date:"
 msgstr ""
 
-#: handlers/booking.py:192
+#: handlers/booking.py:184 handlers/booking.py:198
 #, python-brace-format
 msgid ""
 "The duration of your chosen service \"{service_title}\" is "
@@ -114,78 +102,39 @@ msgid ""
 "Choose the timeframe of your booking:"
 msgstr ""
 
-#: handlers/booking.py:210
-#, python-brace-format
-msgid ""
-"The duration of your chosen service \"{service_title}\" is "
-"{service_duration} minutes:"
+#: handlers/booking.py:213
+msgid "Choose which of the following options applies to your reservation/booking:"
 msgstr ""
 
-#: handlers/booking.py:253 handlers/booking.py:262
+#: handlers/booking.py:223 handlers/booking.py:232
 msgid "Choose the number of guests:"
 msgstr ""
 
-#: handlers/booking.py:271
+#: handlers/booking.py:240
+msgid "Choose additional products alongside your reservation or skip this step"
+msgstr ""
+
+#: handlers/booking.py:247
 msgid "Leave an additional message (or click the skip button)"
 msgstr ""
 
-#: handlers/booking.py:306
-msgid "Return to choosing services"
-msgstr ""
-
-#: handlers/booking.py:311
-msgid "Return to choosing a date of your reservation"
-msgstr ""
-
-#: handlers/booking.py:317
+#: handlers/booking.py:284
 msgid "Gym"
 msgstr ""
 
-#: handlers/booking.py:318
+#: handlers/booking.py:285
 msgid "Spa"
 msgstr ""
 
-#: handlers/booking.py:319
+#: handlers/booking.py:286
 msgid "Salon"
 msgstr ""
 
-#: handlers/booking.py:320
+#: handlers/booking.py:287
 msgid "Clinic"
 msgstr ""
 
-#: handlers/booking.py:327 keyboards/keyboard_booking.py:49
-msgid "Return to category filtering"
-msgstr ""
-
-#: handlers/booking.py:329 handlers/booking.py:331 handlers/booking.py:341
-#: keyboards/keyboard_booking.py:24 keyboards/keyboard_booking.py:35
-#: keyboards/keyboard_booking.py:52 keyboards/keyboard_booking.py:70
-msgid "Return to Booking Menu"
-msgstr ""
-
-#: handlers/booking.py:337 keyboards/keyboard_booking.py:64
-#, python-brace-format
-msgid "Return to companies in \"{category}\" category"
-msgstr ""
-
-#: handlers/booking.py:339
-#, python-brace-format
-msgid "Return to Search Results for \"{query}\""
-msgstr ""
-
-#: handlers/booking.py:346
-msgid "Return to choosing branch"
-msgstr ""
-
-#: handlers/booking.py:351
-msgid "Confirm reservation/booking"
-msgstr ""
-
-#: handlers/booking.py:355
-msgid "Cancel reservation/booking and return to the main menu"
-msgstr ""
-
-#: handlers/booking.py:361
+#: handlers/booking.py:292
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -194,17 +143,22 @@ msgid ""
 "Company name: {business_name}\n"
 "Chosen service: {service_title}\n"
 "Service duration: {service_duration} minutes\n"
-"Chosen staff: {staff_full_name_and_position}\n"
-"Number of guests invited: {guest_count}\n"
 "Booked date: {booking_date}\n"
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/booking.py:380
+#: handlers/booking.py:308
 #, python-brace-format
 msgid ""
 "\n"
 "Additional note: {note}"
+msgstr ""
+
+#: handlers/booking.py:310
+#, python-brace-format
+msgid ""
+"\n"
+"Guests invited: {guest_count}"
 msgstr ""
 
 #: keyboards/keyboard_base.py:14
@@ -235,35 +189,91 @@ msgstr ""
 msgid "Back to Main Menu"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:67
-msgid "Return to Search Results"
+#: keyboards/keyboard_booking.py:15
+msgid "Choose Companies by Category"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:80
+#: keyboards/keyboard_booking.py:16
+msgid "Search Companies"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:17
+msgid "Back to main menu"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:24 keyboards/keyboard_booking.py:35
+#: keyboards/keyboard_booking.py:55 keyboards/keyboard_booking.py:73
+msgid "Return to Booking Menu"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:49
+msgid "Return to category filtering"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:52 keyboards/keyboard_booking.py:70
+#, python-brace-format
+msgid "Return to Search Results for \"{query}\""
+msgstr ""
+
+#: keyboards/keyboard_booking.py:67
+#, python-brace-format
+msgid "Return to companies in \"{category}\" category"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:83
 msgid "Return to choosing a branch/subsidiary"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:180
+#: keyboards/keyboard_booking.py:108
+msgid "Return to choosing services"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:165 keyboards/keyboard_booking.py:168
+msgid "Return to choosing a date of your reservation"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:175 keyboards/keyboard_booking.py:199
 msgid "I'm making a reservation for myself only"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:181
+#: keyboards/keyboard_booking.py:176
 msgid "I'm coming with guests (proceed to choosing the amount of guests)"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:183
-msgid "Return to choosing Hours"
+#: keyboards/keyboard_booking.py:178
+msgid "Return to choosing your booking/reservation timeframe"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:203
+#: keyboards/keyboard_booking.py:200 keyboards/keyboard_booking.py:219
 msgid "Return to choosing your booking/reservation type"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:210
+#: keyboards/keyboard_booking.py:213
+#, python-brace-format
+msgid "Proceed and order chosen product(s) ({product_qty})"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:215
+msgid "Skip this step (this will remove any chosen products)"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:217
+msgid "Return choosing the number of guests"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:225
 msgid "Skip this step"
 msgstr ""
 
-#: keyboards/keyboard_booking.py:211
-msgid "Return choosing the number of guests"
+#: keyboards/keyboard_booking.py:226
+msgid "Return to choosing products"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:233
+msgid "Confirm reservation/booking"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:234
+msgid "Cancel reservation/booking and return to the main menu"
 msgstr ""
 

@@ -13,8 +13,10 @@ from bronTelegramBot.middlewares.database import search_businesses_by_category, 
     search_branches_by_business_id, service_title_duration_and_price_by_id, search_staff_by_business_id, \
     get_staff_name_and_position_by_staff_id
 from bronTelegramBot.states import BookingState, SearchParams
-from bronTelegramBot.keyboards.keyboard_booking import booking_menu_markup, booking_category_buttons, choose_business_menu, \
-    choose_business_service_menu, booking_date_buttons, choose_hours, back_to_booking_menu, branch_choices, choose_number_of_guests_buttons, note_buttons, final_button_confirm
+from bronTelegramBot.keyboards.keyboard_booking import booking_menu_markup, booking_category_buttons, \
+    choose_business_menu, \
+    choose_business_service_menu, booking_date_buttons, choose_hours, back_to_booking_menu, branch_choices, \
+    choose_number_of_guests_buttons, note_buttons, final_button_confirm, choose_alone_or_with_guests
 
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
@@ -46,14 +48,13 @@ async def businesses_in_cat(call: CallbackQuery, state: FSMContext):
     await call.message.edit_text(
         _('{amt} Companies found in "{category}" category').format(
             amt=html.quote(amt), category=html.quote(cat_dict[category].capitalize())), reply_markup=await
-        choose_business_menu(await back_to_booking_menu_text_if_query_or_cat(category=category), data, *results))
+        choose_business_menu(data, *results))
     print('edited')
 
 
 @booking_router.callback_query(lambda call: 'searchBooking' in call.data)
 async def request_search_query(call: CallbackQuery, state: FSMContext):
-    await call.message.edit_text(_('Enter your search query:'), reply_markup=await back_to_booking_menu(
-        await back_to_booking_menu_text()))
+    await call.message.edit_text(_('Enter your search query:'), reply_markup=await back_to_booking_menu())
     await state.set_state(SearchParams.query)
 
 
@@ -88,13 +89,8 @@ async def businesses_return_to_query(call: CallbackQuery, state: FSMContext):
             query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(data, *results))
         except:
             await call.message.answer(_('{amt} companies found for "{query}" ').format(
-                query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(
-                await back_to_booking_menu_text_if_query_or_cat(query=query),
-                data, *results))
+                query=html.quote(query), amt=html.quote(amt)), reply_markup=await choose_business_menu(data, *results))
     else:
-        category = _('Choose Services By Category')
-        search = _('Search Services and Products')
-        back = _('Back to main menu')
         await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup())
     await state.set_state(BookingState.business_id)
     await state.set_state(BookingState.business_name)
@@ -130,8 +126,7 @@ async def choose_service(call: CallbackQuery, state: FSMContext):
 
     await call.message.edit_text(_('{business_name} offers {amt} service(s) for booking:').format(
         business_name=html.quote(business_name), amt=html.quote(amt)),
-        reply_markup=await choose_business_service_menu(
-            await back_to_choosing_branch(), business_id, *results))
+        reply_markup=await choose_business_service_menu(business_id, *results))
 
 
 @booking_router.callback_query(lambda call: 'chooseService' in call.data)
@@ -142,16 +137,13 @@ async def choose_date(call: CallbackQuery, state: FSMContext):
     await state.update_data(service_price=service_price)
     await state.update_data(service_id=service_id)
     data = await state.update_data(service_duration=service_duration)
-    print(data)
     blocked_dates = await search_blocked_dates_by_business(business_id=data['business_id'])
     working_hours = await search_working_hours_by_business_id(business_id=data['business_id'])
     await state.update_data(working_hours=working_hours)
     await state.update_data(blocked_dates=blocked_dates)
     await call.message.edit_text(_('Choose a date:'),
                                      reply_markup=await booking_date_buttons(data['branch_id'],
-                                                                             await get_return_text_business_choice(),
                                                                              data['locale'],
-
                                                                              page='1',
                                                                              blocked_dates=blocked_dates,
                                                                              working_hours=working_hours))
@@ -167,30 +159,30 @@ async def date_pagination(call: CallbackQuery, state: FSMContext):
     locale = data['locale']
     blocked_dates = data['blocked_dates']
     working_hours = data['working_hours']
-    await call.message.edit_text(_('Choose a date:'),
-                                     reply_markup=await booking_date_buttons(business_id,
-                                                                             await get_return_text_business_choice(),
-                                                                             locale=locale,
-                                                                             page=str(page_num),
-                                                                             blocked_dates=blocked_dates,
-                                                                             working_hours=working_hours))
+    await call.message.edit_text(_('Choose a date:'), reply_markup=await booking_date_buttons(business_id,
+                                                                                              locale=locale,
+                                                                                              page=str(page_num),
+                                                                                              blocked_dates=blocked_dates,
+                                                                                              working_hours=working_hours))
 
+async def choose_hour_helper(data: dict, page_num):
+    service_duration = data['service_duration']
+    date = data['booking_date']
+    service_id = data['service_id']
+    working_hours = data['working_hours']
+    return date, service_id, service_duration, str(page_num), *working_hours
 
 
 @booking_router.callback_query(lambda call: 'bookingDate' in call.data)
 async def choose_hour(call: CallbackQuery, state: FSMContext):
     comm, date_unformatted = call.data.split('_')
     data = await state.update_data(booking_date=text_to_datetime(date_unformatted, "%Y-%m-%d"))
-    service_duration = data['service_duration']
     service_title = data['service_title']
-    date = data['booking_date']
-    service_id = data['service_id']
-    working_hours = data['working_hours']
-    return_text = await get_return_text_service_choice()
-    reply_markup = await choose_hours(date, service_id, return_text, service_duration, '1', *working_hours)
+    info = await choose_hour_helper(data, 1)
+    reply_markup = await choose_hours(*info)
     await call.message.edit_text(_(
         'The duration of your chosen service "{service_title}" is {service_duration} minutes.\nChoose the timeframe of your booking:'
-    ).format(service_duration=html.quote(str(service_duration)),
+    ).format(service_duration=html.quote(str(info[2])),
              service_title=html.quote(service_title)),
                                  reply_markup=reply_markup)
 
@@ -199,36 +191,15 @@ async def choose_hour(call: CallbackQuery, state: FSMContext):
 async def choose_hour_pagination(call: CallbackQuery, state: FSMContext):
     comm, page_num = call.data.split('_')
     data = await state.get_data()
-    service_duration = data['service_duration']
     service_title = data['service_title']
-    date = data['booking_date']
-    service_id = data['service_id']
-    working_hours = data['working_hours']
-    return_text = await get_return_text_service_choice()
-    reply_markup = await choose_hours(date, service_id, return_text, service_duration, str(page_num), *working_hours)
+    info = await choose_hour_helper(data, page_num)
+    reply_markup = await choose_hours(*info)
     await call.message.edit_text(_(
-        'The duration of your chosen service "{service_title}" is {service_duration} minutes:'
+        'The duration of your chosen service "{service_title}" is {service_duration} minutes.\nChoose the timeframe of your booking:'
     ).format(
-        service_duration=html.quote(str(service_duration)), service_title=html.quote(service_title)
+        service_duration=html.quote(str(info[2])), service_title=html.quote(service_title)
     ), reply_markup=reply_markup)
 
-
-# @booking_router.callback_query(lambda call: 'startEndBookingTime' in call.data)
-# async def choose_staff_function(call: CallbackQuery, state: FSMContext):
-#     comm, start_time, end_time = call.data.split('_')
-#     start_formatted = text_to_datetime(start_time, '%H-%M-%S')
-#     end_formatted = text_to_datetime(end_time, '%H-%M-%S')
-#     await state.update_data(start_time=start_formatted)
-#     data = await state.update_data(end_time=end_formatted)
-#     date = data['booking_date']
-#     business_id = data['business_id']
-#     results = await search_staff_by_business_id(business_id)
-#     amt = str(len(results))
-#
-#     await call.message.edit_text(_('{amt} staff members are available:').format(
-#          amt=html.quote(amt)),
-#         reply_markup=await choose_staff(
-#             await back_to_hours_menu_text(), date, *results))
 
 @booking_router.callback_query(lambda call: 'startEndBookingTime' in call.data)
 async def choose_booking_for_one(call: CallbackQuery, state: FSMContext):
@@ -237,18 +208,17 @@ async def choose_booking_for_one(call: CallbackQuery, state: FSMContext):
     end_formatted = text_to_datetime(end_time, '%H-%M-%S')
     await state.update_data(start_time=start_formatted)
     data = await state.update_data(end_time=end_formatted)
-    #     date = data['booking_date']
-    #     business_id = data['business_id']
+    date = data['booking_date']
+
+    await call.message.edit_text(_('Choose which of the following options applies to your reservation/booking:'),
+                                 reply_markup=await choose_alone_or_with_guests(date))
 
 
-@booking_router.callback_query(lambda call: 'chooseStaff' in call.data)
+@booking_router.callback_query(lambda call: 'guestChoice' in call.data)
 async def choose_number_of_guests(call: CallbackQuery, state: FSMContext):
-    comm, staff_id = call.data.split('_')
-    staff_full_name, staff_position = await get_staff_name_and_position_by_staff_id(staff_id)
-    await state.update_data(staff_full_name_and_position=f'{staff_full_name} - {staff_position}')
-    data = await state.update_data(staff_id=staff_id)
+    data = await state.get_data()
     start_time, end_time = data['start_time'], data['end_time']
-    reply_markup = await choose_number_of_guests_buttons(text=await back_to_staff_menu_text(), start=start_time, end=end_time, page='1')
+    reply_markup = await choose_number_of_guests_buttons(start=start_time, end=end_time, page='1')
 
     await call.message.edit_text(_('Choose the number of guests:'), reply_markup=reply_markup)
 
@@ -260,56 +230,53 @@ async def guest_paginations(call: CallbackQuery, state: FSMContext):
     start_time, end_time = data['start_time'], data['end_time']
 
     await call.message.edit_text(_('Choose the number of guests:'), reply_markup=await choose_number_of_guests_buttons(
-        await back_to_staff_menu_text(), start_time, end_time, str(page_num)))
+        start_time, end_time, str(page_num)))
 
 
 @booking_router.callback_query(lambda call: 'chooseNumOfGuests' in call.data)
 async def leave_note(call: CallbackQuery, state: FSMContext):
     comm, guests = call.data.split('_')
     data = await state.update_data(guest_count=guests)
+    await call.message.edit_text(_('Choose additional products alongside your reservation or skip this step'))
+
+@booking_router.callback_query(lambda call: 'chooseNumOfGuests' in call.data)
+async def leave_note(call: CallbackQuery, state: FSMContext):
+    comm, guests = call.data.split('_')
+    data = await state.update_data(guest_count=guests)
     staff_id = data['staff_id']
-    await call.message.edit_text(_("Leave an additional message (or click the skip button)"), reply_markup=await note_buttons(
-        await skip_text(), await back_to_guest_menu_text(), staff_id))
+    await call.message.edit_text(_("Leave an additional message (or click the skip button)"),
+                                 reply_markup=await note_buttons(staff_id, data))
     await state.set_state(BookingState.note)
+
+
+async def final_check_tasks(state: FSMContext):
+    data = await state.get_data()
+    service_price = data['service_price']
+    num_of_guests = data['guest_count']
+    if num_of_guests > 0:
+        total_price = int(service_price) * int(num_of_guests)
+    else:
+        total_price = int(service_price)
+    data = await state.update_data(total_price=total_price)
+    final_text = await format_final_text(state_data=data)
+    return final_text
+
 
 @booking_router.message(BookingState.note)
 async def final_check(message: Message, state: FSMContext):
     await state.update_data(note=message.text)
-    data = await state.get_data()
-    service_price = data['service_price']
-    num_of_guests = data['guest_count']
-    total_price = int(service_price) * int(num_of_guests)
-    data = await state.update_data(total_price=total_price)
-    final_text = await format_final_text(state_data=data)
-    await message.answer(final_text,
-                            reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
+    final_text = await final_check_tasks(state=state)
+    await message.answer(final_text, reply_markup=await final_button_confirm())
 
 
 @booking_router.callback_query(lambda call: 'skipNoteStep' in call.data)
 async def final_check_skipped(call: CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    service_price = data['service_price']
-    num_of_guests = data['guest_count']
-    total_price = int(service_price) * int(num_of_guests)
-    data = await state.update_data(total_price=total_price)
-    final_text = await format_final_text(state_data=data)
-    await call.message.edit_text(final_text,
-                                 reply_markup=await final_button_confirm(await confirm_text(), await cancel_text()))
-
+    final_text = await final_check_tasks(state=state)
+    await call.message.edit_text(final_text, reply_markup=await final_button_confirm())
 
 # implement payment and after confirmation
 # @booking_router.callback_query(lambda call: 'skipNoteStep' in call.data)
 # async def confirm_booking(call: CallbackQuery, state: FSMContext):
-
-
-async def get_return_text_business_choice():
-    text = _("Return to choosing services")
-    return text
-
-
-async def get_return_text_service_choice():
-    text = _("Return to choosing a date of your reservation")
-    return text
 
 
 async def get_categories():
@@ -321,61 +288,24 @@ async def get_categories():
     return options
 
 
-
-async def back_to_booking_menu_text_if_query_or_cat(**kwargs):
-    if kwargs.get('category'):
-        text = _('Return to category filtering')
-    elif kwargs.get('query'):
-        text = _('Return to Booking Menu')
-    else:
-        text = _('Return to Booking Menu')
-    return text
-
-
-async def back_to_booking_menu_text_filtered(**kwargs):
-    if kwargs.get('category'):
-        text = _('Return to companies in "{category}" category').format(category=html.quote(kwargs['category'].capitalize()))
-    elif kwargs.get('query'):
-        text = _('Return to Search Results for "{query}"').format(query=html.quote(kwargs['query']))
-    else:
-        text = _('Return to Booking Menu')
-    return text
-
-
-async def back_to_choosing_branch():
-    text = _('Return to choosing branch')
-    return text
-
-
-async def confirm_text():
-    text = _('Confirm reservation/booking')
-    return text
-
-async def cancel_text():
-    text = _('Cancel reservation/booking and return to the main menu')
-    return text
-
-
-
 async def format_final_text(state_data):
     localized_msg = _('''Your total price is {total_price}
 Please make sure your booking details are correct:
     
 Company name: {business_name}\nChosen service: {service_title}
-Service duration: {service_duration} minutes\nChosen staff: {staff_full_name_and_position}
-Number of guests invited: {guest_count}\nBooked date: {booking_date}
+Service duration: {service_duration} minutes\nBooked date: {booking_date}
 Booked timeslot: {start_time} - {end_time}'''
                       ).format(
         total_price=html.quote(str(state_data['total_price'])),
         business_name=html.quote(state_data['business_name']),
         service_title=html.quote(state_data['service_title']),
         service_duration=html.quote(str(state_data['service_duration'])),
-        staff_full_name_and_position=html.quote(state_data['staff_full_name_and_position']),
-        guest_count=html.quote(str(state_data['guest_count'])),
         booking_date=html.quote(format_date(state_data['booking_date'], format='EEEE, d MMMM', locale=state_data['locale'])).capitalize(),
         start_time=html.quote(datetime_to_text(state_data['start_time'], "%H:%M")),
         end_time=html.quote(datetime_to_text(state_data['end_time'], "%H:%M")))
 
     if state_data.get('note'):
         localized_msg += _('\nAdditional note: {note}').format(note=html.quote(state_data['note']))
+    if int(state_data.get('guests')) > 0:
+        localized_msg += _('\nGuests invited: {guest_count}').format(guest_count=html.quote(state_data['guest_count']))
     return localized_msg
