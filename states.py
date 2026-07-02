@@ -7,10 +7,6 @@ class UserState(StatesGroup):
     user_id = State()
 
 
-class LangState(StatesGroup):
-    lang = State()
-
-
 class TempMessageState(StatesGroup):
     message_id = State()
 
@@ -33,7 +29,8 @@ class BookingState(StatesGroup):
     working_hours = State()
     blocked_dates = State()
     note = State()
-    chosen_products = State()
+    products_info = State()
+    products_total_price = State()
 
 class SearchParams(StatesGroup):
     category = State()

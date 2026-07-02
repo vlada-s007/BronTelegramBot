@@ -1,5 +1,6 @@
 import datetime
 from babel.dates import format_date
+from babel.numbers import format_currency
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
@@ -14,7 +15,7 @@ async def booking_menu_markup():
     builder = InlineKeyboardBuilder()
     builder.button(text=f'🗂️ ' + _('Choose Companies by Category'), callback_data='categoryChoose')
     builder.button(text=f'🔎 ' + _('Search Companies'), callback_data='searchBooking')
-    builder.button(text=f'⫶☰ ' + _('Back to main menu'), callback_data='mainMenu')
+    builder.button(text=f'⫶☰ ' + _('Back to Main Menu'), callback_data='mainMenu')
     builder.adjust(1, 1, 1)
     return builder.as_markup()
 
@@ -48,9 +49,6 @@ async def choose_business_menu(state: dict, *args):
     if state.get('category'):
         page_buttons.button(text='⬅️🗂️ ' + _('Return to category filtering'),
                             callback_data=f'categoryChoose_{state["category"]}')
-    elif state.get('query') and len(state.get('res_count')) > 0:
-        page_buttons.button(text='⬅️🔎 ' + _('Return to Search Results for "{query}"').format(query=html.quote(state['query'])),
-                            callback_data=f'repeatSearch')
     else:
         page_buttons.button(text='⬅️📋 ' + _('Return to Booking Menu'),
                             callback_data=f'bookingMenu')
@@ -62,6 +60,7 @@ async def branch_choices(state: dict, *args):
     builder = InlineKeyboardBuilder()
     for branch in args:
         builder.button(text=f'{branch[1]} - {branch[2]}', callback_data=f'chooseBranch_{branch[0]}')
+        builder.adjust(1)
     page_buttons = InlineKeyboardBuilder()
     if state.get('category'):
         page_buttons.button(text='⬅️🗂️ ' + _('Return to companies in "{category}" category').format(category=html.quote(state['category'].capitalize())),
@@ -73,6 +72,7 @@ async def branch_choices(state: dict, *args):
         page_buttons.button(text='⬅️📋 ' + _('Return to Booking Menu'),
                             callback_data=f'bookingMenu')
     return builder.attach(page_buttons).as_markup()
+
 
 async def choose_business_service_menu(business_id, *args):
     builder = InlineKeyboardBuilder()
@@ -203,21 +203,36 @@ async def choose_number_of_guests_buttons(start, end, page):
     return builder.as_markup()
 
 
-
-async def choose_products(*args, state):
+async def choose_products_buttons(state:dict, *args):
     builder = InlineKeyboardBuilder()
     for product in args:
-        builder.button(text=product[1], callback_data=f'chooseProduct_{product[0]}')
-        builder.adjust(1)
+        if state.get('products_info'):
+            products_info = state['products_info']
+            count = [product[0] for product in products_info].count(product[0])
+            if count != 0:
+                print(count)
+                builder.row(InlineKeyboardButton(text=f'({count}) {product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}', callback_data=f'chooseProduct_{product[0]}_add'), InlineKeyboardButton(text='-1', callback_data=f'chooseProduct_{product[0]}_remove'), width=8)
+            else:
+                builder.row(InlineKeyboardButton(text=f'{product[1]} - {product[2]} som',
+                                                 callback_data=f'chooseProduct_{product[0]}_add'))
+        else:
+            builder.row(InlineKeyboardButton(text=f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}', callback_data=f'chooseProduct_{product[0]}_add'))
     page_buttons = InlineKeyboardBuilder()
-    page_buttons.button(text='✅🛍️ ' + _('Proceed and order chosen product(s) ({product_qty})'.format(
-        product_qty=html.quote(state['products_quantity']))))
-    page_buttons.button(text='❌🛍️ ' + _('Skip this step (this will remove any chosen products)'))
+    if state.get('products_info'):
+        products_chosen = len(state['products_info'])
+        products_info = state['products_info']
+        price = sum([int(product[2]) for product in products_info])
+        page_buttons.button(text='✅🛍️ ' + _('Proceed and order chosen product(s) - ({product_qty} products, +{price} som)'.format(
+            product_qty=html.quote(str(products_chosen)), price=html.quote(format_currency(price, "UZS", locale='uz_UZ')))),
+                            callback_data='productsProceed')
+        page_buttons.adjust(1)
+    page_buttons.button(text='❌🛍️ ' + _('Skip this step (this will remove any chosen products)'),
+                        callback_data='productsProceed_clear')
     if state.get('guest_count') > 0:
         page_buttons.button(text=f'⬅️👤 ' + _('Return choosing the number of guests'), callback_data=f'guestChoice')
-    elif state.get('guest_count') == 0:
+    elif int(state.get('guest_count')) == 0:
         page_buttons.button(text='⬅️👤 ' + _('Return to choosing your booking/reservation type'), callback_data=f'startEndBookingTime_{state["start_time"].strftime("%H-%M-%S")}_{state["end_time"].strftime("%H-%M-%S")}')
-
+    page_buttons.adjust(1, 1)
     return builder.attach(page_buttons).as_markup()
 
 async def note_buttons(num_of_guests):

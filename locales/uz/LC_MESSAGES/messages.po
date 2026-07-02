@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-01 16:22+0500\n"
-"PO-Revision-Date: 2026-07-01 16:19+0500\n"
+"POT-Creation-Date: 2026-07-02 21:26+0500\n"
+"PO-Revision-Date: 2026-07-02 21:18+0500\n"
 "Last-Translator: \n"
 "Language: uz\n"
 "Language-Team: uz <LL@li.org>\n"
@@ -36,28 +36,28 @@ msgstr "Siz allaqachon tizimga kirgansiz."
 msgid "Registration is completed!"
 msgstr "Roʻyxatdan oʻtish muvaffaqiyatli yakunlandi!"
 
-#: handlers/base.py:24 handlers/base.py:26 handlers/base.py:42
-#: handlers/base.py:44
+#: handlers/base.py:23 handlers/base.py:25 handlers/base.py:39
+#: handlers/base.py:41
 msgid "Welcome to Bron. Choose your actions:"
 msgstr "Bron-ga xush kelibsiz. Harakatni tanlang:"
 
-#: handlers/base.py:31
+#: handlers/base.py:30
 msgid "Choose your language:"
 msgstr "Tilni tanlang:"
 
-#: handlers/base.py:40
+#: handlers/base.py:37
 msgid "Language set successfully."
 msgstr "Til muvaffaqiyatli oʻrnatildi."
 
-#: handlers/base.py:49 handlers/base.py:54 handlers/base.py:58
+#: handlers/base.py:46 handlers/base.py:51 handlers/base.py:55
 msgid "In development"
 msgstr "Ishlab chiqilmoqda"
 
-#: handlers/base.py:62
+#: handlers/base.py:59
 msgid "Choose your actions:"
 msgstr "Harakatni tanlang:"
 
-#: handlers/booking.py:31 handlers/booking.py:94 keyboards/keyboard_base.py:28
+#: handlers/booking.py:31 handlers/booking.py:95 keyboards/keyboard_base.py:28
 msgid "Booking..."
 msgstr "Band qilinmoqda..."
 
@@ -74,31 +74,31 @@ msgstr "\"{category}\" kategoriyasida {amt} ta kompaniya topildi"
 msgid "Enter your search query:"
 msgstr "Qidiruv soʻrovini kiriting:"
 
-#: handlers/booking.py:70 handlers/booking.py:88 handlers/booking.py:91
+#: handlers/booking.py:70 handlers/booking.py:89 handlers/booking.py:92
 #, python-brace-format
 msgid "{amt} companies found for \"{query}\" "
-msgstr "\"{query}\" boʻyicha {amt} ta kompaniya topildi"
+msgstr "\"{query}\" boʻyicha {amt} ta kompaniya topildi "
 
 #: handlers/booking.py:73
 #, python-brace-format
 msgid "No companies found for \"{query}\" "
-msgstr "\"{query}\" boʻyicha kompaniyalar topilmadi"
+msgstr "\"{query}\" boʻyicha kompaniyalar topilmadi "
 
-#: handlers/booking.py:114
+#: handlers/booking.py:115
 #, python-brace-format
 msgid "{business_name} has {amt} branches/subsidiaries:"
 msgstr "{business_name} kompaniyasining {amt} ta filiali mavjud:"
 
-#: handlers/booking.py:127
+#: handlers/booking.py:129
 #, python-brace-format
 msgid "{business_name} offers {amt} service(s) for booking:"
 msgstr "{business_name} band qilish uchun {amt} ta xizmat taklif etadi:"
 
-#: handlers/booking.py:144 handlers/booking.py:162
+#: handlers/booking.py:146 handlers/booking.py:164
 msgid "Choose a date:"
 msgstr "Sanani tanlang:"
 
-#: handlers/booking.py:184 handlers/booking.py:198
+#: handlers/booking.py:186 handlers/booking.py:200
 #, python-brace-format
 msgid ""
 "The duration of your chosen service \"{service_title}\" is "
@@ -109,43 +109,45 @@ msgstr ""
 "{service_duration} daqiqa.\n"
 "Band qilish vaqt oraligʻini tanlang:"
 
-#: handlers/booking.py:213
+#: handlers/booking.py:215
 msgid "Choose which of the following options applies to your reservation/booking:"
-msgstr ""
-"Quyidagi variantlardan qaysi biri sizning bron/buyurtmangizga to'g'ri "
-"kelishini tanlang:"
+msgstr "Quyidagi variantlardan qaysi biri broningizga mos kelishini tanlang:"
 
-#: handlers/booking.py:223 handlers/booking.py:232
+#: handlers/booking.py:225 handlers/booking.py:234
 msgid "Choose the number of guests:"
 msgstr "Mehmonlar sonini tanlang:"
 
-#: handlers/booking.py:240
-msgid "Choose additional products alongside your reservation or skip this step"
+#: handlers/booking.py:244 handlers/booking.py:268
+msgid "Choose additional products alongside your reservation or skip this step:"
 msgstr ""
-"Zaxirangizga qo'shimcha mahsulotlarni tanlang yoki bu bosqichni o'tkazib "
-"yuboring"
+"Broningizga qoʻshimcha mahsulotlarni tanlang yoki ushbu bosqichni "
+"oʻtkazib yuboring:"
 
-#: handlers/booking.py:247
+#: handlers/booking.py:283
 msgid "Leave an additional message (or click the skip button)"
 msgstr "Qoʻshimcha xabar qoldiring (yoki oʻtkazib yuborish tugmasini bosing)"
 
-#: handlers/booking.py:284
+#: handlers/booking.py:320
+msgid "Payment services are still in development"
+msgstr "To'lov xizmatlari hali ham ishlab chiqilmoqda"
+
+#: handlers/booking.py:326
 msgid "Gym"
 msgstr "Fitnes zal"
 
-#: handlers/booking.py:285
+#: handlers/booking.py:327
 msgid "Spa"
 msgstr "Spa"
 
-#: handlers/booking.py:286
+#: handlers/booking.py:328
 msgid "Salon"
 msgstr "Goʻzallik saloni"
 
-#: handlers/booking.py:287
+#: handlers/booking.py:329
 msgid "Clinic"
 msgstr "Klinika"
 
-#: handlers/booking.py:292
+#: handlers/booking.py:334
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -157,17 +159,34 @@ msgid ""
 "Booked date: {booking_date}\n"
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
-"Jami narxingiz {total_price}\n"
-"Iltimos, bron qilish ma'lumotlaringiz to'g'ri ekanligiga ishonch hosil "
-"qiling:\n"
+"Sizning umumiy narxingiz: {total_price}\n"
+"Iltimos, band qilish tafsilotlari toʻgʻriligini tekshiring:\n"
 "\n"
 "Kompaniya nomi: {business_name}\n"
 "Tanlangan xizmat: {service_title}\n"
 "Xizmat davomiyligi: {service_duration} daqiqa\n"
-"Bron qilingan sana: {booking_date}\n"
-"Bron qilingan vaqt oralig'i: {start_time} - {end_time}"
+"Band qilingan sana: {booking_date}\n"
+"Band qilingan vaqt oraligʻi: {start_time} - {end_time}"
 
-#: handlers/booking.py:308
+#: handlers/booking.py:361
+#, python-brace-format
+msgid ""
+"\n"
+"Additional products: {products_info}"
+msgstr ""
+"\n"
+"Qo'shimcha mahsulotlar: {products_info}"
+
+#: handlers/booking.py:364
+#, python-brace-format
+msgid ""
+"\n"
+"Total Price of products: {products_price}"
+msgstr ""
+"\n"
+"Mahsulotlarning jami narxi: {products_price}"
+
+#: handlers/booking.py:367
 #, python-brace-format
 msgid ""
 "\n"
@@ -176,7 +195,7 @@ msgstr ""
 "\n"
 "Qo'shimcha izoh: {note}"
 
-#: handlers/booking.py:310
+#: handlers/booking.py:369
 #, python-brace-format
 msgid ""
 "\n"
@@ -209,41 +228,36 @@ msgstr "Bron haqida"
 msgid "Help"
 msgstr "Yordam"
 
-#: keyboards/keyboard_base.py:38
+#: keyboards/keyboard_base.py:38 keyboards/keyboard_booking.py:18
 msgid "Back to Main Menu"
 msgstr "Asosiy menyuga qaytish"
 
-#: keyboards/keyboard_booking.py:15
-#, fuzzy
-msgid "Choose Companies by Category"
-msgstr "Xizmatlarni toifa bo‘yicha tanlang"
-
 #: keyboards/keyboard_booking.py:16
-msgid "Search Companies"
-msgstr "Qidiruv kompaniyalari"
+msgid "Choose Companies by Category"
+msgstr "Kategoriyalar bo'yicha kompaniyalarni tanlang"
 
 #: keyboards/keyboard_booking.py:17
-msgid "Back to main menu"
-msgstr "Asosiy menyuga qaytish"
+msgid "Search Companies"
+msgstr "Kompaniyalarni qidirish"
 
-#: keyboards/keyboard_booking.py:24 keyboards/keyboard_booking.py:35
-#: keyboards/keyboard_booking.py:55 keyboards/keyboard_booking.py:73
+#: keyboards/keyboard_booking.py:25 keyboards/keyboard_booking.py:36
+#: keyboards/keyboard_booking.py:53 keyboards/keyboard_booking.py:72
 msgid "Return to Booking Menu"
 msgstr "Band qilish menyusiga qaytish"
 
-#: keyboards/keyboard_booking.py:49
+#: keyboards/keyboard_booking.py:50
 msgid "Return to category filtering"
 msgstr "Kategoriya boʻyicha saralashga qaytish"
 
-#: keyboards/keyboard_booking.py:52 keyboards/keyboard_booking.py:70
+#: keyboards/keyboard_booking.py:66
+#, python-brace-format
+msgid "Return to companies in \"{category}\" category"
+msgstr "\"{category}\" kategoriyasidagi kompaniyalarga qaytish"
+
+#: keyboards/keyboard_booking.py:69
 #, python-brace-format
 msgid "Return to Search Results for \"{query}\""
 msgstr "\"{query}\" boʻyicha qidiruv natijalariga qaytish"
-
-#: keyboards/keyboard_booking.py:67
-#, python-brace-format
-msgid "Return to companies in \"{category}\" category"
-msgstr " \"{category}\" kategoriyasidagi kompaniyalarga qaytish"
 
 #: keyboards/keyboard_booking.py:83
 msgid "Return to choosing a branch/subsidiary"
@@ -255,7 +269,7 @@ msgstr "Xizmatlarni tanlashga qaytish"
 
 #: keyboards/keyboard_booking.py:165 keyboards/keyboard_booking.py:168
 msgid "Return to choosing a date of your reservation"
-msgstr "Zaxirangiz sanasini tanlashga qaytish"
+msgstr "Band qilish sanasini tanlashga qaytish"
 
 #: keyboards/keyboard_booking.py:175 keyboards/keyboard_booking.py:199
 msgid "I'm making a reservation for myself only"
@@ -267,40 +281,52 @@ msgstr "Mehmonlar bilan kelyapman (mehmonlar sonini tanlashga oʻtish)"
 
 #: keyboards/keyboard_booking.py:178
 msgid "Return to choosing your booking/reservation timeframe"
-msgstr "Soatlarni tanlashga qaytish"
+msgstr "Band qilish vaqt oraligʻini tanlashga qaytish"
 
-#: keyboards/keyboard_booking.py:200 keyboards/keyboard_booking.py:219
+#: keyboards/keyboard_booking.py:200 keyboards/keyboard_booking.py:234
 msgid "Return to choosing your booking/reservation type"
 msgstr "Band qilish turini tanlashga qaytish"
 
-#: keyboards/keyboard_booking.py:213
+#: keyboards/keyboard_booking.py:225
 #, python-brace-format
-msgid "Proceed and order chosen product(s) ({product_qty})"
-msgstr "Davom eting va tanlangan mahsulot(lar)ni buyurtma qiling ({product_qty})"
+msgid ""
+"Proceed and order chosen product(s) - ({product_qty} products, +{price} "
+"som)"
+msgstr ""
+"Davom etish va tanlangan mahsulot(lar)ni buyurtma qilish ({product_qty}, "
+"mahsulot(lar) +{price} som)"
 
-#: keyboards/keyboard_booking.py:215
+#: keyboards/keyboard_booking.py:229
 msgid "Skip this step (this will remove any chosen products)"
 msgstr ""
-"Ushbu bosqichni o'tkazib yuboring (bu tanlangan mahsulotlarni olib "
+"Ushbu bosqichni oʻtkazib yuborish (bu tanlangan mahsulotlarni olib "
 "tashlaydi)"
 
-#: keyboards/keyboard_booking.py:217
+#: keyboards/keyboard_booking.py:232
 msgid "Return choosing the number of guests"
 msgstr "Mehmonlar sonini tanlashga qaytish"
 
-#: keyboards/keyboard_booking.py:225
+#: keyboards/keyboard_booking.py:240
 msgid "Skip this step"
 msgstr "Ushbu qadamni o'tkazib yuboring"
 
-#: keyboards/keyboard_booking.py:226
+#: keyboards/keyboard_booking.py:241
 msgid "Return to choosing products"
 msgstr "Mahsulotlarni tanlashga qaytish"
 
-#: keyboards/keyboard_booking.py:233
+#: keyboards/keyboard_booking.py:248
 msgid "Confirm reservation/booking"
 msgstr "Band qilishni tasdiqlash"
 
-#: keyboards/keyboard_booking.py:234
+#: keyboards/keyboard_booking.py:249
 msgid "Cancel reservation/booking and return to the main menu"
-msgstr ""
+msgstr "Band qilishni bekor qilish va asosiy menyuga qaytish"
+
+#~ msgid "Choose additional products alongside your reservation or skip this step"
+#~ msgstr ""
+#~ "Broningizga qoʻshimcha mahsulotlarni tanlang "
+#~ "yoki ushbu bosqichni oʻtkazib yuboring"
+
+#~ msgid "Back to main menu"
+#~ msgstr "Asosiy menyuga qaytish"
 

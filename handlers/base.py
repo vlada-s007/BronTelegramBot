@@ -1,7 +1,6 @@
 # Авторизация будет реализована после оформления API на авторизацию, это базовый тест
 from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
-from bronTelegramBot.states import LangState
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from aiogram import html
@@ -29,14 +28,12 @@ async def get_main_menu(call:CallbackQuery, state: FSMContext):
 @base_router.callback_query(lambda call: 'chooseLocale' in call.data)
 async def choose_language_menu(call: CallbackQuery, state: FSMContext):
     await call.message.edit_text(_('Choose your language:'), reply_markup=language_inline)
-    await state.set_state(LangState.lang)
 
 
 @base_router.callback_query(lambda call: 'lang' in call.data)
 async def set_language(call: CallbackQuery, state: FSMContext):
     lang = call.data.split('_')[-1]
-    data = await state.update_data(lang=lang)
-    await i18n_middleware.set_locale(state, data['lang'])
+    await i18n_middleware.set_locale(state, lang)
     await bot.answer_callback_query(call.id, _('Language set successfully.'))
     try:
         await call.message.edit_text(_('Welcome to Bron. Choose your actions:'), reply_markup=await main_menu())
