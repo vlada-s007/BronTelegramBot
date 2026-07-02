@@ -10,10 +10,10 @@ from redis.asyncio import Redis
 from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.client.session.aiohttp import AiohttpSession, ClientSession
 
-from handlers.base import base_router
-from handlers.auth import auth_router
-from handlers.booking import booking_router
-from middlewares.locales import i18n_middleware
+from BronTelegramBot.handlers.base import base_router
+from BronTelegramBot.handlers.auth import auth_router
+from BronTelegramBot.handlers.booking import booking_router
+from BronTelegramBot.middlewares.locales import i18n_middleware
 
 
 async def main():
