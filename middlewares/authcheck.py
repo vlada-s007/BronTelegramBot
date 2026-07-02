@@ -4,7 +4,7 @@ from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 from aiogram.client.session.aiohttp import ClientSession
-from bronTelegramBot.middlewares.database import search_user_by_tg_id
+from BronTelegramBot.middlewares.database import search_user_by_tg_id
 
 
 

@@ -1,7 +1,7 @@
 from babel.dates import format_date
 import datetime
 
-from bronTelegramBot.utils import to_datetime
+from BronTelegramBot.utils import to_datetime
 
 today = datetime.date.today()
 fourweeks = today + datetime.timedelta(weeks=4)

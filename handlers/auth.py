@@ -2,15 +2,15 @@ from aiogram import Router, Bot, F
 from aiogram.fsm.context import FSMContext
 import asyncio
 
-from bronTelegramBot.middlewares.authcheck import AuthMiddleware
-from bronTelegramBot.middlewares.locales import i18n_middleware
-from bronTelegramBot.states import UserState
+from BronTelegramBot.middlewares.authcheck import AuthMiddleware
+from BronTelegramBot.middlewares.locales import i18n_middleware
+from BronTelegramBot.states import UserState
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from decouple import config
-from bronTelegramBot.keyboards.keyboard_base import send_contact, main_menu, continue_button
+from BronTelegramBot.keyboards.keyboard_base import send_contact, main_menu, continue_button
 
 token = config('TOKEN')
 bot = Bot(token)

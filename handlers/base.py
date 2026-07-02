@@ -1,15 +1,14 @@
-# Авторизация будет реализована после оформления API на авторизацию, это базовый тест
 from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-# from bronTelegramBot.middlewares.locales import i18n, i18n_middleware
+# from BronTelegramBot.middlewares.locales import i18n, i18n_middleware
 from decouple import config
 
-from bronTelegramBot.keyboards.keyboard_base import language_inline, main_menu, back_to_main_menu_button
-from bronTelegramBot.middlewares.locales import i18n_middleware
+from BronTelegramBot.keyboards.keyboard_base import language_inline, main_menu, back_to_main_menu_button
+from BronTelegramBot.middlewares.locales import i18n_middleware
 
 base_router = Router()
 token = config('TOKEN')

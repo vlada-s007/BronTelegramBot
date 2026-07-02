@@ -1,6 +1,6 @@
 from aiogram.utils.i18n import I18n
 from aiogram.utils.i18n.middleware import FSMI18nMiddleware
-from bronTelegramBot.utils import WORKDIR
+from BronTelegramBot.utils import WORKDIR
 
 # pybabel extract --input-dirs=. -o locales/messages.pot
 # pybabel update -i locales/messages.pot -d locales -D messages uz

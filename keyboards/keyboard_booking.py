@@ -8,7 +8,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 import cyrtranslit
 import unicodedata
 
-from bronTelegramBot.utils import timedelta_to_datetime, text_to_datetime
+from BronTelegramBot.utils import timedelta_to_datetime, text_to_datetime
 
 
 async def booking_menu_markup():
