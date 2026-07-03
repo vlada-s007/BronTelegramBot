@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-02 21:26+0500\n"
+"POT-Creation-Date: 2026-07-03 12:11+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: handlers/auth.py:36
+#: handlers/auth.py:41
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
 
-#: handlers/auth.py:42
+#: handlers/auth.py:45
+msgid ""
+"Welcome to Bron. You are currently not logged in.\n"
+"Share contact information in order to log in or register:"
+msgstr ""
+
+#: handlers/auth.py:51
 msgid "You are already logged in."
 msgstr ""
 
-#: handlers/auth.py:49
+#: handlers/auth.py:58
+#, python-brace-format
+msgid ""
+"This is a test message: if you are seeing this, the app is still in "
+"development.\n"
+"        There is no account with your phone number registered on the "
+"database. Sign up on the website: {website}"
+msgstr ""
+
+#: handlers/auth.py:69
 msgid "Registration is completed!"
 msgstr ""
 
-#: handlers/base.py:23 handlers/base.py:25 handlers/base.py:39
-#: handlers/base.py:41
+#: handlers/base.py:27 handlers/base.py:29 handlers/base.py:43
+#: handlers/base.py:45
 msgid "Welcome to Bron. Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:30
+#: handlers/base.py:34
 msgid "Choose your language:"
 msgstr ""
 
-#: handlers/base.py:37
+#: handlers/base.py:41
 msgid "Language set successfully."
 msgstr ""
 
-#: handlers/base.py:46 handlers/base.py:51 handlers/base.py:55
+#: handlers/base.py:50 handlers/base.py:55 handlers/base.py:59
 msgid "In development"
 msgstr ""
 
-#: handlers/base.py:59
+#: handlers/base.py:63
 msgid "Choose your actions:"
 msgstr ""
 

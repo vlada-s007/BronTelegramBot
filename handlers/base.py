@@ -14,6 +14,11 @@ base_router = Router()
 token = config('TOKEN')
 bot = Bot(token)
 
+# for pythonanywhere
+# session = AiohttpSession(proxy="http://proxy.server:3128")
+# token = config('TOKEN')
+# bot = Bot(token=token, session=session)
+
 @base_router.callback_query(lambda call: 'base_router_main_menu' in call.data)
 async def get_main_menu(call:CallbackQuery, state: FSMContext):
     state = await state.get_data()

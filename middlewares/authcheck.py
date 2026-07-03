@@ -30,8 +30,15 @@ class AuthMiddleware(BaseMiddleware):
                 async with session.post(f'users/telegram/connect',
                                         json={'phone': phone}) as response:
                     print(response.status)
-                    data_resp = await response.json()
-                    print(data_resp)
+                    try:
+                        data_resp = await response.json()
+                        print(data_resp)
+                    except:
+                        data_resp = await response.text()
+                        print(data_resp)
+                        await state.clear()
+                        await state.update_data(no_user=True)
+                        return await handler(event, data)
                     json_data = {'telegram_id': telegram_id}
                     auth = f'Bearer {data_resp["access_token"]}'
                 session.headers['Authorization'] = auth

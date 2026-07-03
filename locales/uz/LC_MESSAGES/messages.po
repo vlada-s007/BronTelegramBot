@@ -7,53 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-02 21:26+0500\n"
-"PO-Revision-Date: 2026-07-02 21:18+0500\n"
+"POT-Creation-Date: 2026-07-03 12:11+0500\n"
+"PO-Revision-Date: 2026-07-03 12:15+0500\n"
 "Last-Translator: \n"
-"Language: uz\n"
 "Language-Team: uz <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
-#: handlers/auth.py:36
+#: handlers/auth.py:41
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
 "Bron-ga xush kelibsiz, {username}. Siz tizimga kirmagansiz.\n"
-"Tizimga kirish yoki roʻyxatdan oʻtish uchun kontakt maʼlumotlaringizni "
-"ulashing:"
+"Tizimga kirish yoki roʻyxatdan oʻtish uchun kontakt maʼlumotlaringizni ulashing:"
 
-#: handlers/auth.py:42
+#: handlers/auth.py:45
+#, python-brace-format
+msgid ""
+"Welcome to Bron. You are currently not logged in.\n"
+"Share contact information in order to log in or register:"
+msgstr ""
+"Bron-ga xush kelibsiz. Siz tizimga kirmagansiz.\n"
+"Tizimga kirish yoki roʻyxatdan oʻtish uchun kontakt maʼlumotlaringizni ulashing:"
+
+#: handlers/auth.py:51
 msgid "You are already logged in."
 msgstr "Siz allaqachon tizimga kirgansiz."
 
-#: handlers/auth.py:49
+#: handlers/auth.py:58
+#, python-brace-format
+msgid ""
+"This is a test message: if you are seeing this, the app is still in "
+"development.\n"
+"        There is no account with your phone number registered on the database. "
+"Sign up on the website: {website}"
+msgstr ""
+"Bu test xabari: agar buni ko'rayotgan bo'lsangiz, ilova hali rivojlanish "
+"jarayonida.\n"
+" Ma'lumotlar bazasida telefon raqamingiz bilan hech qanday hisob ro'yxatdan "
+"o'tmagan. Veb-saytda ro'yxatdan o'ting: {website}"
+
+#: handlers/auth.py:69
 msgid "Registration is completed!"
 msgstr "Roʻyxatdan oʻtish muvaffaqiyatli yakunlandi!"
 
-#: handlers/base.py:23 handlers/base.py:25 handlers/base.py:39
-#: handlers/base.py:41
+#: handlers/base.py:27 handlers/base.py:29 handlers/base.py:43 handlers/base.py:45
 msgid "Welcome to Bron. Choose your actions:"
 msgstr "Bron-ga xush kelibsiz. Harakatni tanlang:"
 
-#: handlers/base.py:30
+#: handlers/base.py:34
 msgid "Choose your language:"
 msgstr "Tilni tanlang:"
 
-#: handlers/base.py:37
+#: handlers/base.py:41
 msgid "Language set successfully."
 msgstr "Til muvaffaqiyatli oʻrnatildi."
 
-#: handlers/base.py:46 handlers/base.py:51 handlers/base.py:55
+#: handlers/base.py:50 handlers/base.py:55 handlers/base.py:59
 msgid "In development"
 msgstr "Ishlab chiqilmoqda"
 
-#: handlers/base.py:59
+#: handlers/base.py:63
 msgid "Choose your actions:"
 msgstr "Harakatni tanlang:"
 
@@ -101,12 +122,12 @@ msgstr "Sanani tanlang:"
 #: handlers/booking.py:186 handlers/booking.py:200
 #, python-brace-format
 msgid ""
-"The duration of your chosen service \"{service_title}\" is "
-"{service_duration} minutes.\n"
+"The duration of your chosen service \"{service_title}\" is {service_duration} "
+"minutes.\n"
 "Choose the timeframe of your booking:"
 msgstr ""
-"Siz tanlagan \"{service_title}\" xizmatining davomiyligi: "
-"{service_duration} daqiqa.\n"
+"Siz tanlagan \"{service_title}\" xizmatining davomiyligi: {service_duration} "
+"daqiqa.\n"
 "Band qilish vaqt oraligʻini tanlang:"
 
 #: handlers/booking.py:215
@@ -120,8 +141,8 @@ msgstr "Mehmonlar sonini tanlang:"
 #: handlers/booking.py:244 handlers/booking.py:268
 msgid "Choose additional products alongside your reservation or skip this step:"
 msgstr ""
-"Broningizga qoʻshimcha mahsulotlarni tanlang yoki ushbu bosqichni "
-"oʻtkazib yuboring:"
+"Broningizga qoʻshimcha mahsulotlarni tanlang yoki ushbu bosqichni oʻtkazib "
+"yuboring:"
 
 #: handlers/booking.py:283
 msgid "Leave an additional message (or click the skip button)"
@@ -290,8 +311,7 @@ msgstr "Band qilish turini tanlashga qaytish"
 #: keyboards/keyboard_booking.py:225
 #, python-brace-format
 msgid ""
-"Proceed and order chosen product(s) - ({product_qty} products, +{price} "
-"som)"
+"Proceed and order chosen product(s) - ({product_qty} products, +{price} som)"
 msgstr ""
 "Davom etish va tanlangan mahsulot(lar)ni buyurtma qilish ({product_qty}, "
 "mahsulot(lar) +{price} som)"
@@ -299,8 +319,7 @@ msgstr ""
 #: keyboards/keyboard_booking.py:229
 msgid "Skip this step (this will remove any chosen products)"
 msgstr ""
-"Ushbu bosqichni oʻtkazib yuborish (bu tanlangan mahsulotlarni olib "
-"tashlaydi)"
+"Ushbu bosqichni oʻtkazib yuborish (bu tanlangan mahsulotlarni olib tashlaydi)"
 
 #: keyboards/keyboard_booking.py:232
 msgid "Return choosing the number of guests"
@@ -324,9 +343,8 @@ msgstr "Band qilishni bekor qilish va asosiy menyuga qaytish"
 
 #~ msgid "Choose additional products alongside your reservation or skip this step"
 #~ msgstr ""
-#~ "Broningizga qoʻshimcha mahsulotlarni tanlang "
-#~ "yoki ushbu bosqichni oʻtkazib yuboring"
+#~ "Broningizga qoʻshimcha mahsulotlarni tanlang yoki ushbu bosqichni oʻtkazib "
+#~ "yuboring"
 
 #~ msgid "Back to main menu"
 #~ msgstr "Asosiy menyuga qaytish"
-

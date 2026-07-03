@@ -4,6 +4,14 @@ from aiosqlite import Cursor
 #aiosqlite implementation for development
 from decouple import config
 
+# for pythonanywhere
+# from os import path
+#
+# ROOT = path.dirname(path.realpath(__file__))
+# async def connect_db():
+#
+#     db = await aiosqlite.connect(path.join(ROOT, "db.sqlite3"))
+#     return db
 
 async def connect_db():
 

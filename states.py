@@ -5,6 +5,7 @@ class UserState(StatesGroup):
     telegram_id = State()
     phone = State()
     user_id = State()
+    no_user = State()
 
 
 class TempMessageState(StatesGroup):

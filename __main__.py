@@ -7,9 +7,8 @@ from decouple import config
 from aiogram import Bot, Dispatcher
 
 from redis.asyncio import Redis
-from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.client.session.aiohttp import AiohttpSession, ClientSession
-
+from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.handlers.base import base_router
 from BronTelegramBot.handlers.auth import auth_router
 from BronTelegramBot.handlers.booking import booking_router
@@ -19,6 +18,9 @@ from BronTelegramBot.middlewares.locales import i18n_middleware
 async def main():
     logging.basicConfig(level=logging.DEBUG)
     token = config('TOKEN')
+    # for pythonanywhere
+    # session = AiohttpSession(proxy="http://proxy.server:3128")
+    # bot = Bot(token, session=session)
     bot = Bot(token)
 
     # redis = Redis()

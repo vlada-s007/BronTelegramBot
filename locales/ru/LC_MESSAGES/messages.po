@@ -7,55 +7,76 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-02 21:26+0500\n"
-"PO-Revision-Date: 2026-07-02 21:19+0500\n"
+"POT-Creation-Date: 2026-07-03 12:11+0500\n"
+"PO-Revision-Date: 2026-07-03 12:14+0500\n"
 "Last-Translator: \n"
-"Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 "
+"&& (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
-#: handlers/auth.py:36
+#: handlers/auth.py:41
 #, python-brace-format
 msgid ""
 "Welcome to Bron, {username}. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
-"Добро пожаловать в Bron, {username}. На данный момент вы не авторизованы."
-"\n"
-"Поделитесь контактными данными, чтобы авторизоваться или завершить "
-"регистрацию:"
+"Добро пожаловать в Bron, {username}. На данный момент вы не авторизованы.\n"
+"Поделитесь контактными данными, чтобы авторизоваться или завершить регистрацию:"
 
-#: handlers/auth.py:42
+#: handlers/auth.py:45
+#, python-brace-format
+msgid ""
+"Welcome to Bron. You are currently not logged in.\n"
+"Share contact information in order to log in or register:"
+msgstr ""
+"Добро пожаловать в Bron. На данный момент вы не авторизованы.\n"
+"Поделитесь контактными данными, чтобы авторизоваться или завершить регистрацию:"
+
+#: handlers/auth.py:51
 msgid "You are already logged in."
 msgstr "Вы уже авторизованы."
 
-#: handlers/auth.py:49
+#: handlers/auth.py:58
+#, python-brace-format
+msgid ""
+"This is a test message: if you are seeing this, the app is still in "
+"development.\n"
+"        There is no account with your phone number registered on the database. "
+"Sign up on the website: {website}"
+msgstr ""
+"Это тестовое сообщение : если вы видите его, значит приложение всё ещё "
+"находится в стадии разработки\n"
+"\n"
+"В базе данных нет учетной записи с вашим номером телефона. Зарегистрируйтесь на "
+"сайте: {website}"
+
+#: handlers/auth.py:69
 msgid "Registration is completed!"
 msgstr "Регистрация завершена!"
 
-#: handlers/base.py:23 handlers/base.py:25 handlers/base.py:39
-#: handlers/base.py:41
+#: handlers/base.py:27 handlers/base.py:29 handlers/base.py:43 handlers/base.py:45
 msgid "Welcome to Bron. Choose your actions:"
 msgstr "Добро пожаловать в Bron. Выберите свои действия:"
 
-#: handlers/base.py:30
+#: handlers/base.py:34
 msgid "Choose your language:"
 msgstr "Выберите свой язык:"
 
-#: handlers/base.py:37
+#: handlers/base.py:41
 msgid "Language set successfully."
 msgstr "Язык установлен."
 
-#: handlers/base.py:46 handlers/base.py:51 handlers/base.py:55
+#: handlers/base.py:50 handlers/base.py:55 handlers/base.py:59
 msgid "In development"
 msgstr "В разработке"
 
-#: handlers/base.py:59
+#: handlers/base.py:63
 msgid "Choose your actions:"
 msgstr "Выберите свои действия:"
 
@@ -103,8 +124,8 @@ msgstr "Выберите дату:"
 #: handlers/booking.py:186 handlers/booking.py:200
 #, python-brace-format
 msgid ""
-"The duration of your chosen service \"{service_title}\" is "
-"{service_duration} minutes.\n"
+"The duration of your chosen service \"{service_title}\" is {service_duration} "
+"minutes.\n"
 "Choose the timeframe of your booking:"
 msgstr ""
 "Продолжительность выбранной вами услуги \"{service_title}\" - "
@@ -290,11 +311,10 @@ msgstr "Вернуться к выбору типа бронирования"
 #: keyboards/keyboard_booking.py:225
 #, python-brace-format
 msgid ""
-"Proceed and order chosen product(s) - ({product_qty} products, +{price} "
-"som)"
+"Proceed and order chosen product(s) - ({product_qty} products, +{price} som)"
 msgstr ""
-"Продолжить и заказать выбранные продукты - ({product_qty} продуктов, "
-"+{price} сум)"
+"Продолжить и заказать выбранные продукты - ({product_qty} продуктов, +{price} "
+"сум)"
 
 #: keyboards/keyboard_booking.py:229
 msgid "Skip this step (this will remove any chosen products)"
@@ -319,4 +339,3 @@ msgstr "Подтвердить бронирование"
 #: keyboards/keyboard_booking.py:249
 msgid "Cancel reservation/booking and return to the main menu"
 msgstr "Отменить оформление бронирования и вернуться в главное меню"
-
