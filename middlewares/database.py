@@ -5,18 +5,16 @@ from aiosqlite import Cursor
 from decouple import config
 
 # for pythonanywhere
-# from os import path
-#
-# ROOT = path.dirname(path.realpath(__file__))
-# async def connect_db():
-#
-#     db = await aiosqlite.connect(path.join(ROOT, "db.sqlite3"))
-#     return db
 
 async def connect_db():
 
-    db = await aiosqlite.connect(config('db_path'))
+    db = await aiosqlite.connect('/home/vlada007/BronTelegramBot/db.sqlite3')
     return db
+
+# async def connect_db():
+
+#     db = await aiosqlite.connect(config('db_path'))
+#     return db
 
 
 async def search_businesses_by_query(query: str):
@@ -43,6 +41,12 @@ async def search_user_by_tg_id(telegram_id):
     await db.close()
     return results
 
+async def update_database_tg_id(telegram_id, user_id):
+    db = await connect_db()
+    cursor: Cursor = await db.execute("UPDATE core_user SET telegram_id=? WHERE id=?", (telegram_id, user_id))
+    await db.commit()
+    await cursor.close()
+    await db.close()
 
 async def search_businesses_by_category(category):
     db = await connect_db()
@@ -86,7 +90,7 @@ async def service_title_duration_and_price_by_id(service_id):
 
 async def block_date(*args):
     db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO 
+    cursor: Cursor = await db.execute('''INSERT INTO
     core_blockeddate(date, reason, business_id)
     VALUES(?, ?, ?)''', args)
     await db.commit()
@@ -131,8 +135,8 @@ async def get_staff_name_and_position_by_staff_id(staff_id):
 
 async def create_booking(*args):
     db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO 
-    core_booking(user_id, business_id, service_id, branch_id, 
+    cursor: Cursor = await db.execute('''INSERT INTO
+    core_booking(user_id, business_id, service_id, branch_id,
     total_price, guest_count, start_time, end_time, booking_date)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?)''', args)
     await db.commit()
@@ -140,7 +144,7 @@ async def create_booking(*args):
 
 async def add_products_to_booking(product_id, booking_id):
     db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO 
+    cursor: Cursor = await db.execute('''INSERT INTO
     booking_products(product_id, booking_id)
     VALUES(?, ?)''', product_id, booking_id)
     await db.commit()

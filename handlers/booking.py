@@ -1,4 +1,3 @@
-# Booking будет реализована после оформления API на авторизацию, это базовый тест
 from datetime import datetime
 
 from aiogram import Router
@@ -333,7 +332,7 @@ async def get_categories():
 async def format_final_text(state_data):
     localized_msg = _('''Your total price is {total_price}
 Please make sure your booking details are correct:
-    
+
 Company name: {business_name}\nChosen service: {service_title}
 Service duration: {service_duration} minutes\nBooked date: {booking_date}
 Booked timeslot: {start_time} - {end_time}'''

@@ -2,7 +2,7 @@ from aiogram import Router, Bot, F
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.fsm.context import FSMContext
 import asyncio
-
+from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.middlewares.authcheck import AuthMiddleware
 from BronTelegramBot.middlewares.locales import i18n_middleware
 from BronTelegramBot.states import UserState
@@ -13,15 +13,15 @@ from aiogram.utils.i18n import gettext as _
 from decouple import config
 from BronTelegramBot.keyboards.keyboard_base import send_contact, main_menu, continue_button
 
-token = config('TOKEN')
-bot = Bot(token)
-auth_router = Router()
+# token = config('TOKEN')
+# bot = Bot(token)
+
 
 # for pythonanywhere
-# session = AiohttpSession(proxy="http://proxy.server:3128")
-# token = config('TOKEN')
-# bot = Bot(token=token, session=session)
-
+session = AiohttpSession(proxy="http://proxy.server:3128")
+token = config('TOKEN')
+bot = Bot(token=token, session=session)
+auth_router = Router()
 auth_router.message.middleware(AuthMiddleware())
 
 
@@ -36,13 +36,7 @@ async def command_start(message: Message, state: FSMContext):
         except:
             await i18n_middleware.set_locale(state, 'en')
             await state.update_data(user_language='en')
-        try:
-            await message.answer(
-            _('Welcome to Bron, {username}. You are currently not logged in.\nShare contact information in order to log in or register:').format(
-                username=html.quote(message.from_user.username)), reply_markup=await send_contact())
-        except:
-            await message.answer(
-                _('Welcome to Bron. You are currently not logged in.\nShare contact information in order to log in or register:'), reply_markup=await send_contact())
+        await message.answer(_('Welcome to Bron. You are currently not logged in.\nShare contact information in order to log in or register:'), reply_markup=await send_contact())
         await state.update_data(telegram_id=message.chat.id)
         await state.set_state(UserState.phone)
         await state.set_state(UserState.user_id)
@@ -57,7 +51,7 @@ async def no_user_found(message: Message, state:FSMContext):
     if data.get('no_user'):
         await message.answer(_('''This is a test message: if you are seeing this, the app is still in development.
         There is no account with your phone number registered on the database. Sign up on the website: {website}'''
-                               ).format(note=html.quote('https://uzbalpha.pythonanywhere.com/api/')))
+                               ).format(website=html.quote('https://uzbalpha.pythonanywhere.com/api/')))
     else:
         await authorize_user(message, state)
 

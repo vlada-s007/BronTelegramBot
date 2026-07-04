@@ -246,7 +246,7 @@ async def note_buttons(num_of_guests):
 async def final_button_confirm():
     builder = InlineKeyboardBuilder()
     builder.button(text=f'✅ ' + _('Confirm reservation/booking'), callback_data='bookingFinalConfirm')
-    builder.button(text=f'❌ ' + _('Cancel reservation/booking and return to the main menu'), callback_data='mainMenu')
+    builder.button(text=f'❌ ' + _('Cancel reservation/booking and return to the main menu'), callback_data='mainMenu_cancel')
     builder.adjust(1,1)
     return builder.as_markup()
 

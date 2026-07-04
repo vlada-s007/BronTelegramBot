@@ -6,18 +6,21 @@ from aiogram import html
 from aiogram.utils.i18n import gettext as _
 # from BronTelegramBot.middlewares.locales import i18n, i18n_middleware
 from decouple import config
-
+from BronTelegramBot.handlers.booking import clear_state
+from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.keyboards.keyboard_base import language_inline, main_menu, back_to_main_menu_button
 from BronTelegramBot.middlewares.locales import i18n_middleware
 
-base_router = Router()
-token = config('TOKEN')
-bot = Bot(token)
+
+# token = config('TOKEN')
+# bot = Bot(token)
 
 # for pythonanywhere
-# session = AiohttpSession(proxy="http://proxy.server:3128")
-# token = config('TOKEN')
-# bot = Bot(token=token, session=session)
+session = AiohttpSession(proxy="http://proxy.server:3128")
+token = config('TOKEN')
+bot = Bot(token=token, session=session)
+base_router = Router()
+
 
 @base_router.callback_query(lambda call: 'base_router_main_menu' in call.data)
 async def get_main_menu(call:CallbackQuery, state: FSMContext):
@@ -58,8 +61,15 @@ async def help_command(call: CallbackQuery):
 async def help_command(call: CallbackQuery):
     await call.message.edit_text(_('In development'), reply_markup=await back_to_main_menu_button())
 
+
 @base_router.callback_query(lambda call: 'mainMenu' in call.data)
-async def help_command(call: CallbackQuery):
+async def help_command(call: CallbackQuery, state: FSMContext):
+    try:
+        comm, comm2 = call.data.split('_')
+        if comm2 == 'cancel':
+            await clear_state(state=state)
+    except:
+        pass
     await call.message.edit_text(_('Choose your actions:'), reply_markup=await main_menu())
 
 

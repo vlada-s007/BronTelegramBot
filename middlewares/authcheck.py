@@ -4,8 +4,7 @@ from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 from aiogram.client.session.aiohttp import ClientSession
-from BronTelegramBot.middlewares.database import search_user_by_tg_id
-
+from BronTelegramBot.middlewares.database import search_user_by_tg_id, update_database_tg_id
 
 
 class AuthMiddleware(BaseMiddleware):
@@ -24,8 +23,12 @@ class AuthMiddleware(BaseMiddleware):
         if event.contact and not state_data.get('auth') and not user_database_id:
             chat_id = event.chat.id
             phone = event.contact.phone_number
+            if not phone.startswith('+'):
+                phone = '+' + phone
+            print('phone' + phone)
+            print('tg_id' + str(telegram_id))
             base_url = config('base_url')
-            session = ClientSession(base_url=base_url)
+            session = ClientSession(base_url=base_url, proxy="http://proxy.server:3128")
             async with session:
                 async with session.post(f'users/telegram/connect',
                                         json={'phone': phone}) as response:
@@ -33,14 +36,18 @@ class AuthMiddleware(BaseMiddleware):
                     try:
                         data_resp = await response.json()
                         print(data_resp)
+                        json_data = {'telegram_id': telegram_id}
+                        auth = f'Bearer {data_resp["access_token"]}'
+                        if response.status != 200:
+                            await state.update_data(no_user=True)
+                            return await handler(event,data)
                     except:
                         data_resp = await response.text()
                         print(data_resp)
                         await state.clear()
                         await state.update_data(no_user=True)
                         return await handler(event, data)
-                    json_data = {'telegram_id': telegram_id}
-                    auth = f'Bearer {data_resp["access_token"]}'
+
                 session.headers['Authorization'] = auth
                 async with session.put(f'users/profile/telegram', json=json_data) as response:
                     print(response.status)
@@ -51,8 +58,10 @@ class AuthMiddleware(BaseMiddleware):
                     print(register_resp)
                     await state.clear()
                     await state.update_data(user_id=data_resp['user_id'])
+                    await update_database_tg_id(telegram_id, data_resp['user_id'])
+                    print('database login added')
         elif state_data.get('user_id'):
-            print('Пользователь уже зарегестрирован')
+            print('User is already authenticated')
         elif user_database_id and not state_data.get('user_id'):
             await state.clear()
             state_data = await state.update_data(user_id=user_database_id[0])

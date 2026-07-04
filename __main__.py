@@ -19,9 +19,9 @@ async def main():
     logging.basicConfig(level=logging.DEBUG)
     token = config('TOKEN')
     # for pythonanywhere
-    # session = AiohttpSession(proxy="http://proxy.server:3128")
-    # bot = Bot(token, session=session)
-    bot = Bot(token)
+    session = AiohttpSession(proxy="http://proxy.server:3128")
+    bot = Bot(token, session=session)
+    # bot = Bot(token)
 
     # redis = Redis()
     # storage = RedisStorage(redis=redis)
