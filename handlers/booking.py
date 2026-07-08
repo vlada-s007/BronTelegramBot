@@ -1,13 +1,14 @@
 from datetime import datetime
-
 from aiogram import Router
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from babel.dates import format_date
 from babel.numbers import format_currency
 
+from BronTelegramBot.handlers.base import clear_state
 from BronTelegramBot.keyboards.keyboard_base import back_to_main_menu_button
 from BronTelegramBot.middlewares.database import *
+from BronTelegramBot.middlewares.notification_middleware import NotificationMiddleware
 from BronTelegramBot.states import BookingState, SearchParams
 from BronTelegramBot.keyboards.keyboard_booking import *
 from aiogram import html
@@ -15,18 +16,12 @@ from aiogram.utils.i18n import gettext as _
 from BronTelegramBot.utils import text_to_datetime, datetime_to_text
 
 booking_router = Router()
+booking_router.message.middleware(NotificationMiddleware())
 
-async def clear_state(state: FSMContext):
-    data = await state.get_data()
-    user_id = data['user_id']
-    locale = data['locale']
-    await state.clear()
-    await state.update_data(user_id=user_id)
-    await state.update_data(locale=locale)
 
 @booking_router.callback_query(lambda call: 'bookingMenu' in call.data)
 async def booking_menu(call: CallbackQuery, state: FSMContext):
-    await clear_state(state=state)
+    await clear_state(call, state)
     await call.message.edit_text(_('Booking...'), reply_markup=await booking_menu_markup())
 
 
@@ -48,7 +43,6 @@ async def businesses_in_cat(call: CallbackQuery, state: FSMContext):
         _('{amt} Companies found in "{category}" category').format(
             amt=html.quote(amt), category=html.quote(cat_dict[category].capitalize())), reply_markup=await
         choose_business_menu(data, *results))
-    print('edited')
 
 
 @booking_router.callback_query(lambda call: 'searchBooking' in call.data)
@@ -78,7 +72,6 @@ async def businesses_by_query(message: Message, state: FSMContext):
 @booking_router.callback_query(lambda call: 'repeatSearch' in call.data)
 async def businesses_return_to_query(call: CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    print(data)
     query = data['query']
     amt = data['res_count']
     results = data['search_results']
@@ -138,7 +131,9 @@ async def choose_date(call: CallbackQuery, state: FSMContext):
     await state.update_data(service_price=service_price)
     await state.update_data(service_id=service_id)
     data = await state.update_data(service_duration=service_duration)
-    blocked_dates = await search_blocked_dates_by_business(business_id=data['business_id'])
+    blocked_dates = [date[0] for date in await search_blocked_dates_by_business(business_id=data['business_id'])]
+    print(blocked_dates, 'blocked_dates')
+
     working_hours = await search_working_hours_by_business_id(business_id=data['business_id'])
     await state.update_data(working_hours=working_hours)
     await state.update_data(blocked_dates=blocked_dates)
@@ -234,38 +229,46 @@ async def guest_paginations(call: CallbackQuery, state: FSMContext):
         start_time, end_time, str(page_num)))
 
 
+async def product_message(call: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    products = await products_by_business_id(data['business_id'])
+
+    if data.get('products_info'):
+        products_info = data['products_info']
+        products_chosen = len(products_info)
+        price = sum([int(product[2]) for product in products_info])
+        await call.message.edit_text(_('''Choose additional products alongside your reservation or skip this step:
+    \nYou chose {product_qty} product(s), ({price})''').format(
+            product_qty=html.quote(str(products_chosen)),
+            price=html.quote(format_currency(price, "UZS", locale='uz_UZ'))),
+            reply_markup=await choose_products_buttons(data, *products))
+    else:
+        await call.message.edit_text(_('Choose additional products alongside your reservation or skip this step:'),
+                                     reply_markup=await choose_products_buttons(data, *products))
+
 @booking_router.callback_query(lambda call: 'chooseNumOfGuests' in call.data)
 async def choose_products(call: CallbackQuery, state: FSMContext):
     comm, guests = call.data.split('_')
-    data = await state.update_data(guest_count=int(guests))
-    print(data)
-    products = await products_by_business_id(data['business_id'])
-    await call.message.edit_text(_('Choose additional products alongside your reservation or skip this step:'),
-                                 reply_markup=await choose_products_buttons(data, *products))
+    await state.update_data(guest_count=int(guests))
+    await product_message(call, state)
 
 
 @booking_router.callback_query(lambda call: 'chooseProduct' in call.data)
 async def product_pagination(call: CallbackQuery, state: FSMContext):
     comm, product_id, action = call.data.split('_')
     data = await state.get_data()
+    print(data)
     current_product_info = await products_info_by_ids(product_id)
-    products_info = None
-    if not data.get('products_info'):
-        if not action == 'remove':
-            products_info = [current_product_info]
-            print(products_info)
-    else:
-        products_info = data['products_info']
-        if action == 'remove':
-            if current_product_info in products_info:
-                products_info.remove(current_product_info)
-        else:
+    products_info = data.get('products_info')
+    if products_info:
+        if action == 'add':
             products_info.append(current_product_info)
-        print(products_info)
-    data = await state.update_data(products_info=products_info)
-    products = await products_by_business_id(data['business_id'])
-    await call.message.edit_text(_('Choose additional products alongside your reservation or skip this step:'),
-                                 reply_markup=await choose_products_buttons(data, *products))
+        else:
+            products_info.remove(current_product_info)
+    else:
+        products_info = [current_product_info]
+    await state.update_data(products_info=products_info)
+    await product_message(call, state)
 
 
 @booking_router.callback_query(lambda call: 'productsProceed' in call.data)
@@ -293,7 +296,6 @@ async def final_check_tasks(state: FSMContext):
     else:
         total_price = int(service_price)
     if data.get('products_total_price'):
-        print(data['products_total_price'])
         total_price += int(data['products_total_price'])
     data = await state.update_data(total_price=total_price)
     final_text = await format_final_text(state_data=data)
@@ -312,12 +314,32 @@ async def final_check_skipped(call: CallbackQuery, state: FSMContext):
     final_text = await final_check_tasks(state=state)
     await call.message.edit_text(final_text, reply_markup=await final_button_confirm())
 
-# implement payment and after confirmation
+# implement payment and confirmation dialogue after QR codes are implemented
 @booking_router.callback_query(lambda call: 'bookingFinalConfirm' in call.data)
 async def confirm_booking(call: CallbackQuery, state: FSMContext):
-    await state.get_data()
+    data = await state.get_data()
     await call.message.edit_text(_('Payment services are still in development'), reply_markup=await back_to_main_menu_button())
-    await clear_state(state=state)
+    booking_data = await booking_args(data)
+    booking_id = await create_booking(*booking_data)
+    blocked_args = await blocked_date_args(data)
+    await block_date(*blocked_args)
+    if data.get('products_info'):
+        for product in data['products_info']:
+            await insert_booking_products(product[0], booking_id)
+    await clear_state(call, state)
+
+
+async def booking_args(state_data: dict):
+    return int(state_data['user_id']), int(state_data['business_id']),\
+           int(state_data['service_id']), int(state_data['branch_id']),\
+           float(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
+           state_data['start_time'].time().isoformat(), state_data['end_time'].time().isoformat(),\
+           state_data['booking_date'].date().isoformat(), state_data.get('note', ''),\
+           'pending', '', datetime_now()
+
+
+async def blocked_date_args(state_data: dict):
+    return state_data['booking_date'].date().isoformat(), 'This date is booked', int(state_data['business_id']), datetime_now()
 
 
 async def get_categories():
@@ -341,7 +363,9 @@ Booked timeslot: {start_time} - {end_time}'''
         business_name=html.quote(state_data['business_name']),
         service_title=html.quote(state_data['service_title']),
         service_duration=html.quote(str(state_data['service_duration'])),
-        booking_date=html.quote(format_date(state_data['booking_date'], format='EEEE, d MMMM', locale=state_data['locale'])).capitalize(),
+        booking_date=html.quote(
+            format_date(state_data['booking_date'],
+                        format='EEEE, d MMMM', locale=state_data['locale'])).capitalize(),
         start_time=html.quote(datetime_to_text(state_data['start_time'], "%H:%M")),
         end_time=html.quote(datetime_to_text(state_data['end_time'], "%H:%M")))
 
@@ -350,20 +374,21 @@ Booked timeslot: {start_time} - {end_time}'''
         products_price = state_data['products_total_price']
         products_str = []
         for product in products_info:
-            count = [i[0] for i in products_info].count(product[0])
-            if count != 0:
-                products_str.append(
-                    f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")} som ({count})')
-            products_info = [i for i in products_info if i != product]
+            products_str.append(
+                f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}')
+            products_info.remove(product)
         products_text = ', '.join(products_str)
 
         localized_msg += _('\nAdditional products: {products_info}').format(
             products_info=html.quote(products_text))
 
-        localized_msg += _('\nTotal Price of products: {products_price}').format(
+        localized_msg += _(
+            '\nPrice of products: {products_price}').format(
             products_price=html.quote(format_currency(products_price, 'UZS', locale="uz_UZ")))
     if state_data.get('note'):
-        localized_msg += _('\nAdditional note: {note}').format(note=html.quote(state_data['note']))
+        localized_msg += _(
+            '\nAdditional note: {note}').format(note=html.quote(state_data['note']))
     if state_data.get('guest_count'):
-        localized_msg += _('\nGuests invited: {guest_count}').format(guest_count=html.quote(str(state_data['guest_count'])))
+        localized_msg += _(
+            '\nGuests invited: {guest_count}').format(guest_count=html.quote(str(state_data['guest_count'])))
     return localized_msg

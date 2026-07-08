@@ -1,20 +1,25 @@
 import aiosqlite
 from aiosqlite import Cursor
 
+# token = config('TOKEN')
+# bot = Bot(token)
+
 #aiosqlite implementation for development
 from decouple import config
 
 # for pythonanywhere
 
+# async def connect_db():
+#
+#     db = await aiosqlite.connect('/home/vlada007/BronTelegramBot/db.sqlite3')
+#     return db
+from BronTelegramBot.utils import datetime_now
+
+
 async def connect_db():
 
-    db = await aiosqlite.connect('/home/vlada007/BronTelegramBot/db.sqlite3')
+    db = await aiosqlite.connect(config('db_path'))
     return db
-
-# async def connect_db():
-
-#     db = await aiosqlite.connect(config('db_path'))
-#     return db
 
 
 async def search_businesses_by_query(query: str):
@@ -72,6 +77,14 @@ async def search_branches_by_business_id(business_id):
     await db.close()
     return results
 
+async def get_branch_info_by_id(branch_id):
+    db = await connect_db()
+    cursor: Cursor = await db.execute("SELECT id, name, address FROM core_branch WHERE id=?", (branch_id,))
+    results = await cursor.fetchone()
+    await cursor.close()
+    await db.close()
+    return results
+
 async def business_name_by_id(business_id):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT name FROM core_business WHERE id=?", (business_id,))
@@ -88,14 +101,6 @@ async def service_title_duration_and_price_by_id(service_id):
     await db.close()
     return results
 
-async def block_date(*args):
-    db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO
-    core_blockeddate(date, reason, business_id)
-    VALUES(?, ?, ?)''', args)
-    await db.commit()
-    await db.close()
-
 async def search_blocked_dates_by_business(business_id):
     db = await connect_db()
     print(business_id)
@@ -110,7 +115,6 @@ async def search_working_hours_by_business_id(business_id):
     db = await connect_db()
     cursor: Cursor = await db.execute('''SELECT day_of_week, is_closed, open_time, close_time FROM core_workinghours WHERE business_id=?''', (business_id,))
     results = await cursor.fetchall()
-    print(results)
     await db.commit()
     await db.close()
     return results
@@ -119,7 +123,6 @@ async def search_staff_by_business_id(business_id):
     db = await connect_db()
     cursor: Cursor = await db.execute("SELECT id, full_name, position FROM core_staff WHERE business_id=? AND is_active=1", (business_id,))
     results = await cursor.fetchall()
-    print(results)
     await cursor.close()
     await db.close()
     return results
@@ -132,27 +135,10 @@ async def get_staff_name_and_position_by_staff_id(staff_id):
     await db.close()
     return results
 
-
-async def create_booking(*args):
-    db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO
-    core_booking(user_id, business_id, service_id, branch_id,
-    total_price, guest_count, start_time, end_time, booking_date)
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?)''', args)
-    await db.commit()
-    await db.close()
-
-async def add_products_to_booking(product_id, booking_id):
-    db = await connect_db()
-    cursor: Cursor = await db.execute('''INSERT INTO
-    booking_products(product_id, booking_id)
-    VALUES(?, ?)''', product_id, booking_id)
-    await db.commit()
-    await db.close()
-
 async def products_by_business_id(business_id):
     db = await connect_db()
-    cursor: Cursor = await db.execute("SELECT id, name, price FROM core_product WHERE business_id=? AND is_active=1", (business_id,))
+    cursor: Cursor = await db.execute(
+        '''SELECT id, name, price FROM core_product WHERE business_id=? AND is_active=1''', (business_id,))
     results = await cursor.fetchall()
     await cursor.close()
     await db.close()
@@ -160,18 +146,69 @@ async def products_by_business_id(business_id):
 
 async def products_info_by_ids(product_id):
     db = await connect_db()
-    cursor: Cursor = await db.execute("SELECT id, name, price FROM core_product WHERE id=?", (product_id,))
+    cursor: Cursor = await db.execute(
+        '''SELECT id, name, price FROM core_product WHERE id=?''', (product_id,))
+    results = await cursor.fetchone()
+    await cursor.close()
+    await db.close()
+    return results
+
+async def create_booking(*args):
+    db = await connect_db()
+    cursor: Cursor = await db.execute('''
+    INSERT INTO core_booking(user_id, business_id, service_id, branch_id,
+    total_price, guest_count, start_time, end_time, booking_date, notes, status, cancel_reason, created_at)
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', args)
+    results = cursor.lastrowid
+    print('inserted id is ' + str(results))
+    await db.commit()
+    await db.close()
+    return results
+
+async def insert_booking_products(*args):
+    db = await connect_db()
+    cursor: Cursor = await db.execute(
+        'INSERT INTO core_booking_products(product_id, booking_id) VALUES(?, ?)', args)
+    await db.commit()
+    await db.close()
+
+async def search_bookings_for_profile(*args):
+    db = await connect_db()
+    q = f'''SELECT id, start_time, end_time, booking_date
+        FROM core_booking WHERE user_id={args[0]} AND (status="{args[1]}" OR status="{args[2]}")
+        ORDER BY booking_date ASC, start_time ASC'''
+    cursor: Cursor = await db.execute(q)
+    results = await cursor.fetchall()
+    await cursor.close()
+    await db.close()
+    return results
+
+
+async def get_booking_details(booking_id):
+    db = await connect_db()
+    cursor: Cursor = await db.execute(
+        '''SELECT user_id, business_id, service_id, branch_id, total_price, 
+        guest_count, start_time, end_time, booking_date, notes, status 
+        FROM core_booking WHERE id=?''', (booking_id,))
     results = await cursor.fetchone()
     await cursor.close()
     await db.close()
     return results
 
 
+async def get_booking_products(booking_id):
+    db = await connect_db()
+    cursor: Cursor = await db.execute('''
+    SELECT product_id FROM core_booking_products WHERE booking_id=?''', (booking_id,))
+    results = await cursor.fetchall()
+    await cursor.close()
+    await db.close()
+    return results
 
-
-#
-#
-#
-#
-# token = config('TOKEN')
-# bot = Bot(token)
+async def block_date(*args):
+    db = await connect_db()
+    cursor: Cursor = await db.execute('''INSERT INTO
+    core_blockeddate(date, reason, business_id, created_at)
+    VALUES(?, ?, ?, ?)''', args)
+    await db.commit()
+    await db.close()

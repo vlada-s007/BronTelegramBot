@@ -97,8 +97,8 @@ async def booking_date_buttons(branch_id, locale, page, blocked_dates: list, wor
         button_day = (today + datetime.timedelta(days=num_day))
         for week_day in working_hours:
             if week_day[0] == button_day.weekday() and week_day[1] == 0:
-                if not blocked_dates or button_day not in blocked_dates:
-                    formatted = (format_date(button_day, format='EEEE, d MMMM', locale=locale)).capitalize()
+                if not blocked_dates or str(button_day) not in blocked_dates:
+                    formatted = (format_date(button_day, format='EEE, d MMM', locale=locale)).capitalize()
                     builder.button(text=formatted, callback_data=f'bookingDate_{button_day.strftime("%Y-%m-%d")}')
                     builder.adjust(1)
 
@@ -208,23 +208,18 @@ async def choose_products_buttons(state:dict, *args):
     for product in args:
         if state.get('products_info'):
             products_info = state['products_info']
-            count = [product[0] for product in products_info].count(product[0])
-            if count != 0:
-                print(count)
-                builder.row(InlineKeyboardButton(text=f'({count}) {product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}', callback_data=f'chooseProduct_{product[0]}_add'), InlineKeyboardButton(text='-1', callback_data=f'chooseProduct_{product[0]}_remove'), width=8)
+            if product in products_info:
+                builder.row(InlineKeyboardButton(text=f'✅ {product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}',
+                                                 callback_data=f'chooseProduct_{product[0]}_remove'))
             else:
-                builder.row(InlineKeyboardButton(text=f'{product[1]} - {product[2]} som',
+                builder.row(InlineKeyboardButton(text=f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}',
                                                  callback_data=f'chooseProduct_{product[0]}_add'))
         else:
-            builder.row(InlineKeyboardButton(text=f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}', callback_data=f'chooseProduct_{product[0]}_add'))
+            builder.row(InlineKeyboardButton(text=f'{product[1]} - {format_currency(product[2], "UZS", locale="uz_UZ")}',
+                                             callback_data=f'chooseProduct_{product[0]}_add'))
     page_buttons = InlineKeyboardBuilder()
     if state.get('products_info'):
-        products_chosen = len(state['products_info'])
-        products_info = state['products_info']
-        price = sum([int(product[2]) for product in products_info])
-        page_buttons.button(text='✅🛍️ ' + _('Proceed and order chosen product(s) - ({product_qty} products, +{price} som)'.format(
-            product_qty=html.quote(str(products_chosen)), price=html.quote(format_currency(price, "UZS", locale='uz_UZ')))),
-                            callback_data='productsProceed')
+        page_buttons.button(text='✅🛍️ ' + _('Proceed and order chosen product(s)'), callback_data='productsProceed')
         page_buttons.adjust(1)
     page_buttons.button(text='❌🛍️ ' + _('Skip this step (this will remove any chosen products)'),
                         callback_data='productsProceed_clear')
