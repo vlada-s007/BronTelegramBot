@@ -9,7 +9,6 @@ from decouple import config
 from aiogram import Bot, Dispatcher
 
 from aiogram.client.session.aiohttp import AiohttpSession
-from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.handlers.base import base_router
 from BronTelegramBot.handlers.auth import auth_router
 from BronTelegramBot.handlers.booking import booking_router
@@ -23,10 +22,10 @@ async def main():
     token = config('TOKEN')
 
     # for pythonanywhere
-    # session = AiohttpSession(proxy="http://proxy.server:3128")
-    # bot = Bot(token, session=session)
+    session = AiohttpSession(proxy="http://proxy.server:3128")
+    bot = Bot(token, session=session)
 
-    bot = Bot(token)
+    # bot = Bot(token)
 
     redis = Redis()
     # storage = RedisStorage(redis=redis)

@@ -7,7 +7,7 @@ from typing import Callable, Dict, Any, Awaitable, Union
 from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
-from aiogram.client.session.aiohttp import ClientSession
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from BronTelegramBot.middlewares.database import search_user_by_tg_id, update_database_tg_id, \
@@ -17,12 +17,12 @@ from BronTelegramBot.utils import scheduler
 from BronTelegramBot.utils import text_to_datetime, combine_time
 
 # for pythonanywhere
-# session = AiohttpSession(proxy="http://proxy.server:3128")
-# token = config('TOKEN')
-# bot = Bot(token=token, session=session)
-
+session = AiohttpSession(proxy="http://proxy.server:3128")
 token = config('TOKEN')
-bot = Bot(token)
+bot = Bot(token=token, session=session)
+
+# token = config('TOKEN')
+# bot = Bot(token)
 
 class NotificationMiddleware(BaseMiddleware):
     async def __call__(

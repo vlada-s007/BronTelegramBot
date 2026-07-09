@@ -274,13 +274,13 @@ async def product_pagination(call: CallbackQuery, state: FSMContext):
 @booking_router.callback_query(lambda call: 'productsProceed' in call.data)
 async def leave_note(call: CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    products_info = data['products_info']
-    product_price = sum([int(product[2]) for product in products_info])
-    if len(call.data.split('_')) == 2:
-        products_info = []
-        product_price = 0
-    await state.update_data(products_info=products_info)
-    await state.update_data(products_total_price=product_price)
+    products_info = data.get('products_info')
+    if len(call.data.split('_')) or not products_info:
+        pass
+    else:
+        product_price = sum([int(product[2]) for product in products_info])
+        await state.update_data(products_total_price=product_price)
+        await state.update_data(products_info=products_info)
     guest_count = data['guest_count']
     await call.message.edit_text(_("Leave an additional message (or click the skip button)"),
                                  reply_markup=await note_buttons(guest_count))
@@ -369,7 +369,7 @@ Booked timeslot: {start_time} - {end_time}'''
         start_time=html.quote(datetime_to_text(state_data['start_time'], "%H:%M")),
         end_time=html.quote(datetime_to_text(state_data['end_time'], "%H:%M")))
 
-    if state_data.get('products_info'):
+    if state_data.get('products_info') and state_data.get('products_total_price') != 0:
         products_info = state_data['products_info']
         products_price = state_data['products_total_price']
         products_str = []

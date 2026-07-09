@@ -2,7 +2,6 @@ from aiogram import Router, Bot, F
 from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.fsm.context import FSMContext
 import asyncio
-from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.middlewares.authcheck import AuthMiddleware
 from BronTelegramBot.middlewares.locales import i18n_middleware
 from BronTelegramBot.middlewares.notification_middleware import NotificationMiddleware
@@ -15,12 +14,12 @@ from decouple import config
 from BronTelegramBot.keyboards.keyboard_base import send_contact, main_menu, continue_button
 
 # for pythonanywhere
-# session = AiohttpSession(proxy="http://proxy.server:3128")
-# token = config('TOKEN')
-# bot = Bot(token=token, session=session)
-
+session = AiohttpSession(proxy="http://proxy.server:3128")
 token = config('TOKEN')
-bot = Bot(token)
+bot = Bot(token=token, session=session)
+
+# token = config('TOKEN')
+# bot = Bot(token)
 
 auth_router = Router()
 auth_router.message.middleware(AuthMiddleware())

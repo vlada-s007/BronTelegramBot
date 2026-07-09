@@ -14,13 +14,13 @@ from BronTelegramBot.middlewares.database import search_bookings_for_profile, bu
 from BronTelegramBot.middlewares.locales import i18n_middleware
 
 # for pythonanywhere
-# session = AiohttpSession(proxy="http://proxy.server:3128")
-# token = config('TOKEN')
-# bot = Bot(token=token, session=session)
+session = AiohttpSession(proxy="http://proxy.server:3128")
+token = config('TOKEN')
+bot = Bot(token=token, session=session)
 from BronTelegramBot.middlewares.notification_middleware import NotificationMiddleware
 
-token = config('TOKEN')
-bot = Bot(token)
+# token = config('TOKEN')
+# bot = Bot(token)
 
 
 base_router = Router()

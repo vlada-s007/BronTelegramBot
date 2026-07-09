@@ -1,25 +1,24 @@
 import aiosqlite
 from aiosqlite import Cursor
+from BronTelegramBot.utils import datetime_now
 
-# token = config('TOKEN')
-# bot = Bot(token)
 
 #aiosqlite implementation for development
 from decouple import config
 
 # for pythonanywhere
 
-# async def connect_db():
-#
-#     db = await aiosqlite.connect('/home/vlada007/BronTelegramBot/db.sqlite3')
-#     return db
-from BronTelegramBot.utils import datetime_now
-
-
 async def connect_db():
 
-    db = await aiosqlite.connect(config('db_path'))
+    db = await aiosqlite.connect('/home/vlada007/BronTelegramBot/db.sqlite3')
     return db
+
+
+
+# async def connect_db():
+
+#     db = await aiosqlite.connect(config('db_path'))
+#     return db
 
 
 async def search_businesses_by_query(query: str):
@@ -187,8 +186,8 @@ async def search_bookings_for_profile(*args):
 async def get_booking_details(booking_id):
     db = await connect_db()
     cursor: Cursor = await db.execute(
-        '''SELECT user_id, business_id, service_id, branch_id, total_price, 
-        guest_count, start_time, end_time, booking_date, notes, status 
+        '''SELECT user_id, business_id, service_id, branch_id, total_price,
+        guest_count, start_time, end_time, booking_date, notes, status
         FROM core_booking WHERE id=?''', (booking_id,))
     results = await cursor.fetchone()
     await cursor.close()
