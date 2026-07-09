@@ -4,7 +4,7 @@ from aiogram.fsm.context import FSMContext
 import asyncio
 from BronTelegramBot.middlewares.authcheck import AuthMiddleware
 from BronTelegramBot.middlewares.locales import i18n_middleware
-from BronTelegramBot.middlewares.notification_middleware import NotificationMiddleware
+from BronTelegramBot.middlewares.notifications import NotificationMiddleware
 from BronTelegramBot.states import UserState
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command

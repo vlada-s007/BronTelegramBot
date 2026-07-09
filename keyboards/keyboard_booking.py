@@ -223,9 +223,10 @@ async def choose_products_buttons(state:dict, *args):
         page_buttons.adjust(1)
     page_buttons.button(text='❌🛍️ ' + _('Skip this step (this will remove any chosen products)'),
                         callback_data='productsProceed_clear')
-    if state.get('guest_count') > 0:
+    guest_count = state.get('guest_count', 0)
+    if guest_count > 0:
         page_buttons.button(text=f'⬅️👤 ' + _('Return choosing the number of guests'), callback_data=f'guestChoice')
-    elif int(state.get('guest_count')) == 0:
+    else:
         page_buttons.button(text='⬅️👤 ' + _('Return to choosing your booking/reservation type'), callback_data=f'startEndBookingTime_{state["start_time"].strftime("%H-%M-%S")}_{state["end_time"].strftime("%H-%M-%S")}')
     page_buttons.adjust(1, 1)
     return builder.attach(page_buttons).as_markup()

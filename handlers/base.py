@@ -17,7 +17,7 @@ from BronTelegramBot.middlewares.locales import i18n_middleware
 session = AiohttpSession(proxy="http://proxy.server:3128")
 token = config('TOKEN')
 bot = Bot(token=token, session=session)
-from BronTelegramBot.middlewares.notification_middleware import NotificationMiddleware
+from BronTelegramBot.middlewares.notifications import NotificationMiddleware
 
 # token = config('TOKEN')
 # bot = Bot(token)
@@ -27,7 +27,8 @@ base_router = Router()
 base_router.message.middleware(NotificationMiddleware())
 
 
-async def clear_state(event: Union[Message, CallbackQuery], state: FSMContext):
+async def state_error_handling_or_clear(event: Union[Message, CallbackQuery],
+                                        state: FSMContext, clear_request=False):
     data = await state.get_data()
     user_id = data.get('user_id')
     locale = data.get('locale')
@@ -38,15 +39,17 @@ async def clear_state(event: Union[Message, CallbackQuery], state: FSMContext):
             event.message.edit_text(_('An unexpected error occurred, please run the /start command again'),
                                     reply_markup=start_inline)
         except:
-            event.message.edit_text(_('An unexpected error occurred, please run the /start command again'),
+            event.answer(_('An unexpected error occurred, please run the /start command again'),
                                     reply_markup=start_inline)
     else:
-        await state.clear()
-        await state.update_data(user_id=user_id)
-        await state.update_data(locale=locale)
-        await state.update_data(notifications=notifications)
-        await state.update_data(chat_id=chat_id)
-
+        if clear_request is True:
+            await state.clear()
+            await state.update_data(user_id=user_id)
+            await state.update_data(locale=locale)
+            await state.update_data(notifications=notifications)
+            await state.update_data(chat_id=chat_id)
+        elif clear_request is False:
+            return True
 
 @base_router.callback_query(lambda call: 'base_router_main_menu' in call.data)
 async def get_main_menu(call:CallbackQuery, state: FSMContext):
@@ -103,13 +106,15 @@ async def change_notification_status(call: CallbackQuery, state: FSMContext):
 async def reservations_view(call: CallbackQuery, state: FSMContext):
     comm, status1, status2 = call.data.split('_')
     data = await state.get_data()
-    bookings = await search_bookings_for_profile(data['user_id'], status1, status2)
-    if status1 == 'pending' and status2 == 'confirmed':
-        booking_view_text = _('Your upcoming reservations:')
-    elif status1 == 'completed' and status2 == 'cancelled':
-        booking_view_text = _('Your past reservations:')
-    await state.update_data(statuses=[status1, status2])
-    await call.message.edit_text(booking_view_text, reply_markup=await view_booking_buttons(data, *bookings))
+    userexists = await state_error_handling_or_clear(call, state)
+    if userexists is True:
+        bookings = await search_bookings_for_profile(data['user_id'], status1, status2)
+        if status1 == 'pending' and status2 == 'confirmed':
+            booking_view_text = _('Your upcoming reservations:')
+        elif status1 == 'completed' and status2 == 'cancelled':
+            booking_view_text = _('Your past reservations:')
+        await state.update_data(statuses=[status1, status2])
+        await call.message.edit_text(booking_view_text, reply_markup=await view_booking_buttons(data, *bookings))
 
 
 @base_router.callback_query(lambda call: 'bookingDetails' in call.data)
@@ -120,15 +125,15 @@ async def view_booking_details(call: CallbackQuery, state: FSMContext):
     print(data)
     await call.message.edit_text(text=await format_booking_details(booking_id, data, *res_list),
                                  reply_markup=await booking_detail_buttons(data))
-    await clear_state(call, state)
+    await state_error_handling_or_clear(call, state, True)
 
 
 @base_router.callback_query(lambda call: 'mainMenu' in call.data)
-async def help_command(call: CallbackQuery, state: FSMContext):
+async def back_to_main_menu(call: CallbackQuery, state: FSMContext):
     try:
         comm, comm2 = call.data.split('_')
         if comm2 == 'cancel':
-            await clear_state(call, state)
+            await state_error_handling_or_clear(call, state)
     except:
         pass
     await call.message.edit_text(_('Choose your actions:'), reply_markup=await main_menu())

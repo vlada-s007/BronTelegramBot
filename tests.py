@@ -1,8 +1,5 @@
 from babel.dates import format_date
 import datetime
-
-from BronTelegramBot.utils import to_datetime
-
 today = datetime.date.today()
 fourweeks = today + datetime.timedelta(weeks=4)
 print(f'4 weeks {fourweeks}')
@@ -55,6 +52,3 @@ print(f'4 weeks {fourweeks}')
 #     print()
 # #
 
-s = [2, 3]
-a = [3, 4]
-print(s + a)

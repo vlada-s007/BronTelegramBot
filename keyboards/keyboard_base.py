@@ -72,9 +72,9 @@ async def view_booking_buttons(state_data: dict, *args):
         date_format = datetime.fromisoformat(booking[3])
         start = ':'.join(booking[1].split(':')[:-1])
         end = ':'.join(booking[2].split(':')[:-1])
-        builder.button(text= _('Reservation for') + f' {format_date(date_format, format="d MMM", locale=locale)}, '
-                       + f'{start} - {end}', callback_data=f'bookingDetails_{booking[0]}')
-        print(booking[1])
+        builder.button(text= _('Reservation for {date} {time}').format(
+            date=html.quote(format_date(date_format, format="d MMM", locale=locale)),
+            time=html.quote(f'{start} - {end}')), callback_data=f'bookingDetails_{booking[0]}')
         builder.adjust(1)
 
     page_builder = InlineKeyboardBuilder()
