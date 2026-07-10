@@ -85,11 +85,15 @@ async def view_booking_buttons(state_data: dict, *args):
 
 async def booking_detail_buttons(state_data: dict):
     page_builder = InlineKeyboardBuilder()
-    status1, status2 = state_data['statuses']
-    if status1 == 'pending' and status2 == 'confirmed':
-        page_builder.button(text='🗓️' + _('Return to upcoming reservations'), callback_data='reservationsView_pending_confirmed')
-    elif status1 == 'completed' and status2 == 'cancelled':
-        page_builder.button(text='⌛' + _('Return to past reservations'), callback_data='reservationsView_completed_cancelled')
+    status_not_none = state_data.get('statuses')
+    if status_not_none:
+        status1, status2 = state_data.get('statuses')
+        if status1 == 'pending' and status2 == 'confirmed':
+            page_builder.button(text='🗓️' + _('Return to upcoming reservations'), callback_data='reservationsView_pending_confirmed')
+        elif status1 == 'completed' and status2 == 'cancelled':
+            page_builder.button(text='⌛' + _('Return to past reservations'), callback_data='reservationsView_completed_cancelled')
+    else:
+        page_builder.button(text='👤 '+ _('My Profile'), callback_data='profile')
     page_builder.adjust(1)
     return page_builder.as_markup()
 

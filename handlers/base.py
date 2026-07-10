@@ -36,10 +36,10 @@ async def state_error_handling_or_clear(event: Union[Message, CallbackQuery],
     chat_id = data.get('chat_id', True)
     if not user_id and not locale and not notifications and not chat_id:
         try:
-            event.message.edit_text(_('An unexpected error occurred, please run the /start command again'),
+            await event.message.edit_text(_('An unexpected error occurred, please run the /start command again'),
                                     reply_markup=start_inline)
         except:
-            event.answer(_('An unexpected error occurred, please run the /start command again'),
+            await bot.send_message(chat_id=event.chat.id, text=_('An unexpected error occurred, please run the /start command again'),
                                     reply_markup=start_inline)
     else:
         if clear_request is True:

@@ -1,5 +1,7 @@
 from datetime import datetime
 from aiogram import Router
+from aiogram.client.bot import Bot
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from babel.dates import format_date
@@ -15,6 +17,15 @@ from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from BronTelegramBot.utils import text_to_datetime, datetime_to_text
 
+
+# for pythonanywhere
+session = AiohttpSession(proxy="http://proxy.server:3128")
+token = config('TOKEN')
+bot = Bot(token=token, session=session)
+
+# token = config('TOKEN')
+# bot = Bot(token)
+
 booking_router = Router()
 booking_router.message.middleware(NotificationMiddleware())
 
@@ -29,10 +40,10 @@ async def booking_error_handler(event: Union[Message, CallbackQuery],
 
     if valueexists is None:
         try:
-            event.message.edit_text(_('An unexpected error occurred, your booking details were lost. Please return to the main menu'),
+            await event.message.edit_text(_('An unexpected error occurred, your booking details were lost. Please return to the main menu'),
                                     reply_markup=await back_to_main_menu_button())
         except:
-            event.answer(_('An unexpected error occurred, your booking details were lost. Please return to the main menu'),
+            await bot.send_message(chat_id=event.chat.id, text=_('An unexpected error occurred, your booking details were lost. Please return to the main menu'),
                                     reply_markup=await back_to_main_menu_button())
     else:
         return True
