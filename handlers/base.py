@@ -79,7 +79,7 @@ async def set_language(call: CallbackQuery, state: FSMContext):
 
 @base_router.callback_query(lambda call: 'help' in call.data)
 async def help_command(call: CallbackQuery):
-    await call.message.edit_text(_('Contact us at @maverick_hunter_ML'), reply_markup=await back_to_main_menu_button())
+    await call.message.edit_text(_('Contact us at @Bron_support'), reply_markup=await back_to_main_menu_button())
 
 
 @base_router.callback_query(lambda call: 'about' in call.data)

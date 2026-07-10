@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-09 16:42+0500\n"
-"PO-Revision-Date: 2026-07-09 16:42+0500\n"
+"POT-Creation-Date: 2026-07-10 12:15+0500\n"
+"PO-Revision-Date: 2026-07-10 12:16+0500\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -68,8 +68,8 @@ msgid "Language set successfully."
 msgstr "Язык установлен."
 
 #: handlers/base.py:82
-msgid "Contact us at @maverick_hunter_ML"
-msgstr "Свяжитесь с нами: @maverick_hunter_ML"
+msgid "Contact us at @Bron_support"
+msgstr "Свяжитесь с нами: @Bron_support"
 
 #: handlers/base.py:87
 msgid "In development"
@@ -131,7 +131,7 @@ msgstr ""
 "Забронированная дата: {booking_date}\n"
 "Заброниованный временной промежуток: {start_time} — {end_time}"
 
-#: handlers/base.py:189 handlers/booking.py:439
+#: handlers/base.py:189 handlers/booking.py:450
 #, python-brace-format
 msgid ""
 "\n"
@@ -140,7 +140,7 @@ msgstr ""
 "\n"
 "Дополнительные товары: {products_info}"
 
-#: handlers/base.py:193 handlers/booking.py:443
+#: handlers/base.py:193 handlers/booking.py:454
 #, python-brace-format
 msgid ""
 "\n"
@@ -149,7 +149,7 @@ msgstr ""
 "\n"
 "Стоимость товаров: {products_price}"
 
-#: handlers/base.py:197 handlers/booking.py:447
+#: handlers/base.py:197 handlers/booking.py:458
 #, python-brace-format
 msgid ""
 "\n"
@@ -158,7 +158,7 @@ msgstr ""
 "\n"
 "Заметка к резервации: {note}"
 
-#: handlers/base.py:200 handlers/booking.py:450
+#: handlers/base.py:200 handlers/booking.py:461
 #, python-brace-format
 msgid ""
 "\n"
@@ -167,54 +167,54 @@ msgstr ""
 "\n"
 "Количество приглашенных гостей: {guest_count}"
 
-#: handlers/booking.py:32 handlers/booking.py:35
+#: handlers/booking.py:43 handlers/booking.py:46
 msgid ""
 "An unexpected error occurred, your booking details were lost. Please return to "
 "the main menu"
 msgstr "Произошла непредвиденная ошибка. Пожалуйста, вернитесь в главное меню"
 
-#: handlers/booking.py:43 handlers/booking.py:109 keyboards/keyboard_base.py:37
+#: handlers/booking.py:54 handlers/booking.py:120 keyboards/keyboard_base.py:37
 msgid "Booking..."
 msgstr "Забронировать..."
 
-#: handlers/booking.py:49
+#: handlers/booking.py:60
 msgid "Choose a category:"
 msgstr "Выберите категорию:"
 
-#: handlers/booking.py:61
+#: handlers/booking.py:72
 #, python-brace-format
 msgid "{amt} Companies found in \"{category}\" category"
 msgstr "{amt} Компании, относящиеся к категории \"{category}\""
 
-#: handlers/booking.py:68
+#: handlers/booking.py:79
 msgid "Enter your search query:"
 msgstr "Введите запрос для поиска:"
 
-#: handlers/booking.py:83 handlers/booking.py:103 handlers/booking.py:106
+#: handlers/booking.py:94 handlers/booking.py:114 handlers/booking.py:117
 #, python-brace-format
 msgid "{amt} companies found for \"{query}\" "
 msgstr "{amt} компаний найдено по запросу \"{query}\" "
 
-#: handlers/booking.py:86
+#: handlers/booking.py:97
 #, python-brace-format
 msgid "No companies found for \"{query}\" "
 msgstr "Нет компаний по запросу \"{query}\" "
 
-#: handlers/booking.py:129
+#: handlers/booking.py:140
 #, python-brace-format
 msgid "{business_name} has {amt} branches/subsidiaries:"
 msgstr "У {business_name} есть {amt} филиалов:"
 
-#: handlers/booking.py:145
+#: handlers/booking.py:156
 #, python-brace-format
 msgid "{business_name} offers {amt} service(s) for booking:"
 msgstr "{business_name} предлагает {amt} услуг для бронирования:"
 
-#: handlers/booking.py:166 handlers/booking.py:188
+#: handlers/booking.py:177 handlers/booking.py:199
 msgid "Choose a date:"
 msgstr "Выберите дату:"
 
-#: handlers/booking.py:214 handlers/booking.py:230
+#: handlers/booking.py:225 handlers/booking.py:241
 #, python-brace-format
 msgid ""
 "The duration of your chosen service \"{service_title}\" is {service_duration} "
@@ -225,15 +225,15 @@ msgstr ""
 "{service_duration} минут.\n"
 "Забронируйте временной промежуток:"
 
-#: handlers/booking.py:246
+#: handlers/booking.py:257
 msgid "Choose which of the following options applies to your reservation/booking:"
 msgstr "Выберите, какой из следующих вариантов подходит вашему бронированию:"
 
-#: handlers/booking.py:258 handlers/booking.py:269
+#: handlers/booking.py:269 handlers/booking.py:280
 msgid "Choose the number of guests:"
 msgstr "Выберите количество гостей:"
 
-#: handlers/booking.py:283
+#: handlers/booking.py:294
 #, python-brace-format
 msgid ""
 "Choose additional products alongside your reservation or skip this step:\n"
@@ -244,35 +244,35 @@ msgstr ""
 "\n"
 "Вы выбрали {product_qty} продукт(ов),  ({price})"
 
-#: handlers/booking.py:289
+#: handlers/booking.py:300
 msgid "Choose additional products alongside your reservation or skip this step:"
 msgstr "Выберите дополнительные товары или пропустите этот шаг:"
 
-#: handlers/booking.py:328
+#: handlers/booking.py:339
 msgid "Leave an additional message (or click the skip button)"
 msgstr "Оставьте сообщение (или нажмите \"пропустить\")"
 
-#: handlers/booking.py:384
+#: handlers/booking.py:395
 msgid "Payment services are still in development"
 msgstr "Оплата бронирования все еще в разработке"
 
-#: handlers/booking.py:404
+#: handlers/booking.py:415
 msgid "Gym"
 msgstr "Спортзал"
 
-#: handlers/booking.py:405
+#: handlers/booking.py:416
 msgid "Spa"
 msgstr "Спа-салон"
 
-#: handlers/booking.py:406
+#: handlers/booking.py:417
 msgid "Salon"
 msgstr "Салон"
 
-#: handlers/booking.py:407
+#: handlers/booking.py:418
 msgid "Clinic"
 msgstr "Клиника"
 
-#: handlers/booking.py:412
+#: handlers/booking.py:423
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -301,7 +301,7 @@ msgstr "Поделиться контактными данными"
 msgid "Continue"
 msgstr "Продолжить"
 
-#: keyboards/keyboard_base.py:38
+#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:96
 msgid "My Profile"
 msgstr "Мой профиль"
 
@@ -351,11 +351,11 @@ msgstr "Бронирование на {date} в {time}"
 msgid "Return to profile settings"
 msgstr "Вернуться к настройкам профиля"
 
-#: keyboards/keyboard_base.py:90
+#: keyboards/keyboard_base.py:92
 msgid "Return to upcoming reservations"
 msgstr "Вернуться к предстоящим бронированиям"
 
-#: keyboards/keyboard_base.py:92
+#: keyboards/keyboard_base.py:94
 msgid "Return to past reservations"
 msgstr "Вернуться к прошлым бронированиям"
 
