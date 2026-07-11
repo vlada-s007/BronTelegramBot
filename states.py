@@ -5,11 +5,17 @@ class UserState(StatesGroup):
     telegram_id = State()
     phone = State()
     user_id = State()
-    no_user = State()
+    notifications = State()
+    chat_id = State()
 
 
-class TempMessageState(StatesGroup):
-    message_id = State()
+class SearchParams(StatesGroup):
+    category = State()
+    query = State()
+    search_results = State()
+    cat_results = State()
+    res_count = State()
+    statuses = State()
 
 
 class BookingState(StatesGroup):
@@ -32,10 +38,5 @@ class BookingState(StatesGroup):
     note = State()
     products_info = State()
     products_total_price = State()
+    inserted_id = State()
 
-class SearchParams(StatesGroup):
-    category = State()
-    query = State()
-    search_results = State()
-    cat_results = State()
-    res_count = State()
