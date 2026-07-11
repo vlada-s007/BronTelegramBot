@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-10 12:15+0500\n"
+"POT-Creation-Date: 2026-07-11 15:14+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,45 +61,68 @@ msgstr ""
 msgid "Contact us at @Bron_support"
 msgstr ""
 
-#: handlers/base.py:87
-msgid "In development"
+#: handlers/base.py:88
+msgid ""
+"Welcome to Bron\n"
+"\n"
+"Bron is an all-in-one platform that helps you discover trusted "
+"businesses, explore nearby services, and make reservations with ease.\n"
+"\n"
+"Whether you're looking for a restaurant, café, beauty salon, clinic, "
+"hotel, or any other service, Bron helps you find reliable options near "
+"you. Browse verified businesses, compare ratings and reviews, explore "
+"products and services, and book in just a few taps.\n"
+"\n"
+"With Bron, you can:\n"
+"\n"
+"- Discover trusted businesses on an interactive map.\n"
+"- Find nearby services based on your location.\n"
+"- Browse products, services, photos, and business information.\n"
+"- Read ratings and customer reviews.\n"
+"- Make reservations quickly and securely.\n"
+"- Save your favorite places and manage all your bookings in one account.\n"
+"- Explore special offers and exclusive deals from businesses.\n"
+"\n"
+"Our mission is to make finding trusted local businesses simple, "
+"convenient, and reliable, helping you save time and enjoy the best "
+"experiences."
 msgstr ""
 
-#: handlers/base.py:93 handlers/base.py:101
+#: handlers/base.py:111 handlers/base.py:119
 msgid ""
 "View your upcoming and past reservations or toggle your notification "
 "status"
 msgstr ""
 
-#: handlers/base.py:113
+#: handlers/base.py:131
 msgid "Your upcoming reservations:"
 msgstr ""
 
-#: handlers/base.py:115
+#: handlers/base.py:133
 msgid "Your past reservations:"
 msgstr ""
 
-#: handlers/base.py:139
+#: handlers/base.py:157
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:144
+#: handlers/base.py:162
 msgid "Pending"
 msgstr ""
 
-#: handlers/base.py:145
+#: handlers/base.py:163
 msgid "Completed"
 msgstr ""
 
-#: handlers/base.py:146
+#: handlers/base.py:164
 msgid "Confirmed"
 msgstr ""
 
-#: handlers/base.py:147
+#: handlers/base.py:165
 msgid "Cancelled"
 msgstr ""
 
-#: handlers/base.py:163
+#: handlers/base.py:181
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -112,28 +135,28 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/base.py:189 handlers/booking.py:450
+#: handlers/base.py:207 handlers/booking.py:450
 #, python-brace-format
 msgid ""
 "\n"
 "Additional products: {products_info}"
 msgstr ""
 
-#: handlers/base.py:193 handlers/booking.py:454
+#: handlers/base.py:211 handlers/booking.py:454
 #, python-brace-format
 msgid ""
 "\n"
 "Price of products: {products_price}"
 msgstr ""
 
-#: handlers/base.py:197 handlers/booking.py:458
+#: handlers/base.py:215 handlers/booking.py:458
 #, python-brace-format
 msgid ""
 "\n"
 "Additional note: {note}"
 msgstr ""
 
-#: handlers/base.py:200 handlers/booking.py:461
+#: handlers/base.py:218 handlers/booking.py:461
 #, python-brace-format
 msgid ""
 "\n"

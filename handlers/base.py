@@ -84,7 +84,25 @@ async def help_command(call: CallbackQuery):
 
 @base_router.callback_query(lambda call: 'about' in call.data)
 async def about_command(call: CallbackQuery):
-    await call.message.edit_text(_('In development'), reply_markup=await back_to_main_menu_button())
+    await call.message.edit_text(_(
+'''Welcome to Bron
+
+Bron is an all-in-one platform that helps you discover trusted businesses, explore nearby services, and make reservations with ease.
+
+Whether you're looking for a restaurant, café, beauty salon, clinic, hotel, or any other service, Bron helps you find reliable options near you. Browse verified businesses, compare ratings and reviews, explore products and services, and book in just a few taps.
+
+With Bron, you can:
+
+- Discover trusted businesses on an interactive map.
+- Find nearby services based on your location.
+- Browse products, services, photos, and business information.
+- Read ratings and customer reviews.
+- Make reservations quickly and securely.
+- Save your favorite places and manage all your bookings in one account.
+- Explore special offers and exclusive deals from businesses.
+
+Our mission is to make finding trusted local businesses simple, convenient, and reliable, helping you save time and enjoy the best experiences.'''), \
+reply_markup=await back_to_main_menu_button())
 
 
 @base_router.callback_query(lambda call: 'profile' in call.data)

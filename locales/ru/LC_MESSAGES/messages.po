@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-10 12:15+0500\n"
-"PO-Revision-Date: 2026-07-10 12:16+0500\n"
+"POT-Creation-Date: 2026-07-11 15:14+0500\n"
+"PO-Revision-Date: 2026-07-11 15:15+0500\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -71,46 +71,91 @@ msgstr "Язык установлен."
 msgid "Contact us at @Bron_support"
 msgstr "Свяжитесь с нами: @Bron_support"
 
-#: handlers/base.py:87
-msgid "In development"
-msgstr "В разработке"
+#: handlers/base.py:88
+msgid ""
+"Welcome to Bron\n"
+"\n"
+"Bron is an all-in-one platform that helps you discover trusted businesses, "
+"explore nearby services, and make reservations with ease.\n"
+"\n"
+"Whether you're looking for a restaurant, café, beauty salon, clinic, hotel, or "
+"any other service, Bron helps you find reliable options near you. Browse "
+"verified businesses, compare ratings and reviews, explore products and "
+"services, and book in just a few taps.\n"
+"\n"
+"With Bron, you can:\n"
+"\n"
+"- Discover trusted businesses on an interactive map.\n"
+"- Find nearby services based on your location.\n"
+"- Browse products, services, photos, and business information.\n"
+"- Read ratings and customer reviews.\n"
+"- Make reservations quickly and securely.\n"
+"- Save your favorite places and manage all your bookings in one account.\n"
+"- Explore special offers and exclusive deals from businesses.\n"
+"\n"
+"Our mission is to make finding trusted local businesses simple, convenient, and "
+"reliable, helping you save time and enjoy the best experiences."
+msgstr ""
+"Добро пожаловать в Bron\n"
+"\n"
+"Bron — это универсальная платформа, которая помогает находить проверенные "
+"компании, открывать для себя услуги поблизости и быстро бронировать всё "
+"необходимое.\n"
+"\n"
+"Ищете ресторан, кафе, салон красоты, клинику, гостиницу или другую услугу? Bron "
+"поможет найти надежные места рядом с вами. Просматривайте проверенные компании, "
+"сравнивайте рейтинги и отзывы, изучайте товары и услуги, а также оформляйте "
+"бронирование всего за несколько нажатий.\n"
+"\n"
+"С Bron вы можете:\n"
+"\n"
+"- Находить проверенные компании на интерактивной карте.\n"
+"- Искать ближайшие услуги по своему местоположению.\n"
+"- Просматривать товары, услуги, фотографии и информацию о компаниях.\n"
+"- Читать рейтинги и отзывы клиентов.\n"
+"- Быстро и безопасно оформлять бронирование.\n"
+"- Сохранять любимые места и управлять всеми бронированиями в одном аккаунте.\n"
+"- Пользоваться специальными предложениями и эксклюзивными акциями.\n"
+"\n"
+"Наша цель — сделать поиск надежных компаний простым, удобным и безопасным, "
+"чтобы вы экономили время и получали лучшие впечатления."
 
-#: handlers/base.py:93 handlers/base.py:101
+#: handlers/base.py:111 handlers/base.py:119
 msgid ""
 "View your upcoming and past reservations or toggle your notification status"
 msgstr ""
 "Посмотрите на ваши предстоящие и прошлые бронирования или измените статус "
 "уведомлений"
 
-#: handlers/base.py:113
+#: handlers/base.py:131
 msgid "Your upcoming reservations:"
 msgstr "Ваши предстоящие бронирования:"
 
-#: handlers/base.py:115
+#: handlers/base.py:133
 msgid "Your past reservations:"
 msgstr "Ваши прошлые бронирования:"
 
-#: handlers/base.py:139
+#: handlers/base.py:157
 msgid "Choose your actions:"
 msgstr "Выберите свои действия:"
 
-#: handlers/base.py:144
+#: handlers/base.py:162
 msgid "Pending"
 msgstr "В обработке"
 
-#: handlers/base.py:145
+#: handlers/base.py:163
 msgid "Completed"
 msgstr "Выполнено"
 
-#: handlers/base.py:146
+#: handlers/base.py:164
 msgid "Confirmed"
 msgstr "Подтверждено"
 
-#: handlers/base.py:147
+#: handlers/base.py:165
 msgid "Cancelled"
 msgstr "Отменено"
 
-#: handlers/base.py:163
+#: handlers/base.py:181
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -131,7 +176,7 @@ msgstr ""
 "Забронированная дата: {booking_date}\n"
 "Заброниованный временной промежуток: {start_time} — {end_time}"
 
-#: handlers/base.py:189 handlers/booking.py:450
+#: handlers/base.py:207 handlers/booking.py:450
 #, python-brace-format
 msgid ""
 "\n"
@@ -140,7 +185,7 @@ msgstr ""
 "\n"
 "Дополнительные товары: {products_info}"
 
-#: handlers/base.py:193 handlers/booking.py:454
+#: handlers/base.py:211 handlers/booking.py:454
 #, python-brace-format
 msgid ""
 "\n"
@@ -149,7 +194,7 @@ msgstr ""
 "\n"
 "Стоимость товаров: {products_price}"
 
-#: handlers/base.py:197 handlers/booking.py:458
+#: handlers/base.py:215 handlers/booking.py:458
 #, python-brace-format
 msgid ""
 "\n"
@@ -158,7 +203,7 @@ msgstr ""
 "\n"
 "Заметка к резервации: {note}"
 
-#: handlers/base.py:200 handlers/booking.py:461
+#: handlers/base.py:218 handlers/booking.py:461
 #, python-brace-format
 msgid ""
 "\n"
@@ -461,3 +506,6 @@ msgstr ""
 
 #~ msgid "Your previous booking"
 #~ msgstr "Подтвердить бронирование"
+
+#~ msgid "In development"
+#~ msgstr "В разработке"
