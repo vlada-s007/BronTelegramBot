@@ -108,16 +108,18 @@ reply_markup=await back_to_main_menu_button())
 @base_router.callback_query(lambda call: 'profile' in call.data)
 async def profile_command(call: CallbackQuery, state: FSMContext):
     data = await state.get_data()
+    notif_state = data['notifications']
     await call.message.edit_text(_('View your upcoming and past reservations or toggle your notification status'),
-                                 reply_markup=await profile_view_buttons(data))
+                                 reply_markup=await profile_view_buttons(notif_state))
 
 
 @base_router.callback_query(lambda call: 'notifsToggle' in call.data)
 async def change_notification_status(call: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     data = await state.update_data(notifications=not(data['notifications']))
+    notif_state = data['notifications']
     await call.message.edit_text(_('View your upcoming and past reservations or toggle your notification status'),
-                                 reply_markup=await profile_view_buttons(data))
+                                 reply_markup=await profile_view_buttons(notif_state))
 
 
 @base_router.callback_query(lambda call: 'reservationsView' in call.data)

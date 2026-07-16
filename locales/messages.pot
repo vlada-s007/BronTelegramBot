@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-11 15:14+0500\n"
+"POT-Creation-Date: 2026-07-17 03:17+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,41 +88,41 @@ msgid ""
 "experiences."
 msgstr ""
 
-#: handlers/base.py:111 handlers/base.py:119
+#: handlers/base.py:112 handlers/base.py:121
 msgid ""
 "View your upcoming and past reservations or toggle your notification "
 "status"
 msgstr ""
 
-#: handlers/base.py:131
+#: handlers/base.py:133
 msgid "Your upcoming reservations:"
 msgstr ""
 
-#: handlers/base.py:133
+#: handlers/base.py:135
 msgid "Your past reservations:"
 msgstr ""
 
-#: handlers/base.py:157
+#: handlers/base.py:159
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:162
+#: handlers/base.py:164
 msgid "Pending"
 msgstr ""
 
-#: handlers/base.py:163
+#: handlers/base.py:165
 msgid "Completed"
 msgstr ""
 
-#: handlers/base.py:164
+#: handlers/base.py:166
 msgid "Confirmed"
 msgstr ""
 
-#: handlers/base.py:165
+#: handlers/base.py:167
 msgid "Cancelled"
 msgstr ""
 
-#: handlers/base.py:181
+#: handlers/base.py:183
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -135,28 +135,28 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/base.py:207 handlers/booking.py:450
+#: handlers/base.py:209 handlers/booking.py:450
 #, python-brace-format
 msgid ""
 "\n"
 "Additional products: {products_info}"
 msgstr ""
 
-#: handlers/base.py:211 handlers/booking.py:454
+#: handlers/base.py:213 handlers/booking.py:454
 #, python-brace-format
 msgid ""
 "\n"
 "Price of products: {products_price}"
 msgstr ""
 
-#: handlers/base.py:215 handlers/booking.py:458
+#: handlers/base.py:217 handlers/booking.py:458
 #, python-brace-format
 msgid ""
 "\n"
 "Additional note: {note}"
 msgstr ""
 
-#: handlers/base.py:218 handlers/booking.py:461
+#: handlers/base.py:220 handlers/booking.py:461
 #, python-brace-format
 msgid ""
 "\n"
@@ -283,7 +283,7 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:96
+#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:94
 msgid "My Profile"
 msgstr ""
 
@@ -299,45 +299,45 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: keyboards/keyboard_base.py:47 keyboards/keyboard_base.py:62
+#: keyboards/keyboard_base.py:47 keyboards/keyboard_base.py:60
 #: keyboards/keyboard_booking.py:18
 msgid "Back to Main Menu"
 msgstr ""
 
-#: keyboards/keyboard_base.py:55 keyboards/keyboard_base.py:57
+#: keyboards/keyboard_base.py:53 keyboards/keyboard_base.py:55
 msgid "Notifications"
 msgstr ""
 
-#: keyboards/keyboard_base.py:55
+#: keyboards/keyboard_base.py:53
 msgid "ON"
 msgstr ""
 
-#: keyboards/keyboard_base.py:57
+#: keyboards/keyboard_base.py:55
 msgid "OFF"
 msgstr ""
 
-#: keyboards/keyboard_base.py:59
+#: keyboards/keyboard_base.py:57
 msgid "Upcoming"
 msgstr ""
 
-#: keyboards/keyboard_base.py:60
+#: keyboards/keyboard_base.py:58
 msgid "Past"
 msgstr ""
 
-#: keyboards/keyboard_base.py:75
+#: keyboards/keyboard_base.py:73
 #, python-brace-format
 msgid "Reservation for {date} {time}"
 msgstr ""
 
-#: keyboards/keyboard_base.py:81
+#: keyboards/keyboard_base.py:79
 msgid "Return to profile settings"
 msgstr ""
 
-#: keyboards/keyboard_base.py:92
+#: keyboards/keyboard_base.py:90
 msgid "Return to upcoming reservations"
 msgstr ""
 
-#: keyboards/keyboard_base.py:94
+#: keyboards/keyboard_base.py:92
 msgid "Return to past reservations"
 msgstr ""
 

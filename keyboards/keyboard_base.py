@@ -48,13 +48,11 @@ async def back_to_main_menu_button():
     )
     return back_button
 
-async def profile_view_buttons(state: dict):
-    if state.get('notifications'):
-        notif_state = state['notifications']
-        if notif_state is True:
-            notif_text = '🔔 ' + _('Notifications') + ' ' + _('ON')
-        else:
-            notif_text = '🔕 ' + _('Notifications') + ' ' + _('OFF')
+async def profile_view_buttons(notif_state):
+    if notif_state is True:
+        notif_text = '🔔 ' + _('Notifications') + ' ' + _('ON')
+    else:
+        notif_text = '🔕 ' + _('Notifications') + ' ' + _('OFF')
     back_button = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text='🗓️' + _('Upcoming'), callback_data='reservationsView_pending_confirmed')],
         [InlineKeyboardButton(text='⌛' + _('Past'), callback_data='reservationsView_completed_cancelled')],

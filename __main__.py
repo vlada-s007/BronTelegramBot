@@ -27,7 +27,7 @@ async def main():
 
     # bot = Bot(token)
 
-    redis = Redis()
+    # redis = Redis()
     # storage = RedisStorage(redis=redis)
     # dp = Dispatcher(bot=bot, storage=storage)
 
