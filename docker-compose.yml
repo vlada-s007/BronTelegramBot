@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:17-alpine
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: on-failure
+    ports:
+      - "5433:5433"
+    command:
+      - "postgres"
+      - "-c"
+      - "listen_addresses=*"
+    environment:
+      POSTGRES_INITDB_ARGS: "-c wal_level=logical"
+      POSTGRES_USER: bron_user
+      POSTGRES_PASSWORD: Alpha2005@
+      POSTGRES_DB: bron_db
+      DATABASE_URL: postgresql://bron_user:Alpha2005@@db:5432/bron_db
+
+  db-django-migrations:
+    build:
+      context: /var/www/bron
+      dockerfile: /home/vlada/Dockerfile
+    command: sh -c "python manage.py migrate"
+    env_file:
+      - /home/vlada/bron_backend.env
+    environment:
+      POSTGRES_INITDB_ARGS: "-c wal_level=logical"
+      POSTGRES_HOST: db
+      POSTGRES_USER: bron_user
+      POSTGRES_PASSWORD: Alpha2005@
+      POSTGRES_DB: bron_db
+      DATABASE_URL: postgresql://bron_user:Alpha2005@@db:5432/bron_db
+    restart: on-failure
+
+  bot:
+    build:
+      context: /home/vlada/BronTelegramBot
+      dockerfile: Dockerfile
+    command: sh -c "python -m BronBot"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: bron_user
+      POSTGRES_PASSWORD: Alpha2005@
+      POSTGRES_DB: bron_db
+      DATABASE_URL: postgresql://bron_user:Alpha2005@@db:5432/bron_db
+    restart: always
+    depends_on:
+      - db
+      - db-django-migrations
+volumes:
+  pgdata:

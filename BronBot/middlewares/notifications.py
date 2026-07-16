@@ -1,0 +1,75 @@
+from datetime import timedelta
+
+from aiogram.client.bot import Bot
+from decouple import config
+from typing import Callable, Dict, Any, Awaitable, Union
+from aiogram import BaseMiddleware
+from aiogram.fsm.context import FSMContext
+from aiogram.types import Message, CallbackQuery
+from aiogram import html
+from aiogram.utils.i18n import gettext as _
+from BronBot.middlewares.database import search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
+    get_branch_info_by_id
+from BronBot.utils import scheduler
+from BronBot.utils import combine_time, datetime_now, hhmm
+
+# for pythonanywhere
+# session = AiohttpSession(proxy="http://proxy.server:3128")
+# token = config('TOKEN')
+# bot = Bot(token=token, session=session)
+
+token = config('TOKEN')
+bot = Bot(token)
+
+class NotificationMiddleware(BaseMiddleware):
+    async def __call__(
+            self,
+            handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
+            event: Union[Message, CallbackQuery],
+            data: Dict[str, Any]
+    ) -> Any:
+        state: FSMContext = data['state']
+        state_data = await state.get_data()
+
+        if state_data.get('user_id') and state_data.get('chat_id') and state_data.get('notifications'):
+            chat_id = state_data['chat_id']
+            user_id = state_data['user_id']
+            notif_state = state_data['notifications']
+            if notif_state is True:
+                reservations = await search_bookings_for_profile(user_id, "confirmed", "pending")
+                reservation_ids = [reservation[0] for reservation in reservations]
+                for reservation in reservations:
+                    if reservation[0] in reservation_ids:
+                        # Postgres returns datetime.time / datetime.date objects
+                        # here, where SQLite returned strings that had to be
+                        # parsed with text_to_datetime().
+                        start_time = reservation[1]
+                        end_time = reservation[2]
+                        date = reservation[3]
+                        time = f'{hhmm(start_time)} - {hhmm(end_time)}'
+                        datetime_format = combine_time(date, start_time) - timedelta(hours=1)
+                        print(datetime_format, 'datetime_for_notifs')
+
+                        # A reminder slot that has already passed would fire
+                        # the moment the job is added, so skip those.
+                        if datetime_format <= datetime_now():
+                            reservation_ids.remove(reservation[0])
+                            continue
+
+                        reservation_info = await get_booking_details(reservation[0])
+
+                        business_name = await business_name_by_id(reservation_info[1])
+                        service_title = await service_title_duration_and_price_by_id(reservation_info[2])
+                        branch_name = await get_branch_info_by_id(reservation_info[3])
+                        scheduler.add_job(
+                            self.send_notification,
+                            trigger="date", run_date=datetime_format, args=[chat_id, time, business_name, service_title[0], branch_name[1]])
+                        reservation_ids.remove(reservation[0])
+            else:
+                scheduler.remove_all_jobs()
+        return await handler(event, data)
+    async def send_notification(self, chat_id, time, business_name, service_title, branch_name):
+        await bot.send_message(chat_id=chat_id, text=_(
+            'You have a {time} reservation at {business_name} - {branch_name}" for "{service_title}", in an hour!'
+        ).format(time=html.quote(time), business_name=html.quote(business_name),
+            service_title=html.quote(service_title), branch_name=html.quote(branch_name)))
