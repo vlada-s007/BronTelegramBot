@@ -144,18 +144,12 @@ async def view_booking_details(call: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     print(data)
     await call.message.edit_text(text=await format_booking_details(booking_id, data, *res_list),
-                                 reply_markup=await booking_detail_buttons(data))
+                                 reply_markup=await booking_detail_buttons(res_list[4], res_list[-1], data))
     await state_error_handling_or_clear(call, state, True)
 
 
 @base_router.callback_query(lambda call: 'mainMenu' in call.data)
 async def back_to_main_menu(call: CallbackQuery, state: FSMContext):
-    try:
-        comm, comm2 = call.data.split('_')
-        if comm2 == 'cancel':
-            await state_error_handling_or_clear(call, state)
-    except:
-        pass
     await call.message.edit_text(_('Choose your actions:'), reply_markup=await main_menu())
 
 

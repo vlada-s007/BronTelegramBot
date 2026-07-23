@@ -81,9 +81,12 @@ async def view_booking_buttons(state_data: dict, *args):
     return builder.attach(page_builder).as_markup()
 
 
-async def booking_detail_buttons(state_data: dict):
+async def booking_detail_buttons(booking_price, booking_status, state_data: dict):
     page_builder = InlineKeyboardBuilder()
     status_not_none = state_data.get('statuses')
+    if booking_status == 'pending':
+        page_builder.button(text='💳' + _('Pay with click'), callback_data=f'pendingReservationPayment_{booking_price}')
+        page_builder.adjust(1)
     if status_not_none:
         status1, status2 = state_data.get('statuses')
         if status1 == 'pending' and status2 == 'confirmed':
@@ -94,5 +97,4 @@ async def booking_detail_buttons(state_data: dict):
         page_builder.button(text='👤 '+ _('My Profile'), callback_data='profile')
     page_builder.adjust(1)
     return page_builder.as_markup()
-
 

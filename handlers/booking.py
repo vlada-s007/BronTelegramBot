@@ -373,42 +373,6 @@ async def final_check_skipped(call: CallbackQuery, state: FSMContext):
         await call.message.edit_text(final_text, reply_markup=await final_button_confirm())
 
 # implement payment and confirmation dialogue after QR codes are implemented
-@booking_router.callback_query(lambda call: 'bookingFinalConfirm' in call.data)
-async def confirm_booking(call: CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    userexists = await state_error_handling_or_clear(call, state)
-    if userexists is True:
-        valueexists = await booking_error_handler(call,
-                                                  state,
-                                                  'user_id','business_id', 'service_id',
-                                                  'branch_id','total_price', 'start_time',
-                                                  'end_time', 'booking_date')
-        if valueexists:
-            booking_data = await booking_args(data)
-            booking_id = await create_booking(*booking_data)
-            blocked_args = await blocked_date_args(data)
-            await block_date(*blocked_args)
-            if data.get('products_info'):
-                for product in data['products_info']:
-                    await insert_booking_products(product[0], booking_id)
-            await state_error_handling_or_clear(call, state, True)
-            await call.message.edit_text(_('Payment services are still in development'),
-                                     reply_markup=await back_to_main_menu_button())
-
-
-async def booking_args(state_data: dict):
-
-    return int(state_data['user_id']), int(state_data['business_id']),\
-           int(state_data['service_id']), int(state_data['branch_id']),\
-           float(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
-           state_data['start_time'].time().isoformat(), state_data['end_time'].time().isoformat(),\
-           state_data['booking_date'].date().isoformat(), state_data.get('note', ''),\
-           'pending', '', datetime_now()
-
-
-async def blocked_date_args(state_data: dict):
-    return state_data['booking_date'].date().isoformat(), 'This date is booked', int(state_data['business_id']), datetime_now()
-
 
 async def get_categories():
     options = {

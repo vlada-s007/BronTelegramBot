@@ -12,6 +12,7 @@ from aiogram.client.session.aiohttp import AiohttpSession
 from BronTelegramBot.handlers.base import base_router
 from BronTelegramBot.handlers.auth import auth_router
 from BronTelegramBot.handlers.booking import booking_router
+from BronTelegramBot.handlers.payment import payment_router
 from BronTelegramBot.middlewares.locales import i18n_middleware
 from BronTelegramBot.utils import scheduler
 
@@ -52,6 +53,7 @@ async def main():
     dp.include_router(auth_router)
     dp.include_router(base_router)
     dp.include_router(booking_router)
+    dp.include_router(payment_router)
 
     # await dp.start_polling(bot, connect=conn, session=session)
     # await dp.start_polling(bot, session=session)
