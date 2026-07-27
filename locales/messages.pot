@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 03:17+0500\n"
+"POT-Creation-Date: 2026-07-27 16:16+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgid ""
 "database. Sign up on the website: {website}"
 msgstr ""
 
-#: handlers/base.py:39 handlers/base.py:42
+#: handlers/base.py:39 handlers/base.py:42 handlers/payment.py:79
 msgid "An unexpected error occurred, please run the /start command again"
 msgstr ""
 
@@ -102,27 +102,27 @@ msgstr ""
 msgid "Your past reservations:"
 msgstr ""
 
-#: handlers/base.py:159
+#: handlers/base.py:153
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:164
+#: handlers/base.py:158
 msgid "Pending"
 msgstr ""
 
-#: handlers/base.py:165
+#: handlers/base.py:159
 msgid "Completed"
 msgstr ""
 
-#: handlers/base.py:166
+#: handlers/base.py:160
 msgid "Confirmed"
 msgstr ""
 
-#: handlers/base.py:167
+#: handlers/base.py:161
 msgid "Cancelled"
 msgstr ""
 
-#: handlers/base.py:183
+#: handlers/base.py:177
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -135,28 +135,28 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/base.py:209 handlers/booking.py:450
+#: handlers/base.py:203 handlers/booking.py:414
 #, python-brace-format
 msgid ""
 "\n"
 "Additional products: {products_info}"
 msgstr ""
 
-#: handlers/base.py:213 handlers/booking.py:454
+#: handlers/base.py:207 handlers/booking.py:418
 #, python-brace-format
 msgid ""
 "\n"
 "Price of products: {products_price}"
 msgstr ""
 
-#: handlers/base.py:217 handlers/booking.py:458
+#: handlers/base.py:211 handlers/booking.py:422
 #, python-brace-format
 msgid ""
 "\n"
 "Additional note: {note}"
 msgstr ""
 
-#: handlers/base.py:220 handlers/booking.py:461
+#: handlers/base.py:214 handlers/booking.py:425
 #, python-brace-format
 msgid ""
 "\n"
@@ -242,27 +242,23 @@ msgstr ""
 msgid "Leave an additional message (or click the skip button)"
 msgstr ""
 
-#: handlers/booking.py:395
-msgid "Payment services are still in development"
-msgstr ""
-
-#: handlers/booking.py:415
+#: handlers/booking.py:379
 msgid "Gym"
 msgstr ""
 
-#: handlers/booking.py:416
+#: handlers/booking.py:380
 msgid "Spa"
 msgstr ""
 
-#: handlers/booking.py:417
+#: handlers/booking.py:381
 msgid "Salon"
 msgstr ""
 
-#: handlers/booking.py:418
+#: handlers/booking.py:382
 msgid "Clinic"
 msgstr ""
 
-#: handlers/booking.py:423
+#: handlers/booking.py:387
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -275,6 +271,26 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
+#: handlers/payment.py:48 handlers/payment.py:108
+msgid "Your booking:"
+msgstr ""
+
+#: handlers/payment.py:51 handlers/payment.py:111
+msgid "Pay with Click:"
+msgstr ""
+
+#: handlers/payment.py:90
+msgid "Payment successful"
+msgstr ""
+
+#: handlers/payment.py:95
+msgid "Your booking was saved successfully"
+msgstr ""
+
+#: handlers/payment.py:101
+msgid "Payment failed"
+msgstr ""
+
 #: keyboards/keyboard_base.py:19
 msgid "Share contact information"
 msgstr ""
@@ -283,7 +299,7 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:94
+#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:97
 msgid "My Profile"
 msgstr ""
 
@@ -333,11 +349,15 @@ msgstr ""
 msgid "Return to profile settings"
 msgstr ""
 
-#: keyboards/keyboard_base.py:90
+#: keyboards/keyboard_base.py:88
+msgid "Pay with click"
+msgstr ""
+
+#: keyboards/keyboard_base.py:93
 msgid "Return to upcoming reservations"
 msgstr ""
 
-#: keyboards/keyboard_base.py:92
+#: keyboards/keyboard_base.py:95
 msgid "Return to past reservations"
 msgstr ""
 
@@ -417,10 +437,14 @@ msgid "Return to choosing products"
 msgstr ""
 
 #: keyboards/keyboard_booking.py:244
-msgid "Confirm reservation/booking"
+msgid "Confirm and proceed to pay now"
 msgstr ""
 
 #: keyboards/keyboard_booking.py:245
+msgid "Confirm reservation/booking"
+msgstr ""
+
+#: keyboards/keyboard_booking.py:246
 msgid "Cancel reservation/booking and return to the main menu"
 msgstr ""
 

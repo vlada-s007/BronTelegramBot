@@ -7,17 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-17 03:17+0500\n"
-"PO-Revision-Date: 2026-07-11 15:15+0500\n"
+"POT-Creation-Date: 2026-07-27 16:16+0500\n"
+"PO-Revision-Date: 2026-07-27 16:21+0500\n"
 "Last-Translator: \n"
-"Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 "
+"&& (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.18.0\n"
+"X-Generator: Poedit 3.9\n"
 
 #: handlers/auth.py:40
 msgid ""
@@ -25,8 +26,7 @@ msgid ""
 "Share contact information in order to log in or register:"
 msgstr ""
 "Добро пожаловать в Bron. На данный момент вы не авторизованы.\n"
-"Поделитесь контактными данными, чтобы авторизоваться или завершить "
-"регистрацию:"
+"Поделитесь контактными данными, чтобы авторизоваться или завершить регистрацию:"
 
 #: handlers/auth.py:45
 msgid "You are already logged in."
@@ -41,23 +41,21 @@ msgstr "Регистрация завершена!"
 msgid ""
 "This is a test message: if you are seeing this, the app is still in "
 "development.\n"
-"        There is no account with your phone number registered on the "
-"database. Sign up on the website: {website}"
+"        There is no account with your phone number registered on the database. "
+"Sign up on the website: {website}"
 msgstr ""
 "Это тестовое сообщение : если вы видите его, значит приложение всё ещё "
 "находится в стадии разработки\n"
 "\n"
-"В базе данных нет учетной записи с вашим номером телефона. "
-"Зарегистрируйтесь на сайте: {website}"
+"В базе данных нет учетной записи с вашим номером телефона. Зарегистрируйтесь на "
+"сайте: {website}"
 
-#: handlers/base.py:39 handlers/base.py:42
+#: handlers/base.py:39 handlers/base.py:42 handlers/payment.py:79
 msgid "An unexpected error occurred, please run the /start command again"
 msgstr ""
-"Произошла непредвиденная ошибка. Пожалуйста, запустите команду /start ещё"
-" раз"
+"Произошла непредвиденная ошибка. Пожалуйста, запустите команду /start ещё раз"
 
-#: handlers/base.py:59 handlers/base.py:61 handlers/base.py:75
-#: handlers/base.py:77
+#: handlers/base.py:59 handlers/base.py:61 handlers/base.py:75 handlers/base.py:77
 msgid "Welcome to Bron. Choose your actions:"
 msgstr "Добро пожаловать в Bron. Выберите свои действия:"
 
@@ -77,13 +75,13 @@ msgstr "Свяжитесь с нами: @Bron_support"
 msgid ""
 "Welcome to Bron\n"
 "\n"
-"Bron is an all-in-one platform that helps you discover trusted "
-"businesses, explore nearby services, and make reservations with ease.\n"
+"Bron is an all-in-one platform that helps you discover trusted businesses, "
+"explore nearby services, and make reservations with ease.\n"
 "\n"
-"Whether you're looking for a restaurant, café, beauty salon, clinic, "
-"hotel, or any other service, Bron helps you find reliable options near "
-"you. Browse verified businesses, compare ratings and reviews, explore "
-"products and services, and book in just a few taps.\n"
+"Whether you're looking for a restaurant, café, beauty salon, clinic, hotel, or "
+"any other service, Bron helps you find reliable options near you. Browse "
+"verified businesses, compare ratings and reviews, explore products and "
+"services, and book in just a few taps.\n"
 "\n"
 "With Bron, you can:\n"
 "\n"
@@ -95,20 +93,19 @@ msgid ""
 "- Save your favorite places and manage all your bookings in one account.\n"
 "- Explore special offers and exclusive deals from businesses.\n"
 "\n"
-"Our mission is to make finding trusted local businesses simple, "
-"convenient, and reliable, helping you save time and enjoy the best "
-"experiences."
+"Our mission is to make finding trusted local businesses simple, convenient, and "
+"reliable, helping you save time and enjoy the best experiences."
 msgstr ""
 "Добро пожаловать в Bron\n"
 "\n"
-"Bron — это универсальная платформа, которая помогает находить проверенные"
-" компании, открывать для себя услуги поблизости и быстро бронировать всё "
+"Bron — это универсальная платформа, которая помогает находить проверенные "
+"компании, открывать для себя услуги поблизости и быстро бронировать всё "
 "необходимое.\n"
 "\n"
-"Ищете ресторан, кафе, салон красоты, клинику, гостиницу или другую "
-"услугу? Bron поможет найти надежные места рядом с вами. Просматривайте "
-"проверенные компании, сравнивайте рейтинги и отзывы, изучайте товары и "
-"услуги, а также оформляйте бронирование всего за несколько нажатий.\n"
+"Ищете ресторан, кафе, салон красоты, клинику, гостиницу или другую услугу? Bron "
+"поможет найти надежные места рядом с вами. Просматривайте проверенные компании, "
+"сравнивайте рейтинги и отзывы, изучайте товары и услуги, а также оформляйте "
+"бронирование всего за несколько нажатий.\n"
 "\n"
 "С Bron вы можете:\n"
 "\n"
@@ -117,20 +114,18 @@ msgstr ""
 "- Просматривать товары, услуги, фотографии и информацию о компаниях.\n"
 "- Читать рейтинги и отзывы клиентов.\n"
 "- Быстро и безопасно оформлять бронирование.\n"
-"- Сохранять любимые места и управлять всеми бронированиями в одном "
-"аккаунте.\n"
+"- Сохранять любимые места и управлять всеми бронированиями в одном аккаунте.\n"
 "- Пользоваться специальными предложениями и эксклюзивными акциями.\n"
 "\n"
-"Наша цель — сделать поиск надежных компаний простым, удобным и "
-"безопасным, чтобы вы экономили время и получали лучшие впечатления."
+"Наша цель — сделать поиск надежных компаний простым, удобным и безопасным, "
+"чтобы вы экономили время и получали лучшие впечатления."
 
 #: handlers/base.py:112 handlers/base.py:121
 msgid ""
-"View your upcoming and past reservations or toggle your notification "
-"status"
+"View your upcoming and past reservations or toggle your notification status"
 msgstr ""
-"Посмотрите на ваши предстоящие и прошлые бронирования или измените статус"
-" уведомлений"
+"Посмотрите на ваши предстоящие и прошлые бронирования или измените статус "
+"уведомлений"
 
 #: handlers/base.py:133
 msgid "Your upcoming reservations:"
@@ -140,27 +135,27 @@ msgstr "Ваши предстоящие бронирования:"
 msgid "Your past reservations:"
 msgstr "Ваши прошлые бронирования:"
 
-#: handlers/base.py:159
+#: handlers/base.py:153
 msgid "Choose your actions:"
 msgstr "Выберите свои действия:"
 
-#: handlers/base.py:164
+#: handlers/base.py:158
 msgid "Pending"
 msgstr "В обработке"
 
-#: handlers/base.py:165
+#: handlers/base.py:159
 msgid "Completed"
 msgstr "Выполнено"
 
-#: handlers/base.py:166
+#: handlers/base.py:160
 msgid "Confirmed"
 msgstr "Подтверждено"
 
-#: handlers/base.py:167
+#: handlers/base.py:161
 msgid "Cancelled"
 msgstr "Отменено"
 
-#: handlers/base.py:183
+#: handlers/base.py:177
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -181,7 +176,7 @@ msgstr ""
 "Забронированная дата: {booking_date}\n"
 "Заброниованный временной промежуток: {start_time} — {end_time}"
 
-#: handlers/base.py:209 handlers/booking.py:450
+#: handlers/base.py:203 handlers/booking.py:414
 #, python-brace-format
 msgid ""
 "\n"
@@ -190,7 +185,7 @@ msgstr ""
 "\n"
 "Дополнительные товары: {products_info}"
 
-#: handlers/base.py:213 handlers/booking.py:454
+#: handlers/base.py:207 handlers/booking.py:418
 #, python-brace-format
 msgid ""
 "\n"
@@ -199,7 +194,7 @@ msgstr ""
 "\n"
 "Стоимость товаров: {products_price}"
 
-#: handlers/base.py:217 handlers/booking.py:458
+#: handlers/base.py:211 handlers/booking.py:422
 #, python-brace-format
 msgid ""
 "\n"
@@ -208,7 +203,7 @@ msgstr ""
 "\n"
 "Заметка к резервации: {note}"
 
-#: handlers/base.py:220 handlers/booking.py:461
+#: handlers/base.py:214 handlers/booking.py:425
 #, python-brace-format
 msgid ""
 "\n"
@@ -219,8 +214,8 @@ msgstr ""
 
 #: handlers/booking.py:43 handlers/booking.py:46
 msgid ""
-"An unexpected error occurred, your booking details were lost. Please "
-"return to the main menu"
+"An unexpected error occurred, your booking details were lost. Please return to "
+"the main menu"
 msgstr "Произошла непредвиденная ошибка. Пожалуйста, вернитесь в главное меню"
 
 #: handlers/booking.py:54 handlers/booking.py:120 keyboards/keyboard_base.py:37
@@ -267,8 +262,8 @@ msgstr "Выберите дату:"
 #: handlers/booking.py:225 handlers/booking.py:241
 #, python-brace-format
 msgid ""
-"The duration of your chosen service \"{service_title}\" is "
-"{service_duration} minutes.\n"
+"The duration of your chosen service \"{service_title}\" is {service_duration} "
+"minutes.\n"
 "Choose the timeframe of your booking:"
 msgstr ""
 "Продолжительность выбранной вами услуги \"{service_title}\" - "
@@ -302,27 +297,23 @@ msgstr "Выберите дополнительные товары или про
 msgid "Leave an additional message (or click the skip button)"
 msgstr "Оставьте сообщение (или нажмите \"пропустить\")"
 
-#: handlers/booking.py:395
-msgid "Payment services are still in development"
-msgstr "Оплата бронирования все еще в разработке"
-
-#: handlers/booking.py:415
+#: handlers/booking.py:379
 msgid "Gym"
 msgstr "Спортзал"
 
-#: handlers/booking.py:416
+#: handlers/booking.py:380
 msgid "Spa"
 msgstr "Спа-салон"
 
-#: handlers/booking.py:417
+#: handlers/booking.py:381
 msgid "Salon"
 msgstr "Салон"
 
-#: handlers/booking.py:418
+#: handlers/booking.py:382
 msgid "Clinic"
 msgstr "Клиника"
 
-#: handlers/booking.py:423
+#: handlers/booking.py:387
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -343,6 +334,26 @@ msgstr ""
 "Забронированная дата: {booking_date}\n"
 "Заброниованный временной промежуток: {start_time} — {end_time}"
 
+#: handlers/payment.py:48 handlers/payment.py:108
+msgid "Your booking:"
+msgstr "Ваше бронирование:"
+
+#: handlers/payment.py:51 handlers/payment.py:111
+msgid "Pay with Click:"
+msgstr "Оплатить через Click:"
+
+#: handlers/payment.py:90
+msgid "Payment successful"
+msgstr "Оплата успешно произведена"
+
+#: handlers/payment.py:95
+msgid "Your booking was saved successfully"
+msgstr "Ваше бронирование было успешно сохранено"
+
+#: handlers/payment.py:101
+msgid "Payment failed"
+msgstr "Платеж не прошел"
+
 #: keyboards/keyboard_base.py:19
 msgid "Share contact information"
 msgstr "Поделиться контактными данными"
@@ -351,7 +362,7 @@ msgstr "Поделиться контактными данными"
 msgid "Continue"
 msgstr "Продолжить"
 
-#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:94
+#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:97
 msgid "My Profile"
 msgstr "Мой профиль"
 
@@ -401,11 +412,15 @@ msgstr "Бронирование на {date} в {time}"
 msgid "Return to profile settings"
 msgstr "Вернуться к настройкам профиля"
 
-#: keyboards/keyboard_base.py:90
+#: keyboards/keyboard_base.py:88
+msgid "Pay with click"
+msgstr "Оплатить через Click"
+
+#: keyboards/keyboard_base.py:93
 msgid "Return to upcoming reservations"
 msgstr "Вернуться к предстоящим бронированиям"
 
-#: keyboards/keyboard_base.py:92
+#: keyboards/keyboard_base.py:95
 msgid "Return to past reservations"
 msgstr "Вернуться к прошлым бронированиям"
 
@@ -485,10 +500,14 @@ msgid "Return to choosing products"
 msgstr "Вернуться к выбору продуктов"
 
 #: keyboards/keyboard_booking.py:244
+msgid "Confirm and proceed to pay now"
+msgstr "Подтвердить и перейти к оплате сейчас"
+
+#: keyboards/keyboard_booking.py:245
 msgid "Confirm reservation/booking"
 msgstr "Подтвердить бронирование"
 
-#: keyboards/keyboard_booking.py:245
+#: keyboards/keyboard_booking.py:246
 msgid "Cancel reservation/booking and return to the main menu"
 msgstr "Отменить оформление бронирования и вернуться в главное меню"
 
@@ -505,10 +524,9 @@ msgstr ""
 #~ "Welcome to Bron, {username}. You are currently not logged in.\n"
 #~ "Share contact information in order to log in or register:"
 #~ msgstr ""
-#~ "Добро пожаловать в Bron, {username}. На"
-#~ " данный момент вы не авторизованы.\n"
-#~ "Поделитесь контактными данными, чтобы "
-#~ "авторизоваться или завершить регистрацию:"
+#~ "Добро пожаловать в Bron, {username}. На данный момент вы не авторизованы.\n"
+#~ "Поделитесь контактными данными, чтобы авторизоваться или завершить "
+#~ "регистрацию:"
 
 #~ msgid "Your previous booking"
 #~ msgstr "Подтвердить бронирование"
@@ -516,3 +534,5 @@ msgstr ""
 #~ msgid "In development"
 #~ msgstr "В разработке"
 
+#~ msgid "Payment services are still in development"
+#~ msgstr "Оплата бронирования все еще в разработке"
