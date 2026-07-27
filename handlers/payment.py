@@ -63,7 +63,7 @@ async def pre_checkout_query(pre_checkout_q: PreCheckoutQuery):
 
 async def save_booking_to_db(booking_state, message: Message, state: FSMContext):
     data = await state.get_data()
-    booking_data = await booking_args({booking_state}, data)
+    booking_data = await booking_args(booking_state, data)
     booking_id = await create_booking(*booking_data)
     blocked_args = await blocked_date_args(data)
     await block_date(*blocked_args)
