@@ -18,7 +18,7 @@ from aiogram.utils.i18n import gettext as _
 from BronTelegramBot.utils import text_to_datetime, datetime_to_text
 
 # for pythonanywhere
-from handlers.booking import booking_error_handler
+from BronTelegramBot.handlers.booking import booking_error_handler
 
 session = AiohttpSession(proxy="http://proxy.server:3128")
 token = config('TOKEN')
@@ -103,6 +103,7 @@ async def failed_payment(message: Message):
 @payment_router.callback_query(lambda call:'pendingReservationPayment' in call.data)
 async def pay_existing_booking(call: CallbackQuery):
     comm, booking_price = call.data.split('_')
+    booking_price = int(booking_price)
     await bot.send_invoice(chat_id=call.message.chat.id,
                            title=_('Your booking:'),
                            payload='bot-defined invoice payload',
@@ -110,7 +111,7 @@ async def pay_existing_booking(call: CallbackQuery):
                            description=_('Pay with Click:'),
                            currency='UZS',
                            prices=[
-                               LabeledPrice(label='Total price', amount=int(booking_price * 100)),
+                               LabeledPrice(label='Total price', amount=booking_price * 100),
                            ],
                            start_parameter='start_parameter')
 
