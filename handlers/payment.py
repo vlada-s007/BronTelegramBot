@@ -127,4 +127,3 @@ async def booking_args(status, state_data: dict):
 
 async def blocked_date_args(state_data: dict):
     return state_data['booking_date'].date().isoformat(), 'This date is booked', int(state_data['business_id']), datetime_now()
-

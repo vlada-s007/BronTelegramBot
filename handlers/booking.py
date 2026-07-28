@@ -401,7 +401,7 @@ Booked timeslot: {start_time} - {end_time}'''
         start_time=html.quote(datetime_to_text(state_data['start_time'], "%H:%M")),
         end_time=html.quote(datetime_to_text(state_data['end_time'], "%H:%M")))
 
-    if state_data.get('products_info') and state_data.get('products_total_price') != 0:
+    if state_data.get('products_info') and state_data.get('products_total_price'):
         products_info = state_data['products_info']
         products_price = state_data['products_total_price']
         products_str = []
