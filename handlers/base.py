@@ -12,6 +12,7 @@ from BronTelegramBot.keyboards.keyboard_base import *
 from BronTelegramBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
     get_booking_products, products_by_business_id, products_info_by_ids
 from BronTelegramBot.middlewares.locales import i18n_middleware
+from BronTelegramBot.utils import hhmm
 
 # for pythonanywhere
 session = AiohttpSession(proxy="http://proxy.server:3128")
@@ -168,10 +169,12 @@ async def format_booking_details(booking_id, state_data, *args):
     business_name = await business_name_by_id(args[1])
     service_id = args[2]
     service_info = await service_title_duration_and_price_by_id(service_id)
+    # args[4] is a Decimal, args[6]/args[7] are datetime.time and args[8]
+    # is a datetime.date -- under SQLite all four arrived as strings.
     total_price = format_currency(args[4], 'UZS', locale="uz_UZ")
-    start = ':'.join(args[6].split(':')[:-1])
-    end = ':'.join(args[7].split(':')[:-1])
-    date_format = format_date(datetime.fromisoformat(args[8]), format="d MMM", locale=state_data["locale"])
+    start = hhmm(args[6])
+    end = hhmm(args[7])
+    date_format = format_date(args[8], format="d MMM", locale=state_data["locale"])
     products = await get_booking_products(booking_id)
 
     localized_msg = _('''Booking status: {status}

@@ -7,6 +7,7 @@ from babel.dates import format_date
 from babel.numbers import format_currency
 
 from BronTelegramBot.middlewares.database import service_title_duration_and_price_by_id
+from BronTelegramBot.utils import hhmm
 
 language_inline = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='UZ 🇺🇿', callback_data='lang_uz'),
@@ -67,9 +68,11 @@ async def view_booking_buttons(state_data: dict, *args):
     builder = InlineKeyboardBuilder()
     locale = state_data.get("locale", "en")
     for booking in args:
-        date_format = datetime.fromisoformat(booking[3])
-        start = ':'.join(booking[1].split(':')[:-1])
-        end = ':'.join(booking[2].split(':')[:-1])
+        # booking[3] is already a datetime.date and booking[1]/booking[2]
+        # are datetime.time objects now that the rows come from Postgres.
+        date_format = booking[3]
+        start = hhmm(booking[1])
+        end = hhmm(booking[2])
         builder.button(text= _('Reservation for {date} {time}').format(
             date=html.quote(format_date(date_format, format="d MMM", locale=locale)),
             time=html.quote(f'{start} - {end}')), callback_data=f'bookingDetails_{booking[0]}')
@@ -85,7 +88,8 @@ async def booking_detail_buttons(booking_price, booking_status, state_data: dict
     page_builder = InlineKeyboardBuilder()
     status_not_none = state_data.get('statuses')
     if booking_status == 'pending':
-        page_builder.button(text='💳' + _('Pay with click'), callback_data=f'pendingReservationPayment_{booking_price}')
+        page_builder.button(text='💳' + _('Pay with click'),
+                            callback_data=f'pendingReservationPayment_{int(booking_price)}')
         page_builder.adjust(1)
     if status_not_none:
         status1, status2 = state_data.get('statuses')

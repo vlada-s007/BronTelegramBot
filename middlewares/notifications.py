@@ -14,7 +14,7 @@ from BronTelegramBot.middlewares.database import search_user_by_tg_id, update_da
     search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
     get_branch_info_by_id
 from BronTelegramBot.utils import scheduler
-from BronTelegramBot.utils import text_to_datetime, combine_time
+from BronTelegramBot.utils import combine_time, datetime_now, hhmm
 
 # for pythonanywhere
 session = AiohttpSession(proxy="http://proxy.server:3128")
@@ -39,17 +39,25 @@ class NotificationMiddleware(BaseMiddleware):
             user_id = state_data['user_id']
             notif_state = state_data['notifications']
             if notif_state is True:
-                reservations = await search_bookings_for_profile(user_id, "confimed", "pending")
+                reservations = await search_bookings_for_profile(user_id, "confirmed", "pending")
                 reservation_ids = [reservation[0] for reservation in reservations]
                 for reservation in reservations:
                     if reservation[0] in reservation_ids:
-                        start_time = text_to_datetime(reservation[1], "%H:%M:%S")
-                        date = text_to_datetime(reservation[3], "%Y-%m-%d")
-                        start_time_str = ':'.join(reservation[1].split(':')[:-1])
-                        end_time_str = ':'.join(reservation[2].split(':')[:-1])
-                        time = f'{start_time_str} - {end_time_str}'
-                        datetime_format = combine_time(date, (start_time - timedelta(hours=1)).time())
+                        # Postgres returns datetime.time / datetime.date objects
+                        # here, where SQLite returned strings that had to be
+                        # parsed with text_to_datetime().
+                        start_time = reservation[1]
+                        end_time = reservation[2]
+                        date = reservation[3]
+                        time = f'{hhmm(start_time)} - {hhmm(end_time)}'
+                        datetime_format = combine_time(date, start_time) - timedelta(hours=1)
                         print(datetime_format, 'datetime_for_notifs')
+
+                        # A reminder slot that has already passed would fire
+                        # the moment the job is added, so skip those.
+                        if datetime_format <= datetime_now():
+                            reservation_ids.remove(reservation[0])
+                            continue
 
                         reservation_info = await get_booking_details(reservation[0])
 

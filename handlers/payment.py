@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from aiogram import Router, F
 from aiogram.client.bot import Bot
 from aiogram.client.session.aiohttp import AiohttpSession
@@ -10,12 +11,13 @@ from typing import Union
 from BronTelegramBot.handlers.base import state_error_handling_or_clear
 from BronTelegramBot.keyboards.keyboard_base import back_to_main_menu_button, start_inline
 from BronTelegramBot.middlewares.database import *
+from decouple import config
 from BronTelegramBot.middlewares.notifications import NotificationMiddleware
 from BronTelegramBot.states import BookingState, SearchParams
 from BronTelegramBot.keyboards.keyboard_booking import *
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from BronTelegramBot.utils import text_to_datetime, datetime_to_text
+from BronTelegramBot.utils import text_to_datetime, datetime_to_text, datetime_now
 
 # for pythonanywhere
 from BronTelegramBot.handlers.booking import booking_error_handler
@@ -75,7 +77,7 @@ async def save_booking_to_db(booking_state, message: Message, state: FSMContext)
     notifications = data.get('notifications', True)
     chat_id = data.get('chat_id', True)
     if not user_id and not locale and not notifications and not chat_id:
-        await bot.send_message(chat_id=message.chat_id,
+        await bot.send_message(chat_id=message.chat.id,
                                text=_('An unexpected error occurred, please run the /start command again'),
                                reply_markup=start_inline)
     else:
@@ -117,13 +119,20 @@ async def pay_existing_booking(call: CallbackQuery):
 
 
 async def booking_args(status, state_data: dict):
+    # Postgres is strict about types where SQLite coerced everything:
+    #   * start_time / end_time go in as datetime.time, not ISO strings
+    #   * booking_date goes in as datetime.date
+    #   * total_price becomes a Decimal inside create_booking()
+    #   * status was `{status}` -- a set literal, not the string
+    #   * notes / cancel_reason are NOT NULL, so never pass None
     return int(state_data['user_id']), int(state_data['business_id']),\
            int(state_data['service_id']), int(state_data['branch_id']),\
-           float(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
-           state_data['start_time'].time().isoformat(), state_data['end_time'].time().isoformat(),\
-           state_data['booking_date'].date().isoformat(), state_data.get('note', ''), \
-           {status}, '', datetime_now()
+           Decimal(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
+           state_data['start_time'].time(), state_data['end_time'].time(),\
+           state_data['booking_date'].date(), state_data.get('note') or '', \
+           status, '', datetime_now()
 
 
 async def blocked_date_args(state_data: dict):
-    return state_data['booking_date'].date().isoformat(), 'This date is booked', int(state_data['business_id']), datetime_now()
+    return state_data['booking_date'].date(), 'This date is booked', \
+           int(state_data['business_id']), datetime_now()

@@ -1,0 +1,9 @@
+services:
+  bot:
+    buildt: .
+    command: sh -c "python -m BronTelegramBot"
+    env_file:
+      - ./.env
+    restart: always
+volumes:
+  pgdata:

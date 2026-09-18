@@ -10,6 +10,7 @@ from typing import Union
 from BronTelegramBot.handlers.base import state_error_handling_or_clear
 from BronTelegramBot.keyboards.keyboard_base import back_to_main_menu_button
 from BronTelegramBot.middlewares.database import *
+from decouple import config
 from BronTelegramBot.middlewares.notifications import NotificationMiddleware
 from BronTelegramBot.states import BookingState, SearchParams
 from BronTelegramBot.keyboards.keyboard_booking import *
