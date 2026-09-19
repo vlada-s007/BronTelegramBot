@@ -1,19 +1,16 @@
 import asyncio
 import logging
 
-from redis.asyncio import Redis
-from aiogram.fsm.storage.redis import RedisStorage
 from decouple import config
 
 from aiogram import Bot, Dispatcher
 
-from aiogram.client.session.aiohttp import AiohttpSession
-from BronTelegramBot.handlers.base import base_router
-from BronTelegramBot.handlers.auth import auth_router
-from BronTelegramBot.handlers.booking import booking_router
-from BronTelegramBot.handlers.payment import payment_router
-from BronTelegramBot.middlewares.database import init_pool, close_pool
-from BronTelegramBot.middlewares.locales import i18n_middleware
+from BronBot.handlers import base_router
+from BronBot.handlers import auth_router
+from BronBot.handlers import booking_router
+from BronBot.handlers import payment_router
+from BronBot.middlewares import init_pool, close_pool
+from BronBot.middlewares import i18n_middleware
 from BronTelegramBot.utils import scheduler
 
 
@@ -23,10 +20,10 @@ async def main():
     token = config('TOKEN')
 
     # for pythonanywhere
-    session = AiohttpSession(proxy="http://proxy.server:3128")
-    bot = Bot(token, session=session)
+    # session = AiohttpSession(proxy="http://proxy.server:3128")
+    # bot = Bot(token, session=session)
 
-    # bot = Bot(token)
+    bot = Bot(token)
 
     dp = Dispatcher(bot=bot)
     scheduler.start()

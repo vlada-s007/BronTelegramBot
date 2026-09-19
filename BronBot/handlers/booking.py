@@ -1,31 +1,26 @@
-from datetime import datetime
 from aiogram import Router
 from aiogram.client.bot import Bot
-from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
-from babel.dates import format_date
-from babel.numbers import format_currency
 from typing import Union
-from BronTelegramBot.handlers.base import state_error_handling_or_clear
-from BronTelegramBot.keyboards.keyboard_base import back_to_main_menu_button
-from BronTelegramBot.middlewares.database import *
+from BronBot.handlers.base import state_error_handling_or_clear
+from BronBot.keyboards.keyboard_base import back_to_main_menu_button
 from decouple import config
-from BronTelegramBot.middlewares.notifications import NotificationMiddleware
+from BronBot.middlewares import NotificationMiddleware
 from BronTelegramBot.states import BookingState, SearchParams
-from BronTelegramBot.keyboards.keyboard_booking import *
+from BronBot.keyboards.keyboard_booking import *
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from BronTelegramBot.utils import text_to_datetime, datetime_to_text
 
 
 # for pythonanywhere
-session = AiohttpSession(proxy="http://proxy.server:3128")
-token = config('TOKEN')
-bot = Bot(token=token, session=session)
-
+# session = AiohttpSession(proxy="http://proxy.server:3128")
 # token = config('TOKEN')
-# bot = Bot(token)
+# bot = Bot(token=token, session=session)
+
+token = config('TOKEN')
+bot = Bot(token)
 
 booking_router = Router()
 booking_router.message.middleware(NotificationMiddleware())

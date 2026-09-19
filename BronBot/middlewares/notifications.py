@@ -1,4 +1,3 @@
-import datetime
 from datetime import timedelta
 
 from aiogram.client.bot import Bot
@@ -7,22 +6,20 @@ from typing import Callable, Dict, Any, Awaitable, Union
 from aiogram import BaseMiddleware
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
-from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from BronTelegramBot.middlewares.database import search_user_by_tg_id, update_database_tg_id, \
-    search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
+from BronBot.middlewares import search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
     get_branch_info_by_id
 from BronTelegramBot.utils import scheduler
 from BronTelegramBot.utils import combine_time, datetime_now, hhmm
 
 # for pythonanywhere
-session = AiohttpSession(proxy="http://proxy.server:3128")
-token = config('TOKEN')
-bot = Bot(token=token, session=session)
-
+# session = AiohttpSession(proxy="http://proxy.server:3128")
 # token = config('TOKEN')
-# bot = Bot(token)
+# bot = Bot(token=token, session=session)
+
+token = config('TOKEN')
+bot = Bot(token)
 
 class NotificationMiddleware(BaseMiddleware):
     async def __call__(

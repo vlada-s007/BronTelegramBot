@@ -1,27 +1,24 @@
 from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command
 from typing import Union
-from aiogram import html
 from aiogram.utils.i18n import gettext as _
-# from BronTelegramBot.middlewares.locales import i18n, i18n_middleware
+# from BronBot.middlewares.locales import i18n, i18n_middleware
 from decouple import config
-from aiogram.client.session.aiohttp import AiohttpSession
-from BronTelegramBot.keyboards.keyboard_base import *
-from BronTelegramBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
-    get_booking_products, products_by_business_id, products_info_by_ids
-from BronTelegramBot.middlewares.locales import i18n_middleware
+from BronBot.keyboards.keyboard_base import *
+from BronBot.middlewares import search_bookings_for_profile, business_name_by_id, get_booking_details, \
+    get_booking_products, products_info_by_ids
+from BronBot.middlewares import i18n_middleware
 from BronTelegramBot.utils import hhmm
+from BronBot.middlewares import NotificationMiddleware
 
 # for pythonanywhere
-session = AiohttpSession(proxy="http://proxy.server:3128")
-token = config('TOKEN')
-bot = Bot(token=token, session=session)
-from BronTelegramBot.middlewares.notifications import NotificationMiddleware
-
+# session = AiohttpSession(proxy="http://proxy.server:3128")
 # token = config('TOKEN')
-# bot = Bot(token)
+# bot = Bot(token=token, session=session)
+
+token = config('TOKEN')
+bot = Bot(token)
 
 
 base_router = Router()

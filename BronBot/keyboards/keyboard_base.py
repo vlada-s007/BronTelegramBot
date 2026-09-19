@@ -2,11 +2,8 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMar
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from datetime import datetime
 from babel.dates import format_date
-from babel.numbers import format_currency
 
-from BronTelegramBot.middlewares.database import service_title_duration_and_price_by_id
 from BronTelegramBot.utils import hhmm
 
 language_inline = InlineKeyboardMarkup(inline_keyboard=[

@@ -1,25 +1,23 @@
-from aiogram import Router, Bot, F
-from aiogram.client.session.aiohttp import AiohttpSession
+from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
-import asyncio
-from BronTelegramBot.middlewares.authcheck import AuthMiddleware
-from BronTelegramBot.middlewares.locales import i18n_middleware
-from BronTelegramBot.middlewares.notifications import NotificationMiddleware
+from BronBot.middlewares import AuthMiddleware
+from BronBot.middlewares import i18n_middleware
+from BronBot.middlewares import NotificationMiddleware
 from BronTelegramBot.states import UserState
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message
 from aiogram.filters import Command
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from decouple import config
-from BronTelegramBot.keyboards.keyboard_base import send_contact, main_menu, continue_button
+from BronBot.keyboards.keyboard_base import send_contact, continue_button
 
 # for pythonanywhere
-session = AiohttpSession(proxy="http://proxy.server:3128")
-token = config('TOKEN')
-bot = Bot(token=token, session=session)
-
+# session = AiohttpSession(proxy="http://proxy.server:3128")
 # token = config('TOKEN')
-# bot = Bot(token)
+# bot = Bot(token=token, session=session)
+
+token = config('TOKEN')
+bot = Bot(token)
 
 auth_router = Router()
 auth_router.message.middleware(AuthMiddleware())
