@@ -15,5 +15,7 @@ services:
     env_file:
       - ./.env
     restart: always
+    depends_on:
+      - db
 volumes:
   pgdata:
