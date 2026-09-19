@@ -1,6 +1,16 @@
+version: '3.13'
 services:
+  db:
+    image: postgres:17-alpine
+    env_file:
+      - ./.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: on-failure
+    ports:
+      - "5432:532"
   bot:
-    buildt: .
+    build: .
     command: sh -c "python -m BronTelegramBot"
     env_file:
       - ./.env
