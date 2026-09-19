@@ -9,8 +9,8 @@ from BronBot.keyboards.keyboard_base import *
 from BronBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
     get_booking_products, products_info_by_ids
 from BronBot.middlewares.locales import i18n_middleware
-from BronTelegramBot.utils import hhmm
-from BronBot.middlewares import NotificationMiddleware
+from BronBot.utils import hhmm
+from BronBot.middlewares.notifications import NotificationMiddleware
 
 # for pythonanywhere
 # session = AiohttpSession(proxy="http://proxy.server:3128")

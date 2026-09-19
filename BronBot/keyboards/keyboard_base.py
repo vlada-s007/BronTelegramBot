@@ -4,7 +4,7 @@ from aiogram import html
 from aiogram.utils.i18n import gettext as _
 from babel.dates import format_date
 
-from BronTelegramBot.BronBot.utils import hhmm
+from BronBot.utils import hhmm
 
 language_inline = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='UZ 🇺🇿', callback_data='lang_uz'),
