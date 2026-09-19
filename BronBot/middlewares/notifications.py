@@ -8,10 +8,10 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, CallbackQuery
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from BronBot.middlewares import search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
+from BronBot.middlewares.database import search_bookings_for_profile, get_booking_details, service_title_duration_and_price_by_id, business_name_by_id, \
     get_branch_info_by_id
-from BronTelegramBot.utils import scheduler
-from BronTelegramBot.utils import combine_time, datetime_now, hhmm
+from BronBot.utils import scheduler
+from BronBot.utils import combine_time, datetime_now, hhmm
 
 # for pythonanywhere
 # session = AiohttpSession(proxy="http://proxy.server:3128")

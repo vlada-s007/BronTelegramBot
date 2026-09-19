@@ -6,9 +6,9 @@ from aiogram.types import CallbackQuery, Message, LabeledPrice, PreCheckoutQuery
 from BronBot.handlers.base import state_error_handling_or_clear
 from BronBot.keyboards.keyboard_base import back_to_main_menu_button, start_inline
 from decouple import config
-from BronBot.middlewares import NotificationMiddleware
+from BronBot.middlewares.notifications import NotificationMiddleware
 from aiogram.utils.i18n import gettext as _
-from BronTelegramBot.utils import datetime_now
+from BronBot.utils import datetime_now
 
 from BronBot.handlers.booking import booking_error_handler
 

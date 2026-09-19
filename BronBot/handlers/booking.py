@@ -6,12 +6,12 @@ from typing import Union
 from BronBot.handlers.base import state_error_handling_or_clear
 from BronBot.keyboards.keyboard_base import back_to_main_menu_button
 from decouple import config
-from BronBot.middlewares import NotificationMiddleware
-from BronTelegramBot.states import BookingState, SearchParams
+from BronBot.middlewares.notifications import NotificationMiddleware
+from BronBot.states import BookingState, SearchParams
 from BronBot.keyboards.keyboard_booking import *
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from BronTelegramBot.utils import text_to_datetime, datetime_to_text
+from BronBot.utils import text_to_datetime, datetime_to_text
 
 
 # for pythonanywhere

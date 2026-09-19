@@ -6,9 +6,9 @@ from aiogram.utils.i18n import gettext as _
 # from BronBot.middlewares.locales import i18n, i18n_middleware
 from decouple import config
 from BronBot.keyboards.keyboard_base import *
-from BronBot.middlewares import search_bookings_for_profile, business_name_by_id, get_booking_details, \
+from BronBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
     get_booking_products, products_info_by_ids
-from BronBot.middlewares import i18n_middleware
+from BronBot.middlewares.locales import i18n_middleware
 from BronTelegramBot.utils import hhmm
 from BronBot.middlewares import NotificationMiddleware
 

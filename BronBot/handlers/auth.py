@@ -1,9 +1,9 @@
 from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
-from BronBot.middlewares import AuthMiddleware
-from BronBot.middlewares import i18n_middleware
-from BronBot.middlewares import NotificationMiddleware
-from BronTelegramBot.states import UserState
+from BronBot.middlewares.authcheck import AuthMiddleware
+from BronBot.middlewares.locales import i18n_middleware
+from BronBot.middlewares.notifications import NotificationMiddleware
+from BronBot.states import UserState
 from aiogram.types import Message
 from aiogram.filters import Command
 from aiogram import html

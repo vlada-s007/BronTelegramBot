@@ -5,13 +5,13 @@ from decouple import config
 
 from aiogram import Bot, Dispatcher
 
-from BronBot.handlers import base_router
-from BronBot.handlers import auth_router
-from BronBot.handlers import booking_router
-from BronBot.handlers import payment_router
-from BronBot.middlewares import init_pool, close_pool
-from BronBot.middlewares import i18n_middleware
-from BronTelegramBot.utils import scheduler
+from BronBot.handlers.base import base_router
+from BronBot.handlers.auth import auth_router
+from BronBot.handlers.booking import booking_router
+from BronBot.handlers.payment import payment_router
+from BronBot.middlewares.database import init_pool, close_pool
+from BronBot.middlewares.locales import i18n_middleware
+from BronBot.utils import scheduler
 
 
 async def main():

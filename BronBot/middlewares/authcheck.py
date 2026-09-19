@@ -9,7 +9,7 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.client.session.aiohttp import AiohttpSession, ClientSession
 from aiogram import html
 from aiogram.utils.i18n import gettext as _
-from BronBot.middlewares import search_user_by_tg_id, update_database_tg_id, \
+from BronBot.middlewares.database import search_user_by_tg_id, update_database_tg_id, \
     search_bookings_for_profile, get_booking_details, get_branch_info_by_id
 
 # for pythonanywhere

@@ -8,7 +8,7 @@ from typing import Any, Optional, Sequence
 import asyncpg
 from decouple import config
 
-from BronTelegramBot.utils import datetime_now
+from BronTelegramBot.BronBot.utils import datetime_now
 
 __all__ = [
     'init_pool', 'get_pool', 'close_pool', 'connect_db',
