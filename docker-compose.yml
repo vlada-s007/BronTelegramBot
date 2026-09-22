@@ -1,4 +1,4 @@
-
+version: '3.13'
 services:
   db:
     image: postgres:17-alpine
@@ -8,10 +8,18 @@ services:
       - pgdata:/var/lib/postgresql/data
     restart: on-failure
     ports:
-      - "5433:532"
+      - "5433:5433"
+    command:
+      - "postgres"
+      - "-c"
+      - "listen_addresses=*"
+    environment:
+      POSTGRES_USER: bron_user
+      POSTGRES_PASSWORD: Alpha2005@
+      POSTGRES_DB: bron_db
   bot:
     build: ""
-    command: sh -c "make migrate && python -m BronBot"
+    command: sh -c "python -m BronBot"
     env_file:
       - .env
     restart: always
