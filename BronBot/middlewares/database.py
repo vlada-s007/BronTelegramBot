@@ -178,16 +178,24 @@ async def business_name_by_id(business_id):
 async def search_user_by_tg_id(telegram_id):
     pool = await get_pool()
     record = await pool.fetchrow(
-        'SELECT id FROM core_users WHERE telegram_id = $1',
+        'SELECT id FROM core_user WHERE telegram_id = $1',
         _int(telegram_id),
     )
     return _row(record)
 
 
+async def search_user_by_phone_number(phone_number):
+    pool = await get_pool()
+    record = await pool.fetchrow(
+        'SELECT id FROM core_user WHERE phone = $1',
+        (phone_number,),
+    )
+    return _row(record)
+
 async def update_database_tg_id(telegram_id, user_id):
     pool = await get_pool()
     await pool.execute(
-        'UPDATE core_users SET telegram_id = $1 WHERE id = $2',
+        'UPDATE core_user SET telegram_id = $1 WHERE id = $2',
         _int(telegram_id), _int(user_id),
     )
 
