@@ -1,4 +1,3 @@
-version: '3.13'
 services:
   db:
     image: postgres:17-alpine
@@ -14,6 +13,7 @@ services:
       - "-c"
       - "listen_addresses=*"
     environment:
+      POSTGRES_INITDB_ARGS: "-c wal_level=logical"
       POSTGRES_USER: bron_user
       POSTGRES_PASSWORD: Alpha2005@
       POSTGRES_DB: bron_db
@@ -27,6 +27,7 @@ services:
     env_file:
       - /home/vlada/bron_backend.env
     environment:
+      POSTGRES_INITDB_ARGS: "-c wal_level=logical"
       POSTGRES_HOST: db
       POSTGRES_USER: bron_user
       POSTGRES_PASSWORD: Alpha2005@

@@ -85,7 +85,7 @@ class AuthMiddleware(BaseMiddleware):
             await state.update_data(notifications=True)
             await state.update_data(chat_id=event.chat.id)
             # only for local database, remove when production is over
-            # await update_database_tg_id(telegram_id, data_resp['user_id'])
+            await update_database_tg_id(telegram_id, phone_in_database)
             # print('database login added')
 
         elif state_data.get('user_id'):
