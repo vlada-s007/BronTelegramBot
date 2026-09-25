@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-09-25 15:38+0500\n"
-"PO-Revision-Date: 2026-09-25 15:38+0500\n"
+"PO-Revision-Date: 2026-09-25 16:03+0500\n"
 "Last-Translator: \n"
 "Language-Team: ru <LL@li.org>\n"
 "Language: ru\n"
@@ -68,7 +68,7 @@ msgstr "Язык установлен."
 
 #: handlers/base.py:81
 msgid "Contact us at @Bron_Founder"
-msgstr "Свяжитесь с нами: @Bron_Founders"
+msgstr "Свяжитесь с нами: @Bron_Founder"
 
 #: handlers/base.py:87
 msgid ""
