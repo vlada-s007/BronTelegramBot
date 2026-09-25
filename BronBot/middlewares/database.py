@@ -365,17 +365,8 @@ async def products_info_by_ids(product_id):
 # --------------------------------------------------------------------------
 
 async def create_booking(*args):
-    """Insert a booking and return its new id.
-
-    args: (user_id, business_id, service_id, branch_id, total_price,
-           guest_count, start_time, end_time, booking_date, notes,
-           status, cancel_reason, created_at)
-
-    SQLite gave us the new id through cursor.lastrowid; Postgres uses
-    RETURNING id.
-    """
     (user_id, business_id, service_id, branch_id, total_price, guest_count,
-     start_time, end_time, booking_date, notes, status, cancel_reason,
+     start_time, end_time, booking_date, notes, status, cancel_reason, attendance_status,
      created_at) = args
 
     pool = await get_pool()
@@ -384,13 +375,13 @@ async def create_booking(*args):
         INSERT INTO core_booking (
             user_id, business_id, service_id, branch_id,
             total_price, guest_count, start_time, end_time, booking_date,
-            notes, status, cancel_reason, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+            notes, status, cancel_reason, attendance_status, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13. $14)
         RETURNING id
         """,
         _int(user_id), _int(business_id), _int(service_id), _int(branch_id),
         _dec(total_price), _int(guest_count), _time(start_time), _time(end_time),
-        _date(booking_date), notes or '', str(status), cancel_reason or '',
+        _date(booking_date), notes or '', str(status), cancel_reason or '', attendance_status or 'not_set',
         _timestamp(created_at),
     )
     return booking_id

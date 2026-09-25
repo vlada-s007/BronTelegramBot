@@ -6,6 +6,8 @@ from aiogram.types import CallbackQuery, Message, LabeledPrice, PreCheckoutQuery
 from BronBot.handlers.base import state_error_handling_or_clear
 from BronBot.keyboards.keyboard_base import back_to_main_menu_button, start_inline
 from decouple import config
+
+from BronBot.middlewares.database import create_booking, block_date, insert_booking_products
 from BronBot.middlewares.notifications import NotificationMiddleware
 from aiogram.utils.i18n import gettext as _
 from BronBot.utils import datetime_now
@@ -121,7 +123,7 @@ async def booking_args(status, state_data: dict):
            Decimal(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
            state_data['start_time'].time(), state_data['end_time'].time(),\
            state_data['booking_date'].date(), state_data.get('note') or '', \
-           status, '', datetime_now()
+           status, '', 'not_set', datetime_now()
 
 
 async def blocked_date_args(state_data: dict):

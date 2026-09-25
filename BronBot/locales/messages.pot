@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-27 16:16+0500\n"
+"POT-Creation-Date: 2026-09-25 15:38+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,51 +17,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: handlers/auth.py:40
+#: handlers/auth.py:38
 msgid ""
 "Welcome to Bron. You are currently not logged in.\n"
 "Share contact information in order to log in or register:"
 msgstr ""
 
-#: handlers/auth.py:45
+#: handlers/auth.py:43
 msgid "You are already logged in."
 msgstr ""
 
-#: handlers/auth.py:52
+#: handlers/auth.py:50
 msgid "Registration is completed!"
 msgstr ""
 
-#: handlers/auth.py:54
+#: handlers/auth.py:52
 #, python-brace-format
 msgid ""
 "This is a test message: if you are seeing this, the app is still in "
 "development.\n"
-"        There is no account with your phone number registered on the "
-"database. Sign up on the website: {website}"
+"There is no account with your phone number registered on the database. "
+"Sign up on the website: {website}"
 msgstr ""
 
-#: handlers/base.py:39 handlers/base.py:42 handlers/payment.py:79
+#: handlers/base.py:38 handlers/base.py:41 handlers/payment.py:74
 msgid "An unexpected error occurred, please run the /start command again"
 msgstr ""
 
-#: handlers/base.py:59 handlers/base.py:61 handlers/base.py:75
-#: handlers/base.py:77
+#: handlers/base.py:58 handlers/base.py:60 handlers/base.py:74
+#: handlers/base.py:76
 msgid "Welcome to Bron. Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:66
+#: handlers/base.py:65
 msgid "Choose your language:"
 msgstr ""
 
-#: handlers/base.py:73
+#: handlers/base.py:72
 msgid "Language set successfully."
 msgstr ""
 
-#: handlers/base.py:82
-msgid "Contact us at @Bron_support"
+#: handlers/base.py:81
+msgid "Contact us at @Bron_Founder"
 msgstr ""
 
-#: handlers/base.py:88
+#: handlers/base.py:87
 msgid ""
 "Welcome to Bron\n"
 "\n"
@@ -88,41 +88,41 @@ msgid ""
 "experiences."
 msgstr ""
 
-#: handlers/base.py:112 handlers/base.py:121
+#: handlers/base.py:111 handlers/base.py:120
 msgid ""
 "View your upcoming and past reservations or toggle your notification "
 "status"
 msgstr ""
 
-#: handlers/base.py:133
+#: handlers/base.py:132
 msgid "Your upcoming reservations:"
 msgstr ""
 
-#: handlers/base.py:135
+#: handlers/base.py:134
 msgid "Your past reservations:"
 msgstr ""
 
-#: handlers/base.py:153
+#: handlers/base.py:152
 msgid "Choose your actions:"
 msgstr ""
 
-#: handlers/base.py:158
+#: handlers/base.py:157
 msgid "Pending"
 msgstr ""
 
-#: handlers/base.py:159
+#: handlers/base.py:158
 msgid "Completed"
 msgstr ""
 
-#: handlers/base.py:160
+#: handlers/base.py:159
 msgid "Confirmed"
 msgstr ""
 
-#: handlers/base.py:161
+#: handlers/base.py:160
 msgid "Cancelled"
 msgstr ""
 
-#: handlers/base.py:177
+#: handlers/base.py:178
 #, python-brace-format
 msgid ""
 "Booking status: {status}\n"
@@ -135,82 +135,82 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/base.py:203 handlers/booking.py:414
+#: handlers/base.py:204 handlers/booking.py:412
 #, python-brace-format
 msgid ""
 "\n"
 "Additional products: {products_info}"
 msgstr ""
 
-#: handlers/base.py:207 handlers/booking.py:418
+#: handlers/base.py:208 handlers/booking.py:416
 #, python-brace-format
 msgid ""
 "\n"
 "Price of products: {products_price}"
 msgstr ""
 
-#: handlers/base.py:211 handlers/booking.py:422
+#: handlers/base.py:212 handlers/booking.py:420
 #, python-brace-format
 msgid ""
 "\n"
 "Additional note: {note}"
 msgstr ""
 
-#: handlers/base.py:214 handlers/booking.py:425
+#: handlers/base.py:215 handlers/booking.py:423
 #, python-brace-format
 msgid ""
 "\n"
 "Guests invited: {guest_count}"
 msgstr ""
 
-#: handlers/booking.py:43 handlers/booking.py:46
+#: handlers/booking.py:41 handlers/booking.py:44
 msgid ""
 "An unexpected error occurred, your booking details were lost. Please "
 "return to the main menu"
 msgstr ""
 
-#: handlers/booking.py:54 handlers/booking.py:120 keyboards/keyboard_base.py:37
+#: handlers/booking.py:52 handlers/booking.py:118 keyboards/keyboard_base.py:35
 msgid "Booking..."
 msgstr ""
 
-#: handlers/booking.py:60
+#: handlers/booking.py:58
 msgid "Choose a category:"
 msgstr ""
 
-#: handlers/booking.py:72
+#: handlers/booking.py:70
 #, python-brace-format
 msgid "{amt} Companies found in \"{category}\" category"
 msgstr ""
 
-#: handlers/booking.py:79
+#: handlers/booking.py:77
 msgid "Enter your search query:"
 msgstr ""
 
-#: handlers/booking.py:94 handlers/booking.py:114 handlers/booking.py:117
+#: handlers/booking.py:92 handlers/booking.py:112 handlers/booking.py:115
 #, python-brace-format
 msgid "{amt} companies found for \"{query}\" "
 msgstr ""
 
-#: handlers/booking.py:97
+#: handlers/booking.py:95
 #, python-brace-format
 msgid "No companies found for \"{query}\" "
 msgstr ""
 
-#: handlers/booking.py:140
+#: handlers/booking.py:138
 #, python-brace-format
 msgid "{business_name} has {amt} branches/subsidiaries:"
 msgstr ""
 
-#: handlers/booking.py:156
+#: handlers/booking.py:154
 #, python-brace-format
 msgid "{business_name} offers {amt} service(s) for booking:"
 msgstr ""
 
-#: handlers/booking.py:177 handlers/booking.py:199
+#: handlers/booking.py:175 handlers/booking.py:197
 msgid "Choose a date:"
 msgstr ""
 
-#: handlers/booking.py:225 handlers/booking.py:241
+#: handlers/booking.py:223 handlers/booking.py:239
 #, python-brace-format
 msgid ""
 "The duration of your chosen service \"{service_title}\" is "
@@ -218,15 +218,15 @@ msgid ""
 "Choose the timeframe of your booking:"
 msgstr ""
 
-#: handlers/booking.py:257
+#: handlers/booking.py:255
 msgid "Choose which of the following options applies to your reservation/booking:"
 msgstr ""
 
-#: handlers/booking.py:269 handlers/booking.py:280
+#: handlers/booking.py:267 handlers/booking.py:278
 msgid "Choose the number of guests:"
 msgstr ""
 
-#: handlers/booking.py:294
+#: handlers/booking.py:292
 #, python-brace-format
 msgid ""
 "Choose additional products alongside your reservation or skip this step:\n"
@@ -234,31 +234,31 @@ msgid ""
 "You chose {product_qty} product(s), ({price})"
 msgstr ""
 
-#: handlers/booking.py:300
+#: handlers/booking.py:298
 msgid "Choose additional products alongside your reservation or skip this step:"
 msgstr ""
 
-#: handlers/booking.py:339
+#: handlers/booking.py:337
 msgid "Leave an additional message (or click the skip button)"
 msgstr ""
 
-#: handlers/booking.py:379
+#: handlers/booking.py:377
 msgid "Gym"
 msgstr ""
 
-#: handlers/booking.py:380
+#: handlers/booking.py:378
 msgid "Spa"
 msgstr ""
 
-#: handlers/booking.py:381
+#: handlers/booking.py:379
 msgid "Salon"
 msgstr ""
 
-#: handlers/booking.py:382
+#: handlers/booking.py:380
 msgid "Clinic"
 msgstr ""
 
-#: handlers/booking.py:387
+#: handlers/booking.py:385
 #, python-brace-format
 msgid ""
 "Your total price is {total_price}\n"
@@ -271,72 +271,72 @@ msgid ""
 "Booked timeslot: {start_time} - {end_time}"
 msgstr ""
 
-#: handlers/payment.py:48 handlers/payment.py:108
+#: handlers/payment.py:43 handlers/payment.py:103
 msgid "Your booking:"
 msgstr ""
 
-#: handlers/payment.py:51 handlers/payment.py:111
+#: handlers/payment.py:46 handlers/payment.py:106
 msgid "Pay with Click:"
 msgstr ""
 
-#: handlers/payment.py:90
+#: handlers/payment.py:85
 msgid "Payment successful"
 msgstr ""
 
-#: handlers/payment.py:95
+#: handlers/payment.py:90
 msgid "Your booking was saved successfully"
 msgstr ""
 
-#: handlers/payment.py:101
+#: handlers/payment.py:96
 msgid "Payment failed"
 msgstr ""
 
-#: keyboards/keyboard_base.py:19
+#: keyboards/keyboard_base.py:17
 msgid "Share contact information"
 msgstr ""
 
-#: keyboards/keyboard_base.py:30
+#: keyboards/keyboard_base.py:28
 msgid "Continue"
 msgstr ""
 
-#: keyboards/keyboard_base.py:38 keyboards/keyboard_base.py:97
+#: keyboards/keyboard_base.py:36 keyboards/keyboard_base.py:98
 msgid "My Profile"
 msgstr ""
 
-#: keyboards/keyboard_base.py:39
+#: keyboards/keyboard_base.py:37
 msgid "Change Language"
 msgstr ""
 
-#: keyboards/keyboard_base.py:40
+#: keyboards/keyboard_base.py:38
 msgid "About Bron"
 msgstr ""
 
-#: keyboards/keyboard_base.py:41
+#: keyboards/keyboard_base.py:39
 msgid "Help"
 msgstr ""
 
-#: keyboards/keyboard_base.py:47 keyboards/keyboard_base.py:60
+#: keyboards/keyboard_base.py:45 keyboards/keyboard_base.py:58
 #: keyboards/keyboard_booking.py:18
 msgid "Back to Main Menu"
 msgstr ""
 
-#: keyboards/keyboard_base.py:53 keyboards/keyboard_base.py:55
+#: keyboards/keyboard_base.py:51 keyboards/keyboard_base.py:53
 msgid "Notifications"
 msgstr ""
 
-#: keyboards/keyboard_base.py:53
+#: keyboards/keyboard_base.py:51
 msgid "ON"
 msgstr ""
 
-#: keyboards/keyboard_base.py:55
+#: keyboards/keyboard_base.py:53
 msgid "OFF"
 msgstr ""
 
-#: keyboards/keyboard_base.py:57
+#: keyboards/keyboard_base.py:55
 msgid "Upcoming"
 msgstr ""
 
-#: keyboards/keyboard_base.py:58
+#: keyboards/keyboard_base.py:56
 msgid "Past"
 msgstr ""
 
@@ -353,11 +353,11 @@ msgstr ""
 msgid "Pay with click"
 msgstr ""
 
-#: keyboards/keyboard_base.py:93
+#: keyboards/keyboard_base.py:94
 msgid "Return to upcoming reservations"
 msgstr ""
 
-#: keyboards/keyboard_base.py:95
+#: keyboards/keyboard_base.py:96
 msgid "Return to past reservations"
 msgstr ""
 
@@ -448,7 +448,7 @@ msgstr ""
 msgid "Cancel reservation/booking and return to the main menu"
 msgstr ""
 
-#: middlewares/notifications.py:68
+#: middlewares/notifications.py:73
 #, python-brace-format
 msgid ""
 "You have a {time} reservation at {business_name} - {branch_name}\" for "

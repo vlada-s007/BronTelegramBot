@@ -4,10 +4,11 @@ from aiogram.types import Message, CallbackQuery
 from typing import Union
 from aiogram.utils.i18n import gettext as _
 # from BronBot.middlewares.locales import i18n, i18n_middleware
+from babel.numbers import format_currency
 from decouple import config
 from BronBot.keyboards.keyboard_base import *
 from BronBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
-    get_booking_products, products_info_by_ids
+    get_booking_products, products_info_by_ids, service_title_duration_and_price_by_id
 from BronBot.middlewares.locales import i18n_middleware
 from BronBot.utils import hhmm
 from BronBot.middlewares.notifications import NotificationMiddleware
@@ -77,7 +78,7 @@ async def set_language(call: CallbackQuery, state: FSMContext):
 
 @base_router.callback_query(lambda call: 'help' in call.data)
 async def help_command(call: CallbackQuery):
-    await call.message.edit_text(_('Contact us at @Bron_support'), reply_markup=await back_to_main_menu_button())
+    await call.message.edit_text(_('Contact us at @Bron_Founder'), reply_markup=await back_to_main_menu_button())
 
 
 @base_router.callback_query(lambda call: 'about' in call.data)

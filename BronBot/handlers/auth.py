@@ -50,5 +50,5 @@ async def authorize_user(message: Message, state: FSMContext):
         await message.answer(_('Registration is completed!'), reply_markup=await continue_button())
     elif not data.get('user_id'):
         await message.answer(_('''This is a test message: if you are seeing this, the app is still in development.
-        There is no account with your phone number registered on the database. Sign up on the website: {website}'''
-                               ).format(website=html.quote('https://uzbalpha.pythonanywhere.com/api/')))
+There is no account with your phone number registered on the database. Sign up on the website: {website}''').format(
+            website=html.quote('https://bronofficial.com/auth')))
