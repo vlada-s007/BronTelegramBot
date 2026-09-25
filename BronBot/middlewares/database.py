@@ -376,7 +376,7 @@ async def create_booking(*args):
             user_id, business_id, service_id, branch_id,
             total_price, guest_count, start_time, end_time, booking_date,
             notes, status, cancel_reason, attendance_status, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13. $14)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
         RETURNING id
         """,
         _int(user_id), _int(business_id), _int(service_id), _int(branch_id),
