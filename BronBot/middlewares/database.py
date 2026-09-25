@@ -93,6 +93,8 @@ def _row(record: Optional[asyncpg.Record]) -> Optional[tuple]:
 def _int(value: Any) -> Optional[int]:
     if value is None:
         return None
+    elif type(value) is tuple:
+        return int(value[0])
     return int(value)
 
 
@@ -179,7 +181,7 @@ async def search_user_by_tg_id(telegram_id):
     pool = await get_pool()
     record = await pool.fetchrow(
         'SELECT id FROM core_user WHERE telegram_id = $1',
-        _int(telegram_id),
+        _int(telegram_id)
     )
     return _row(record)
 
@@ -188,8 +190,7 @@ async def search_user_by_phone_number(phone_number):
     pool = await get_pool()
     record = await pool.fetchrow(
         'SELECT id FROM core_user WHERE phone = $1',
-        (phone_number,),
-    )
+        phone_number)
     return _row(record)
 
 async def update_database_tg_id(telegram_id, user_id):

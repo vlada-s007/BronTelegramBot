@@ -6,6 +6,8 @@ from typing import Union
 from BronBot.handlers.base import state_error_handling_or_clear
 from BronBot.keyboards.keyboard_base import back_to_main_menu_button
 from decouple import config
+
+from BronBot.middlewares.database import search_businesses_by_category
 from BronBot.middlewares.notifications import NotificationMiddleware
 from BronBot.states import BookingState, SearchParams
 from BronBot.keyboards.keyboard_booking import *
