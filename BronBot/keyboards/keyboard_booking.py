@@ -121,7 +121,7 @@ async def choose_hours(date, service_id, service_duration, page, *args):
 
         if date.weekday() == weekday[0] and weekday[1] == 0:
             print(type(weekday[2]))
-            open_t, close_t = text_to_datetime(weekday[2], "%H:%M:%S"), text_to_datetime(weekday[3], "%H:%M:%S")
+            open_t, close_t = weekday[2], weekday[3]
             open_timedelta = datetime.timedelta(hours=open_t.hour, minutes=open_t.minute)
             close_timedelta = datetime.timedelta(hours=close_t.hour, minutes=close_t.minute)
             diff = int((((close_timedelta - open_timedelta).total_seconds()) // 60)-60)
