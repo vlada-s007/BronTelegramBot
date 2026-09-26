@@ -26,12 +26,12 @@ async def back_to_booking_menu():
     return page_buttons.as_markup()
 
 
-async def booking_category_buttons(**kwargs):
+async def booking_category_buttons(*args):
     builder = InlineKeyboardBuilder()
-    for id, title in kwargs.items():
+    for item in args:
         localized_dict = await get_category_translations()
-        print(id, title)
-        builder.button(text=localized_dict[title], callback_data=f'searchBusinessByCat_{id}')
+        print(item[0], item[1])
+        builder.button(text=localized_dict[item[1]], callback_data=f'searchBusinessByCat_{item[0]}')
         builder.adjust(1)
     page_buttons = InlineKeyboardBuilder()
     page_buttons.button(text='⬅️📋 '+ _('Return to Booking Menu'), callback_data='bookingMenu')

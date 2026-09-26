@@ -56,7 +56,7 @@ async def booking_menu(call: CallbackQuery, state: FSMContext):
 @booking_router.callback_query(lambda call: 'categoryChoose' in call.data)
 async def booking_categories(call: CallbackQuery, state: FSMContext):
     cat_dict = await get_categories()
-    await call.message.edit_text(_('Choose a category:'), reply_markup=await booking_category_buttons(**cat_dict))
+    await call.message.edit_text(_('Choose a category:'), reply_markup=await booking_category_buttons(*cat_dict))
     await state.set_state(SearchParams.category)
 
 

@@ -90,6 +90,9 @@ class AuthMiddleware(BaseMiddleware):
 
         elif state_data.get('user_id'):
             print('User is already authenticated')
+            print(state_data.get('user_id'))
+            if not user_database_id:
+                await update_database_tg_id(telegram_id, state_data.get('user_id'))
         elif user_database_id and not state_data.get('user_id'):
             await state.clear()
             await state.update_data(notifications=True)
