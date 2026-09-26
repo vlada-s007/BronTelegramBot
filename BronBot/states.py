@@ -11,6 +11,7 @@ class UserState(StatesGroup):
 
 class SearchParams(StatesGroup):
     category = State()
+    category_id = State()
     query = State()
     search_results = State()
     cat_results = State()

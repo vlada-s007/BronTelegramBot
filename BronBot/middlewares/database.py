@@ -150,6 +150,23 @@ async def search_businesses_by_query(query: str):
     )
     return _rows(records)
 
+async def get_categories():
+    pool = await get_pool()
+    records = await pool.fetch(
+        """
+        SELECT id, name
+        FROM core_category
+        ORDER BY name
+        """
+    )
+    return _rows(records)
+
+async def get_category_name_by_id(cat_id):
+    pool = await get_pool()
+    return await pool.fetchval(
+        'SELECT name FROM core_category WHERE id = $1',
+        _int(cat_id),
+    )
 
 async def search_businesses_by_category(category):
     pool = await get_pool()
@@ -157,7 +174,7 @@ async def search_businesses_by_category(category):
         """
         SELECT id, name
         FROM core_business
-        WHERE category = $1
+        WHERE category_id = $1
         ORDER BY name
         """,
         str(category),

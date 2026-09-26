@@ -28,14 +28,23 @@ async def back_to_booking_menu():
 
 async def booking_category_buttons(**kwargs):
     builder = InlineKeyboardBuilder()
-    for key, title in kwargs.items():
-        print(key, title)
-        builder.button(text=title, callback_data=f'searchBusinessByCat_{key}')
+    for id, title in kwargs.items():
+        localized_dict = await get_category_translations()
+        print(id, title)
+        builder.button(text=localized_dict[title], callback_data=f'searchBusinessByCat_{id}')
         builder.adjust(1)
     page_buttons = InlineKeyboardBuilder()
     page_buttons.button(text='⬅️📋 '+ _('Return to Booking Menu'), callback_data='bookingMenu')
     builder.attach(page_buttons)
     return builder.as_markup()
+
+async def get_category_translations():
+    options = {
+        "gym": _("Gym"),
+        "spa": _("Spa"),
+        "salon": _("Salon"),
+        "clinic": _("Clinic")}
+    return options
 
 
 async def choose_business_menu(state: dict, *args):

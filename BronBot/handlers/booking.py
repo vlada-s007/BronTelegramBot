@@ -8,6 +8,7 @@ from BronBot.keyboards.keyboard_base import back_to_main_menu_button
 from decouple import config
 
 from BronBot.middlewares.database import *
+from BronBot.middlewares.database import get_categories, get_category_name_by_id
 from BronBot.middlewares.notifications import NotificationMiddleware
 from BronBot.states import BookingState, SearchParams
 from BronBot.keyboards.keyboard_booking import *
@@ -61,14 +62,17 @@ async def booking_categories(call: CallbackQuery, state: FSMContext):
 
 @booking_router.callback_query(lambda call: 'searchBusinessByCat' in call.data)
 async def businesses_in_cat(call: CallbackQuery, state: FSMContext):
-    comm, category = call.data.split('_')
-    results = await search_businesses_by_category(category)
+    comm, category_id = call.data.split('_')
+    results = await search_businesses_by_category(category_id)
     amt = str(len(results))
-    data = await state.update_data(category=category)
-    cat_dict = await get_categories()
+    categories_localized = await get_category_translations()
+    await state.update_data(category_id=category_id)
+    cat_name = await get_category_name_by_id(category_id)
+    data = await state.update_data(category=categories_localized[cat_name])
+
     await call.message.edit_text(
         _('{amt} Companies found in "{category}" category').format(
-            amt=html.quote(amt), category=html.quote(cat_dict[category].capitalize())), reply_markup=await
+            amt=html.quote(amt), category=html.quote(categories_localized[cat_name].capitalize())), reply_markup=await
         choose_business_menu(data, *results))
 
 
@@ -369,16 +373,6 @@ async def final_check_skipped(call: CallbackQuery, state: FSMContext):
     if valueexists:
         final_text = await final_check_tasks(state=state)
         await call.message.edit_text(final_text, reply_markup=await final_button_confirm())
-
-# implement payment and confirmation dialogue after QR codes are implemented
-
-async def get_categories():
-    options = {
-        "gym": _("Gym"),
-        "spa": _("Spa"),
-        "salon": _("Salon"),
-        "clinic": _("Clinic")}
-    return options
 
 
 async def format_final_text(state_data):
