@@ -36,10 +36,10 @@ async def booking_error_handler(event: Union[Message, CallbackQuery],
         exists = data.get(value)
         if value == 'user_id':
             if type(event) is Message:
-                user_id = await search_user_by_tg_id(event.user.id)
+                user_id = await search_user_by_tg_id(event.from_user.id)
                 await state.update_data(user_id=user_id)
             else:
-                user_id = await search_user_by_tg_id(event.message.user.id)
+                user_id = await search_user_by_tg_id(event.message.from_user.id)
                 await state.update_data(user_id=user_id)
         if exists is None:
             valueexists = None

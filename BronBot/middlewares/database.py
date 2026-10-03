@@ -415,26 +415,16 @@ async def insert_booking_products(*args):
     )
 
 
-async def search_bookings_for_profile(*args):
-    """args: (user_id, status, status, ...)
-
-    The aiosqlite version built this query with an f-string and wrapped
-    the statuses in double quotes.  Postgres reads "confirmed" as an
-    identifier, not a string literal, so that would raise
-    UndefinedColumn.  Statuses are passed as an array parameter instead,
-    which also accepts any number of them.
-    """
-    user_id, statuses = args[0], [str(status) for status in args[1:]]
+async def search_bookings_for_profile(user_id, status1, status2):
     pool = await get_pool()
     records = await pool.fetch(
         """
         SELECT id, start_time, end_time, booking_date
         FROM core_booking
-        WHERE user_id = $1 AND status = ANY($2::varchar[])
+        WHERE user_id = $1 AND status=$2 OR status= $3
         ORDER BY booking_date ASC, start_time ASC
         """,
-        _int(user_id), statuses,
-    )
+        user_id, status1, status2)
     return _rows(records)
 
 

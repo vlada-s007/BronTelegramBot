@@ -1,3 +1,4 @@
+import json
 from decimal import Decimal
 from django.core.serializers.json import DjangoJSONEncoder
 import orjson
@@ -60,13 +61,7 @@ async def pre_checkout_query(pre_checkout_q: PreCheckoutQuery):
 
 async def save_booking_to_db(booking_state, message: Message, state: FSMContext):
     data = await state.get_data()
-    booking_data = await booking_args(booking_state, data)
-    booking_id = await create_booking(*booking_data)
-    blocked_args = await blocked_date_args(data)
-    await block_date(*blocked_args)
-    if data.get('products_info'):
-        for product in data['products_info']:
-            await insert_booking_products(product[0], booking_id)
+
     user_id = data.get('user_id')
     locale = data.get('locale')
     notifications = data.get('notifications', True)
@@ -78,6 +73,14 @@ async def save_booking_to_db(booking_state, message: Message, state: FSMContext)
                                                   'user_id','business_id', 'service_id', 'service_title',
                                                   'branch_id', 'total_price', 'start_time',
                                                   'end_time', 'booking_date')
+        if valueexists:
+            booking_data = await booking_args(booking_state, data)
+            booking_id = await create_booking(*booking_data)
+            blocked_args = await blocked_date_args(data)
+            await block_date(*blocked_args)
+            if data.get('products_info'):
+                for product in data['products_info']:
+                    await insert_booking_products(product[0], booking_id)
     else:
         await state.clear()
         await state.update_data(user_id=user_id)
@@ -123,6 +126,7 @@ async def booking_args(status, state_data: dict):
     #   * total_price becomes a Decimal inside create_booking()
     #   * status was `{status}` -- a set literal, not the string
     #   * notes / cancel_reason are NOT NULL, so never pass None
+
     return int(state_data['user_id']), int(state_data['business_id']),\
            int(state_data['service_id']), await get_items(state_data), int(state_data['branch_id']),\
            Decimal(int(state_data['total_price'])), int(state_data.get('guest_count', 1)),\
@@ -156,7 +160,7 @@ async def get_items(state_data: dict):
             products_info.remove(product)
             items += products_unique
 
-    return orjson.dumps(items, cls=DjangoJSONEncoder)
+    return json.dumps(items, cls=DjangoJSONEncoder)
 
 
 
