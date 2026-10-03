@@ -57,9 +57,9 @@ async def choose_business_menu(state: dict, *args):
             print(business, 'unpack')
             builder.button(text=business[1], callback_data=f'chooseBusiness_{business[0]}')
     page_buttons = InlineKeyboardBuilder()
-    if state.get('category'):
+    if state.get('category_id'):
         page_buttons.button(text='⬅️🗂️ ' + _('Return to category filtering'),
-                            callback_data=f'categoryChoose_{state["category"]}')
+                            callback_data=f'categoryChoose_{state.get("category_id")}')
     else:
         page_buttons.button(text='⬅️📋 ' + _('Return to Booking Menu'),
                             callback_data=f'bookingMenu')
@@ -75,7 +75,7 @@ async def branch_choices(state: dict, *args):
     page_buttons = InlineKeyboardBuilder()
     if state.get('category'):
         page_buttons.button(text='⬅️🗂️ ' + _('Return to companies in "{category}" category').format(category=html.quote(state['category'].capitalize())),
-                            callback_data=f'searchBusinessByCat_{state["category"]}')
+                            callback_data=f'searchBusinessByCat_{state["category_id"]}')
     elif state.get('query') and len(state.get('res_count')) > 0:
         page_buttons.button(text='⬅️🔎 ' + _('Return to Search Results for "{query}"').format(query=html.quote(state['query'])),
                             callback_data=f'repeatSearch')

@@ -1,4 +1,6 @@
 from decimal import Decimal
+from django.core.serializers.json import DjangoJSONEncoder
+import orjson
 from aiogram import Router, F
 from aiogram.client.bot import Bot
 from aiogram.fsm.context import FSMContext
@@ -7,7 +9,7 @@ from BronBot.handlers.base import state_error_handling_or_clear
 from BronBot.keyboards.keyboard_base import back_to_main_menu_button, start_inline
 from decouple import config
 
-from BronBot.middlewares.database import create_booking, block_date, insert_booking_products
+from BronBot.middlewares.database import create_booking, block_date, insert_booking_products, search_user_by_tg_id
 from BronBot.middlewares.notifications import NotificationMiddleware
 from aiogram.utils.i18n import gettext as _
 from BronBot.utils import datetime_now
@@ -35,8 +37,8 @@ async def confirm_booking(call: CallbackQuery, state: FSMContext):
     if userexists is True:
         valueexists = await booking_error_handler(call,
                                                   state,
-                                                  'user_id','business_id', 'service_id',
-                                                  'branch_id','total_price', 'start_time',
+                                                  'user_id','business_id', 'service_id', 'service_title',
+                                                  'branch_id', 'total_price', 'start_time',
                                                   'end_time', 'booking_date')
         if valueexists:
             await bot.send_invoice(chat_id=call.message.chat.id,
@@ -69,10 +71,13 @@ async def save_booking_to_db(booking_state, message: Message, state: FSMContext)
     locale = data.get('locale')
     notifications = data.get('notifications', True)
     chat_id = data.get('chat_id', True)
-    if not user_id and not locale and not notifications and not chat_id:
-        await bot.send_message(chat_id=message.chat.id,
-                               text=_('An unexpected error occurred, please run the /start command again'),
-                               reply_markup=start_inline)
+    userexists = await state_error_handling_or_clear(message, state)
+    if userexists is True:
+        valueexists = await booking_error_handler(message,
+                                                  state,
+                                                  'user_id','business_id', 'service_id', 'service_title',
+                                                  'branch_id', 'total_price', 'start_time',
+                                                  'end_time', 'booking_date')
     else:
         await state.clear()
         await state.update_data(user_id=user_id)
@@ -119,11 +124,42 @@ async def booking_args(status, state_data: dict):
     #   * status was `{status}` -- a set literal, not the string
     #   * notes / cancel_reason are NOT NULL, so never pass None
     return int(state_data['user_id']), int(state_data['business_id']),\
-           int(state_data['service_id']), int(state_data['branch_id']),\
-           Decimal(int(state_data['total_price'])), int(state_data.get('guest_count', 0)),\
+           int(state_data['service_id']), await get_items(state_data), int(state_data['branch_id']),\
+           Decimal(int(state_data['total_price'])), int(state_data.get('guest_count', 1)),\
            state_data['start_time'].time(), state_data['end_time'].time(),\
            state_data['booking_date'].date(), state_data.get('note') or '', \
-           status, '', 'not_set', datetime_now()
+           status, 0, '', 'not_set', datetime_now()
+
+async def get_items(state_data: dict):
+    items = []
+    service = {'id': state_data.get('service_id'),
+               'kind': 'service',
+               'name': state_data.get('service_title'),
+               'price': state_data.get('service_price'),
+               'quantity': 1}
+    items.append(service)
+    if state_data.get('products_info'):
+        products_info = state_data.get('products_info')
+        products_unique = []
+        for product in products_info:
+            product_dict = {
+                'id': product[0],
+                'kind': 'product',
+                'name': product[1],
+                'price': product[2],
+                'quantity': 1}
+            if product_dict not in products_unique:
+                products_unique.append(product_dict)
+            else:
+                position = products_unique.index(product_dict)
+                products_unique[position]['quantity'] += 1
+            products_info.remove(product)
+            items += products_unique
+
+    return orjson.dumps(items, cls=DjangoJSONEncoder)
+
+
+
 
 
 async def blocked_date_args(state_data: dict):

@@ -177,7 +177,7 @@ async def search_businesses_by_category(category):
         WHERE category_id = $1
         ORDER BY name
         """,
-        str(category),
+        _int(category),
     )
     return _rows(records)
 
@@ -380,23 +380,23 @@ async def products_info_by_ids(product_id):
 # --------------------------------------------------------------------------
 
 async def create_booking(*args):
-    (user_id, business_id, service_id, branch_id, total_price, guest_count,
-     start_time, end_time, booking_date, notes, status, cancel_reason, attendance_status,
+    (user_id, business_id, service_id, items, branch_id, total_price, guest_count,
+     start_time, end_time, booking_date, notes, status, extra_wait_minutes, cancel_reason, attendance_status,
      created_at) = args
 
     pool = await get_pool()
     booking_id = await pool.fetchval(
         """
         INSERT INTO core_booking (
-            user_id, business_id, service_id, branch_id,
+            user_id, business_id, service_id, items, branch_id,
             total_price, guest_count, start_time, end_time, booking_date,
-            notes, status, cancel_reason, attendance_status, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+            notes, status, extra_wait_minutes, cancel_reason, attendance_status, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
         RETURNING id
         """,
-        _int(user_id), _int(business_id), _int(service_id), _int(branch_id),
+        _int(user_id), _int(business_id), _int(service_id), items, _int(branch_id),
         _dec(total_price), _int(guest_count), _time(start_time), _time(end_time),
-        _date(booking_date), notes or '', str(status), cancel_reason or '', attendance_status or 'not_set',
+        _date(booking_date), notes or '', str(status),  extra_wait_minutes or 0, cancel_reason or '', attendance_status or 'not_set',
         _timestamp(created_at),
     )
     return booking_id

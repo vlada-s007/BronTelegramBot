@@ -8,7 +8,7 @@ from babel.numbers import format_currency
 from decouple import config
 from BronBot.keyboards.keyboard_base import *
 from BronBot.middlewares.database import search_bookings_for_profile, business_name_by_id, get_booking_details, \
-    get_booking_products, products_info_by_ids, service_title_duration_and_price_by_id
+    get_booking_products, products_info_by_ids, service_title_duration_and_price_by_id, search_user_by_tg_id
 from BronBot.middlewares.locales import i18n_middleware
 from BronBot.utils import hhmm
 from BronBot.middlewares.notifications import NotificationMiddleware
@@ -33,7 +33,13 @@ async def state_error_handling_or_clear(event: Union[Message, CallbackQuery],
     locale = data.get('locale')
     notifications = data.get('notifications', True)
     chat_id = data.get('chat_id', True)
-    if not user_id and not locale and not notifications and not chat_id:
+    if not user_id and not locale and not chat_id:
+        if type(event) is Message:
+            user_id = await search_user_by_tg_id(event.user.id)
+            await state.update_data(user_id=user_id)
+        else:
+            user_id = await search_user_by_tg_id(event.message.user.id)
+            await state.update_data(user_id=user_id)
         try:
             await event.message.edit_text(_('An unexpected error occurred, please run the /start command again'),
                                     reply_markup=start_inline)

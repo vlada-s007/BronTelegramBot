@@ -34,6 +34,13 @@ async def booking_error_handler(event: Union[Message, CallbackQuery],
     valueexists = True
     for value in args:
         exists = data.get(value)
+        if value == 'user_id':
+            if type(event) is Message:
+                user_id = await search_user_by_tg_id(event.user.id)
+                await state.update_data(user_id=user_id)
+            else:
+                user_id = await search_user_by_tg_id(event.message.user.id)
+                await state.update_data(user_id=user_id)
         if exists is None:
             valueexists = None
 
@@ -62,7 +69,7 @@ async def booking_categories(call: CallbackQuery, state: FSMContext):
 
 @booking_router.callback_query(lambda call: 'searchBusinessByCat' in call.data)
 async def businesses_in_cat(call: CallbackQuery, state: FSMContext):
-    comm, category_id = call.data.split('_')
+    category_id = call.data.split('_')[-1]
     results = await search_businesses_by_category(int(category_id))
     amt = str(len(results))
     categories_localized = await get_category_translations()
