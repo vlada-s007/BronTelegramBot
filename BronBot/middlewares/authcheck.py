@@ -44,6 +44,8 @@ class AuthMiddleware(BaseMiddleware):
             phone = event.contact.phone_number
             if not phone.startswith('+'):
                 phone = '+' + phone
+            if ' ' in phone:
+                phone.replace(' ', '')
             print('phone' + phone)
             print('tg_id' + str(telegram_id))
             # base_url = config('base_url')

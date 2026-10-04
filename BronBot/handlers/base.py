@@ -32,8 +32,7 @@ async def state_error_handling_or_clear(event: Union[Message, CallbackQuery],
     user_id = data.get('user_id')
     locale = data.get('locale')
     notifications = data.get('notifications', True)
-    chat_id = data.get('chat_id', True)
-    if not user_id and not locale and not chat_id:
+    if not user_id and not locale:
         if type(event) is Message:
             user_id = await search_user_by_tg_id(event.user.id)
             await state.update_data(user_id=user_id)
@@ -52,7 +51,6 @@ async def state_error_handling_or_clear(event: Union[Message, CallbackQuery],
             await state.update_data(user_id=user_id)
             await state.update_data(locale=locale)
             await state.update_data(notifications=notifications)
-            await state.update_data(chat_id=chat_id)
         elif clear_request is False:
             return True
 

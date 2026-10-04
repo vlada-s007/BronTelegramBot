@@ -6,7 +6,6 @@ class UserState(StatesGroup):
     phone = State()
     user_id = State()
     notifications = State()
-    chat_id = State()
 
 
 class SearchParams(StatesGroup):

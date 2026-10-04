@@ -65,7 +65,6 @@ async def save_booking_to_db(booking_state, message: Message, state: FSMContext)
     user_id = data.get('user_id')
     locale = data.get('locale')
     notifications = data.get('notifications', True)
-    chat_id = data.get('chat_id', True)
     userexists = await state_error_handling_or_clear(message, state)
     if userexists is True:
         valueexists = await booking_error_handler(message,
@@ -86,7 +85,6 @@ async def save_booking_to_db(booking_state, message: Message, state: FSMContext)
         await state.update_data(user_id=user_id)
         await state.update_data(locale=locale)
         await state.update_data(notifications=notifications)
-        await state.update_data(chat_id=chat_id)
 
 @payment_router.message(F.content_type == ContentType.SUCCESSFUL_PAYMENT)
 async def successful_payment(message: Message, state: FSMContext):
